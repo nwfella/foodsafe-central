@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="FoodSafe Central - verified food recalls from government sources. Search by brand, product, UPC, or lot.">
+<title>FoodSafe Central · Food Recall & Safety Alerts</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2430; --border:#30363d; --text:#e6edf3;
+    --muted:#8b949e; --accent:#58a6ff; --red:#f85149; --amber:#d29922; --blue:#58a6ff;
+    --green:#3fb950; --gray:#6e7681;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scrollbar-color:var(--border) var(--bg)}
+  body{background:var(--bg); color:var(--text); font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; min-height:100vh}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 18px}
+
+  /* header */
+  header{background:linear-gradient(180deg,#10161f 0%,var(--bg) 100%); border-bottom:1px solid var(--border); padding:26px 0 18px}
+  .brand{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+  .brand h1{font-size:26px; letter-spacing:.3px}
+  .brand h1 .shield{color:var(--accent)}
+  .brand .tag{color:var(--muted); font-size:14px}
+  .pills{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
+  .pill{font-size:12.5px; padding:4px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted); background:var(--panel)}
+  .pill b{color:var(--text); font-weight:600}
+  .pill.alert{color:#ffd7d5; border-color:#f8514966; background:#f8514914}
+  .pill.alert b{color:var(--red)}
+  .pill.new{color:#a5d6a7; border-color:#3fb95055; background:#3fb95014}
+  .pill.new b{color:var(--green)}
+
+  /* controls */
+  .controls{display:grid; grid-template-columns:1fr auto auto auto; gap:10px; margin:18px 0 8px}
+  @media(max-width:900px){ .controls{grid-template-columns:1fr 1fr} }
+  @media(max-width:560px){ .controls{grid-template-columns:1fr} }
+  input,select{background:var(--panel); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:10px 12px; font-size:15px; outline:none}
+  input:focus,select:focus{border-color:var(--accent); box-shadow:0 0 0 3px #58a6ff22}
+  #q{grid-column:1 / -1}
+  @media(max-width:900px){ #q{grid-column:1 / -1} }
+  select{min-width:150px; cursor:pointer}
+
+  .statusline{color:var(--muted); font-size:13px; margin:6px 2px 12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+  .statusline .dot{width:8px; height:8px; border-radius:50%; display:inline-block}
+  .dot.g{background:var(--green)} .dot.r{background:var(--red)} .dot.o{background:var(--amber)}
+
+  /* cards */
+  #list{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:12px; padding-bottom:30px}
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px 16px; cursor:pointer; transition:border-color .12s, transform .12s}
+  .card:hover{border-color:var(--accent); transform:translateY(-1px)}
+  .card .top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
+  .card h3{font-size:15.5px; font-weight:600; line-height:1.35}
+  .card .brand{color:var(--muted); font-size:13px; margin-top:2px; display:block}
+  .badge{font-size:11.5px; font-weight:700; padding:3px 9px; border-radius:999px; white-space:nowrap; letter-spacing:.3px}
+  .b-I{background:#f8514922; color:var(--red); border:1px solid #f8514955}
+  .b-II{background:#d2992222; color:var(--amber); border:1px solid #d2992255}
+  .b-III{background:#58a6ff22; color:var(--blue); border:1px solid #58a6ff55}
+  .b-NOT_YET_CLASSIFIED,.b-UNKNOWN,.b-{background:#6e768122; color:var(--muted); border:1px solid #6e768155}
+  .card .meta{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; font-size:12.5px; color:var(--muted)}
+  .chip{background:var(--panel2); border:1px solid var(--border); padding:2px 8px; border-radius:6px}
+  .chip.upc{color:#79c0ff; border-color:#58a6ff44}
+  .card .reason{color:var(--muted); font-size:13px; margin-top:9px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+  .card .foot{display:flex; justify-content:space-between; margin-top:10px; font-size:12px; color:var(--muted)}
+  .st{display:inline-flex; align-items:center; gap:6px}
+  .st .dot{width:7px; height:7px}
+  .empty{grid-column:1/-1; text-align:center; color:var(--muted); padding:60px 0; border:1px dashed var(--border); border-radius:10px}
+
+  /* detail overlay */
+  #ov{position:fixed; inset:0; background:#0d1117cc; backdrop-filter:blur(3px); display:none; z-index:50; overflow-y:auto; padding:30px 16px}
+  #ov.open{display:block}
+  .sheet{max-width:820px; margin:0 auto; background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:26px 28px; position:relative}
+  .sheet h2{font-size:20px; line-height:1.35; padding-right:40px}
+  .close{position:absolute; top:16px; right:18px; background:none; border:1px solid var(--border); color:var(--muted); width:34px; height:34px; border-radius:8px; font-size:17px; cursor:pointer}
+  .close:hover{color:var(--text); border-color:var(--accent)}
+  .kv{display:grid; grid-template-columns:150px 1fr; gap:6px 14px; margin:18px 0; font-size:14px}
+  @media(max-width:560px){ .kv{grid-template-columns:1fr} }
+  .kv dt{color:var(--muted)}
+  .kv dd{color:var(--text); word-break:break-word}
+  .prodrow{border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin:6px 0; background:var(--panel2); font-size:13.5px}
+  .prodrow .codes{color:var(--muted); margin-top:4px; font-size:12.5px}
+  .raw{background:#0b0e13; border:1px dashed var(--border); border-radius:8px; padding:12px 14px; margin-top:14px; font-size:12.5px; color:var(--muted); white-space:pre-wrap; word-break:break-word}
+  .raw b{color:#79c0ff; font-weight:600}
+  a{color:var(--accent)}
+  .action{background:#0f2b1d; border:1px solid #3fb95055; border-radius:8px; padding:12px 14px; margin:14px 0; font-size:14px}
+  .action b{color:var(--green)}
+
+  footer{border-top:1px solid var(--border); color:var(--muted); font-size:12.5px; padding:22px 0 40px; margin-top:10px}
+  footer p{margin:4px 0}
+  #err{display:none; background:#f8514914; border:1px solid #f8514955; color:#ffd7d5; border-radius:8px; padding:12px 14px; margin:14px 0; font-size:14px}
+  .hint{font-size:12px; color:var(--gray)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <h1><span class="shield">🛡️</span> FoodSafe Central</h1>
+      <span class="tag">Verified food recalls & safety alerts from official government sources</span>
+    </div>
+    <div class="pills">
+      <span class="pill alert"><b id="cActive">–</b> active recalls</span>
+      <span class="pill"><b id="cTotal">–</b> recalls · last 12 months</span>
+      <span class="pill">Updated <b id="cUpdated">–</b></span>
+      <span class="pill new">🇺🇸 US · FDA <b>live</b></span>
+      <span class="pill">🇨🇦 Canada · CFIA soon</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="err"></div>
+
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search brand, product, UPC, or lot…" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <select id="sev">
+      <option value="">All severities</option>
+      <option value="CLASS_I">Class I — Critical</option>
+      <option value="CLASS_II">Class II — Moderate</option>
+      <option value="CLASS_III">Class III — Low</option>
+    </select>
+    <select id="status">
+      <option value="ACTIVE">Active only</option>
+      <option value="">All statuses</option>
+    </select>
+    <select id="state">
+      <option value="">All regions</option>
+      <option value="NATIONWIDE">Nationwide</option>
+    </select>
+  </div>
+
+  <div class="statusline"><span id="countLine">Loading…</span></div>
+  <div id="list"></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>FoodSafe Central</b> is not affiliated with any government agency.</p>
+    <p>Data source: FDA <a href="https://open.fda.gov/apis/food/enforcement/" target="_blank" rel="noopener">openFDA</a> food enforcement records (US). Every recall links back to the official FDA announcement.</p>
+    <p><b>Important:</b> recall databases are never complete — a product with no matching recall here is <u>not</u> confirmed safe. UPC/lot data is parsed from official text; always check the linked official notice.</p>
+    <p class="hint">If you suspect food poisoning or an allergic reaction, contact a healthcare provider. Report problems to the FDA via <a href="https://www.fda.gov/safety/report-problem-fda" target="_blank" rel="noopener">fda.gov/report-problem</a>.</p>
+  </div>
+</footer>
+
+<div id="ov"><div class="sheet" id="sheet"></div></div>
+
+<script>
+"use strict";
+/*__DATA_START__*/
+const RECALLS_DATA = null;
+/*__DATA_END__*/
+const $ = s => document.querySelector(s);
+const state = { data: null, hay: [] };
+
+/* ---------- data ---------- */
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+async function load(){
+  try{
+    if (typeof RECALLS_DATA !== "undefined" && RECALLS_DATA && RECALLS_DATA.recalls) {
+      state.data = RECALLS_DATA;                    // baked at build time - zero network calls
+    } else {
+      const ac = new AbortController();             // local dev fallback
+      const to = setTimeout(() => ac.abort(), 15000);
+      const t = await (await fetch("data/recalls.json", {cache:"no-cache", signal: ac.signal})).text();
+      clearTimeout(to);
+      state.data = JSON.parse(t);
+    }
+    buildIndex();
+    $("#cActive").textContent = state.data.meta.by_status.ACTIVE ?? 0;
+    $("#cTotal").textContent = state.data.meta.total;
+    $("#cUpdated").textContent = (state.data.meta.generated_at||"").slice(0,10);
+    render();
+  }catch(e){
+    $("#err").style.display = "block";
+    $("#err").innerHTML = "<b>Could not load recall data.</b> Open this page over HTTP(S) (GitHub Pages or a local server) — the file:// protocol blocks data loading. <span class='hint'>(" + esc(e.message) + ")</span>";
+    $("#countLine").textContent = "Data unavailable";
+  }
+}
+
+function buildIndex(){
+  const states = new Set();
+  state.data.recalls.forEach((r,i) => { r._i = i; });   // stable indices for detail lookup
+  for(const r of state.data.recalls){
+    const p = r.product;
+    r._hay = [p.brand_name, p.product_name, r.hazard_details, r.consumer_action.instructions,
+              r.alert_id, (p.upc_codes||[]).join(" "), (p.lot_codes||[]).join(" ")]
+             .join(" ").toLowerCase();
+    r._upc = new Set((p.upc_codes||[]).map(u => u.replace(/\D/g,"")));
+    for(const s of r.distribution.regions||[]) states.add(s);
+  }
+  const sel = $("#state");
+  for(const s of [...states].sort()) sel.insertAdjacentHTML("beforeend", `<option value="${s}">${s}</option>`);
+}
+
+/* ---------- search & filter ---------- */
+function score(r, q, upcQ){
+  let s = 0;
+  if(upcQ){
+    for(const u of r._upc) if(u === upcQ) s += 1000;
+    if(s) return s;
+  }
+  if(!q) return 1;
+  if(r._hay.includes(q)) s += 100;
+  if((r.product.brand_name||"").toLowerCase().startsWith(q)) s += 50;
+  return s;
+}
+
+function current(){
+  const q = $("#q").value.trim().toLowerCase();
+  const sev = $("#sev").value, st = $("#status").value, region = $("#state").value;
+  const upcQ = /^\d{8,14}$/.test(q.replace(/\D/g,"")) ? q.replace(/\D/g,"") : null;
+  const out = [];
+  for(const r of state.data.recalls){
+    if(sev && r.severity !== sev) continue;
+    if(st && r.status !== st) continue;
+    if(region){
+      if(region === "NATIONWIDE"){ if(!r.distribution.nationwide) continue; }
+      else if(!(r.distribution.regions||[]).includes(region)) continue;
+    }
+    const s = score(r, q, upcQ);
+    if(s) out.push([s, r]);
+  }
+  out.sort((a,b) => b[0]-a[0] || (b[1].published_at||"").localeCompare(a[1].published_at||""));
+  return out;
+}
+
+/* ---------- render ---------- */
+const SEV = {CLASS_I:["Class I · Critical","b-I"], CLASS_II:["Class II · Moderate","b-II"], CLASS_III:["Class III · Low","b-III"]};
+const HAZ = {BIOLOGICAL:"Pathogen", ALLERGEN:"Allergen", CHEMICAL:"Chemical", PHYSICAL:"Foreign material", LABELING:"Labeling"};
+
+function card(r){
+  const p = r.product, d = r.distribution;
+  const sv = SEV[r.severity] || [r.severity?.replace(/_/g," ") || "Unclassified", "b-UNKNOWN"];
+  const haz = HAZ[r.hazard_type] || (r.hazard_type ? r.hazard_type : "Unclassified");
+  const upcs = (p.upc_codes||[]).length ? `<span class="chip upc">${(p.upc_codes||[]).slice(0,3).map(esc).join(", ")}${(p.upc_codes||[]).length>3?"…":""}</span>` : "";
+  const where = d.nationwide ? "Nationwide" : (d.regions||[]).slice(0,4).join(", ") + ((d.regions||[]).length>4?"…":"");
+  const active = r.status === "ACTIVE";
+  return `<div class="card" data-i="${r._i}">
+    <div class="top">
+      <div><h3>${esc(p.product_name || p.brand_name || r.alert_id)}</h3>${p.brand_name?`<span class="brand">${esc(p.brand_name)}</span>`:""}</div>
+      <span class="badge ${sv[1]}">${sv[0].split("·")[0].trim()}</span>
+    </div>
+    <div class="meta">
+      <span class="chip">${haz}</span>${upcs}
+      <span class="chip">${where || "—"}</span>
+      <span class="chip">${(r.published_at||"").slice(0,10)}</span>
+    </div>
+    <div class="reason">${esc(r.hazard_details || r.consumer_action.instructions)}</div>
+    <div class="foot">
+      <span class="st"><span class="dot ${active?"g":"o"}"></span>${active?"ACTIVE":r.status}</span>
+      <span>${esc(r.alert_id)}</span>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const res = current();
+  const q = $("#q").value.trim();
+  $("#countLine").innerHTML = q
+    ? `${res.length} match${res.length===1?"":"es"} for “${esc(q)}”`
+    : `<span class="dot g"></span> ${res.length} recalls · newest first`;
+  const list = $("#list");
+  if(!res.length){ list.innerHTML = `<div class="empty">No recalls match. ${q?"Try a different brand, product, or UPC.":"—"}</div>`; return; }
+  const shown = res.slice(0,200);
+  list.innerHTML = shown.map(([,r]) => card(r)).join("");
+  if(res.length > 200) list.insertAdjacentHTML("beforeend", `<div class="empty">Showing 200 of ${res.length} — refine your search</div>`);
+  const visible = new Set(shown.map(([,r]) => r._i));
+  state.visibleIdx = visible;
+}
+
+/* ---------- detail ---------- */
+function openDetail(i){
+  const r = state.data.recalls[i];
+  if(!r) return;
+  const p = r.product, d = r.distribution;
+  const sv = SEV[r.severity] || [r.severity?.replace(/_/g," ") || "Unclassified", "b-UNKNOWN"];
+  const haz = HAZ[r.hazard_type] || (r.hazard_type ? r.hazard_type : "Unclassified");
+  const rows = (p.upc_codes||[]).length || (p.lot_codes||[]).length || (p.expiration_dates||[]).length
+    ? `<h3 style="margin:14px 0 6px;font-size:15px">Products & codes</h3>
+       <div class="prodrow"><b>${esc(p.product_name||"—")}</b>${p.brand_name?`<div class="codes">Brand: ${esc(p.brand_name)}</div>`:""}
+       ${(p.upc_codes||[]).length?`<div class="codes">UPC: ${p.upc_codes.map(esc).join(" · ")}</div>`:""}
+       ${(p.lot_codes||[]).length?`<div class="codes">Lot: ${p.lot_codes.map(esc).join(" · ")}</div>`:""}
+       ${(p.expiration_dates||[]).length?`<div class="codes">Expiry: ${p.expiration_dates.map(esc).join(" · ")}</div>`:""}
+       ${p.packaging_description?`<div class="codes">Qty: ${esc(p.packaging_description)}</div>`:""}</div>` : "";
+  const dist = d.nationwide ? "Nationwide" : (d.regions||[]).join(", ") || "—";
+  $("#sheet").innerHTML = `
+    <button class="close" onclick="closeDetail()">✕</button>
+    <span class="badge ${sv[1]}">${sv[0]}</span>
+    <h2 style="margin-top:10px">${esc(p.product_name || p.brand_name || r.alert_id)}</h2>
+    ${p.brand_name?`<div class="brand" style="color:var(--muted)">${esc(p.brand_name)}</div>`:""}
+    <dl class="kv">
+      <dt>Agency</dt><dd>${esc(r.source_agency)} · <a href="${esc(r.source_url)}" target="_blank" rel="noopener">view official notice ↗</a></dd>
+      <dt>Recall ID</dt><dd>${esc(r.alert_id)}</dd>
+      <dt>Status</dt><dd>${r.status === "ACTIVE" ? '<span style="color:var(--green)">● ACTIVE</span>' : esc(r.status)}</dd>
+      <dt>Hazard</dt><dd>${haz}${r.hazard_details?` — ${esc(r.hazard_details)}`:""}</dd>
+      <dt>Published</dt><dd>${esc(r.published_at||"—")}</dd>
+      <dt>Last updated</dt><dd>${esc(r.last_updated||"—")}</dd>
+      <dt>Distribution</dt><dd>${esc(dist)}${d.raw_distribution&&!d.nationwide?` <span class="hint">(${esc(d.raw_distribution)})</span>`:""}</dd>
+    </dl>
+    ${r.consumer_action.instructions?`<div class="action"><b>What to do:</b> ${esc(r.consumer_action.instructions)}</div>`:""}
+    ${rows}
+    <div class="raw"><b>Parsed from official text</b> — verify details on the linked notice.
+${p.raw_code_info?`\n${esc(p.raw_code_info)}`:""}
+${d.raw_distribution?`\nDistribution: ${esc(d.raw_distribution)}`:""}
+${r.consumer_action.raw_reason?`\nReason: ${esc(r.consumer_action.raw_reason)}`:""}</div>`;
+  $("#ov").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeDetail(){ $("#ov").classList.remove("open"); document.body.style.overflow = ""; }
+
+/* ---------- events ---------- */
+let tmr;
+["q","sev","status","state"].forEach(id => $(id).addEventListener("input", () => { clearTimeout(tmr); tmr = setTimeout(render, 60); }));
+$("#list").addEventListener("click", e => { const c = e.target.closest(".card"); if(c) openDetail(+c.dataset.i); });
+$("#ov").addEventListener("click", e => { if(e.target.id === "ov") closeDetail(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeDetail(); });
+
+load();
+</script>
+</body>
+</html>

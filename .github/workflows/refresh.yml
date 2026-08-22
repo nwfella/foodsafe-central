@@ -17,15 +17,17 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Regenerate recall data
-        run: python build_data.py --out data/recalls.json
+      - name: Regenerate data + bake page
+        run: |
+          python build_data.py --out data/recalls.json
+          python bake.py
 
       - name: Commit if changed
         run: |
-          if ! git diff --quiet data/recalls.json; then
+          if ! git diff --quiet data/recalls.json index.html; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/recalls.json
+            git add data/recalls.json index.html
             git commit -m "chore: refresh recall data [skip ci]"
             git push
           else

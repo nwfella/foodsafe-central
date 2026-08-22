@@ -32,14 +32,16 @@ GitHub Actions cron (2×/day)          GitHub Pages (static)
 ```
 
 - `build_data.py` — fetch + normalize (UPC/lot/expiry parsed from free text, hazard classification, lifecycle status)
-- `.github/workflows/refresh.yml` — 2×/day schedule, commits only on change
-- `index.html` — single-file dashboard, no frameworks, ~2 ms search over 1,344 records
+- `bake.py` — splices the JSON into `template.html` → `index.html`, so the live page needs **zero runtime fetch** (works in fetch-blocked / IT-constrained environments)
+- `.github/workflows/refresh.yml` — 2×/day schedule, regenerates data + bakes page, commits on change
+- `index.html` — generated single-file dashboard, no frameworks, ~2 ms search over 1,344 records
 - `spikes/001-source-parse-quality/` — feasibility spike that validated the parsers (with measured parse rates)
 
 ## Development
 
 ```bash
 python build_data.py --out data/recalls.json   # regenerate data
+python bake.py                                 # bake data into index.html
 python -m http.server 8931                     # serve locally
 ```
 
