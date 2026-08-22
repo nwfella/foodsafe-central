@@ -172,6 +172,7 @@ async function load(){
 
 function buildIndex(){
   const states = new Set();
+  state.data.recalls.forEach((r,i) => { r._i = i; });   // stable indices for detail lookup
   for(const r of state.data.recalls){
     const p = r.product;
     r._hay = [p.brand_name, p.product_name, r.hazard_details, r.consumer_action.instructions,
@@ -256,8 +257,6 @@ function render(){
   const shown = res.slice(0,200);
   list.innerHTML = shown.map(([,r]) => card(r)).join("");
   if(res.length > 200) list.insertAdjacentHTML("beforeend", `<div class="empty">Showing 200 of ${res.length} — refine your search</div>`);
-  // stash index for detail lookup
-  state.data.recalls.forEach((r,i) => r._i = i);
   const visible = new Set(shown.map(([,r]) => r._i));
   state.visibleIdx = visible;
 }
@@ -265,6 +264,7 @@ function render(){
 /* ---------- detail ---------- */
 function openDetail(i){
   const r = state.data.recalls[i];
+  if(!r) return;
   const p = r.product, d = r.distribution;
   const sv = SEV[r.severity] || [r.severity?.replace(/_/g," ") || "Unclassified", "b-UNKNOWN"];
   const haz = HAZ[r.hazard_type] || (r.hazard_type ? r.hazard_type : "Unclassified");
