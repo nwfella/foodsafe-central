@@ -1,0 +1,3895 @@
+[
+ {
+  "alert_id": "FDA-H-0914-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0914-2026",
+  "published_at": "20260610",
+  "last_updated": "20260609",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "LABELING",
+  "hazard_details": "Sesame Seeds White were labeled as Curry Powder Sweet.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Lunds & Byerly's Curry Powder Sweet",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "144 units (bottles)",
+   "raw_code_info": "Lot Code 0082026U00232   Best By date:  01/26/2029"
+  },
+  "distribution": {
+   "regions": [
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "WI"
+  },
+  "consumer_action": {
+   "instructions": "Sesame Seeds White were labeled as Curry Powder Sweet.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0814-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0814-2026",
+  "published_at": "20260527",
+  "last_updated": "20260521",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "Ellsworth Sour Cream + Onion Seasoning",
+   "product_name": "Part #:  180000113.  Net Wt 25.00 lbs (11.3kg).  PS Seasoning & Spices 216 W Pleasant St Iron Ridge WI  53035",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "250 lbs.",
+   "raw_code_info": "Lot #: 2026-51127"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide"
+  },
+  "consumer_action": {
+   "instructions": "Product was made with milk powder recalled by the supplier due to Salmonella contamination.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0932-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0932-2026",
+  "published_at": "20260617",
+  "last_updated": "20260609",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared colors (Yellow #5, Yellow #6, and/or Red #40).",
+  "product": {
+   "brand_name": "",
+   "product_name": "Marquesita de Chocolate y Vainilla [image] Delighted Flavored Cakes The Original, Net Wt. 16 oz, packaged in a transparent and rigid plastic clamshell container, one unit per container. KEEP REFRIGERATED. UPC 824790852706",
+   "upc_codes": [
+    "824790852706"
+   ],
+   "lot_codes": [
+    "034320462"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "809 (16-oz) units",
+   "raw_code_info": "Expiration Date: From 04/03/2026 to 05/03/2026 Lot#034320462, 034320562, 034320662, 034320962, 034321062, 034321162, 034321262, 034321362, 034321662, 034321762, 034321862, 034321962, 034322062, 034322"
+  },
+  "distribution": {
+   "regions": [
+    "FL",
+    "TX"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "FL and TX."
+  },
+  "consumer_action": {
+   "instructions": "Undeclared colors (Yellow #5, Yellow #6, and/or Red #40).",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0835-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0835-2026",
+  "published_at": "20260527",
+  "last_updated": "20260521",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Good & Gather Mexican Street Corn Trail Mix 8 oz bag UPC 085239270240, 8 bags per case",
+   "upc_codes": [
+    "085239270240"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "272 cases",
+   "raw_code_info": "BEST BY 23/MAR/2027 GY"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide"
+  },
+  "consumer_action": {
+   "instructions": "potential presence of Salmonella",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1071-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1071-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 29604300000 SALMON WASABI GRILLED FS COLD               This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "29604300000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "2 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1180-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1180-2026",
+  "published_at": "20260729",
+  "last_updated": "20260721",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Organic Moringa Powder; 15kg/bag (bulk);  Product code: GJ96",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [
+    "02-11-2028"
+   ],
+   "packaging_description": "2,490 kg",
+   "raw_code_info": "lot: 25/08001 Expiration date: 02-11-2028"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Product was distributed to 4 different consignees who have used the ingredient for further processing and distribution."
+  },
+  "consumer_action": {
+   "instructions": "Moringa Powder ingredient positive for salmonella",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1166-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1166-2026",
+  "published_at": "20260722",
+  "last_updated": "20260714",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "May contain undeclared milk, pecans, pistachios, yellow #5 and red #40.",
+  "product": {
+   "brand_name": "Ice Pop",
+   "product_name": "D'Dioses Nuez, 1 Bar (81.7 g), with UPC 827912008548",
+   "upc_codes": [
+    "827912008548"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "185 Cases",
+   "raw_code_info": "710594511867,710594511850, 710594511560, 827912008456, 8279120084732, 710594511829, 71059511812, 827912008487, 827912008548, 710594511836, 827912008531, 827912008494, 827912008593, 827912008449, 71059"
+  },
+  "distribution": {
+   "regions": [
+    "CT",
+    "NJ",
+    "NY",
+    "PA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Distributed in the following states: NJ, CT, NY, PA."
+  },
+  "consumer_action": {
+   "instructions": "May contain undeclared milk, pecans, pistachios, yellow #5 and red #40.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1016-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1016-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Walnut",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21163600000 Ready Meals SALAD WALDORF SS            This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21163600000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "82 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Walnut",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0756-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0756-2026",
+  "published_at": "20260513",
+  "last_updated": "20260506",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared Yellow #5",
+  "product": {
+   "brand_name": "",
+   "product_name": "Banana Ice Cream - 32 oz (4 labels: Mollie Stone's; Dehoff's; Farmer Joe's, Piazza's Fine Foods) UPC: 8-12017-00903",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "664 TOTAL units (32 oz/unit)",
+   "raw_code_info": "UPC: 8-12017-00903"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Loard's brand distributed to Loard's Ice Cream parlors located in Northern California. Private labels distributed to grocery stores located in Norther"
+  },
+  "consumer_action": {
+   "instructions": "Undeclared Yellow #5",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0919-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0919-2026",
+  "published_at": "20260617",
+  "last_updated": "20260609",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared colors (Yellow #5, Yellow #6, and/or Red #40).",
+  "product": {
+   "brand_name": "",
+   "product_name": "Rollitos de Guava [image] Guava Rolls The Original, Net Wt. 15 oz, packaged in a transparent and rigid plastic clamshell container, one unit per container. KEEP REFRIGERATED. UPC 824790852454",
+   "upc_codes": [
+    "824790852454"
+   ],
+   "lot_codes": [
+    "034320462"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "7,856 (15-oz) units",
+   "raw_code_info": "Expiration Date: From 04/03/2026 to 05/03/2026 Lot#034320462, 034320562, 034320662, 034320962, 034321062, 034321162, 034321262, 034321362, 034321662, 034321762, 034321862, 034321962, 034322062, 034322"
+  },
+  "distribution": {
+   "regions": [
+    "FL",
+    "TX"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "FL and TX."
+  },
+  "consumer_action": {
+   "instructions": "Undeclared colors (Yellow #5, Yellow #6, and/or Red #40).",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0844-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0844-2026",
+  "published_at": "20260527",
+  "last_updated": "20260521",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "GHIRARDELLI SWEET GROUND POWDER WHITE CHOCOLATE FLAVORED NET WT 50oz (3lbs 2oz) 1.41kg  Distributed by Ghirardelli Chocolate Company, San Leandro, CA 94578, U.S.A.  UPC: 747599620386",
+   "upc_codes": [
+    "747599620386"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "2,267 cases (6-50oz units/case); 13,602 units",
+   "raw_code_info": "Lot, Best if Used By: S394260, 7/31/2027; S494260, 7/31/2027; S594260, 7/31/2027."
+  },
+  "distribution": {
+   "regions": [
+    "AK",
+    "AZ",
+    "CA",
+    "FL",
+    "GA",
+    "ID",
+    "IL",
+    "IN",
+    "KY",
+    "MD",
+    "ME",
+    "MN",
+    "NC",
+    "NJ",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "SC",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "WA",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "U.S. Distribution Pattern: AK, AZ, CA, FL, GA, ID, IL, IN, KY, MD, ME, MN, NC, NJ, NV, NY, OH, OK, OR, PA, SC, TN, TX, UT, VA, WA, WI. Foreign Distrib"
+  },
+  "consumer_action": {
+   "instructions": "Potential contamination with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1219-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1219-2026",
+  "published_at": "20260812",
+  "last_updated": "20260804",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Listeria monocytogenes",
+  "product": {
+   "brand_name": "",
+   "product_name": "Selectos Latinos Requeson Mexicano Mexican Cottage Cheese, Net Weight 16 oz, packed into retail-sized clear plastic containers. Keep refrigerated.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "169 (16-oz) units",
+   "raw_code_info": "Selec1011"
+  },
+  "distribution": {
+   "regions": [
+    "MD",
+    "VA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "The recalled product was distributed to the following states:  MD, VA"
+  },
+  "consumer_action": {
+   "instructions": "Products may be contaminated with Listeria monocytogenes.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1059-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1059-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 29120700000 Ready Meals SALAD SMOKED SALMON & FETA PASTA SS   UPC 29137800000 SALAD SMOKED SALMON & FETA PASTA FS COLD     This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "29120700000",
+    "29137800000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "34 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1206-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1206-2026",
+  "published_at": "20260812",
+  "last_updated": "20260804",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Listeria monocytogenes",
+  "product": {
+   "brand_name": "Clover Hill Dairy LLP",
+   "product_name": "mild cheese variety (Snack Pack Assorted Regular Mild Stix White Colby, Marble Jack, Yummy Cheddar). Sold in approximate 0.40-lb (6.4oz) units. Unknown information: packaging, labeling, or total quantity of product distributed. Keep refrigerated.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "unknown",
+   "raw_code_info": "AA051526"
+  },
+  "distribution": {
+   "regions": [
+    "MD",
+    "NY",
+    "VA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "MD, VA, NY"
+  },
+  "consumer_action": {
+   "instructions": "Product contaminated with Listeria monocytogenes.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0968-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0968-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Pistachio.",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 25185700000 COOKIE GOURMET DUBAI 1CT                             This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "25185700000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "Firm did not provide",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Pistachio.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0895-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0895-2026",
+  "published_at": "20260610",
+  "last_updated": "20260602",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Potential contamination with foreign objects (metal pieces).",
+  "product": {
+   "brand_name": "",
+   "product_name": "STRAUS FAMILY CREAMERY Cookie Dough ORGANIC SUPER PREMIUM ICE CREAM ONE PINT (473mL)  Produced and Distributed by Straus Family Creamery,  Petaluma, CA 94952  UPC: 784830101044",
+   "upc_codes": [
+    "784830101044"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "547.375 cases (8 units/case)",
+   "raw_code_info": "BEST BY: 26 DEC 26"
+  },
+  "distribution": {
+   "regions": [
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "FL",
+    "GA",
+    "IA",
+    "IL",
+    "IN",
+    "MD",
+    "NJ",
+    "OR",
+    "PA",
+    "SC",
+    "TX",
+    "WA",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Domestic: CA, CO, AZ, CT, FL, GA, IA, IL, IN, MD, NJ, OR, PA, SC, TX, WA, WI. Foreign: Not Applicable."
+  },
+  "consumer_action": {
+   "instructions": "Potential contamination with foreign objects (metal pieces).",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0890-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0890-2026",
+  "published_at": "20260610",
+  "last_updated": "20260529",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "White Cheddar Seasoning packaged in the following sized containers:   1.  Net Wt. 1.2 oz (34g) Distributed by:  Fireworks Popcorn, Division of Jonco Industries, Milwaukee, WI  53218.  Sold in a Fireworks Popcorn Popping & Toppings gift set.   2.  Net Wt. 1.6 oz. (45g) UPC 7 36659-26501 8.  Distribut",
+   "upc_codes": [],
+   "lot_codes": [
+    "088594-2-1"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "5200 jars total",
+   "raw_code_info": "1.  Lot# 088594-5-1    2.  Lot# 088594-7-1    3.  Lot#  088594-2-1"
+  },
+  "distribution": {
+   "regions": [
+    "KS",
+    "MN",
+    "NY",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "KS, MN, NY, WI"
+  },
+  "consumer_action": {
+   "instructions": "Products may be potentially contaminated with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1192-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1192-2026",
+  "published_at": "20260812",
+  "last_updated": "20260803",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared Soy. The firm received complaints of sausage in the burritos. Upon review the firm discovered the sausage contains soy which is not listed on the label.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Spicy Breakfast Burrito sold under the following brand names: FRESH & READY FOODS Spicy Breakfast Burrito Net Wt. 8.2 oz (232g) UPC 1 00001 00029 7 and Sprig & Sprout Spicy Breakfast Burrito IN A SPICY TORTILLA NET WEIGHT 8.3oz (234g) Contains: Egg, Milk, Wheat. MG Foods Charlotte, NC 28272",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "498 burritos",
+   "raw_code_info": "Fresh Thru: 07/20/26"
+  },
+  "distribution": {
+   "regions": [
+    "AL",
+    "GA",
+    "KY",
+    "NC",
+    "SC",
+    "TN",
+    "VA",
+    "WV"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Product was shipped to the following states: AL, GA, KY, NC, SC, TN, VA & WV."
+  },
+  "consumer_action": {
+   "instructions": "Undeclared Soy. The firm received complaints of sausage in the burritos. Upon review the firm discovered the sausage contains soy which is not listed on the label.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1213-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1213-2026",
+  "published_at": "20260812",
+  "last_updated": "20260804",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Listeria monocytogenes",
+  "product": {
+   "brand_name": "Clover Hill Dairy LLP",
+   "product_name": "Pepper Jack Cheese Varieties (Jalapeno Cheddar, Pepper Jack, Sizzlin Colby with Habanero Peppers). Sold in approximate 1/2-lb, 1-lb, 2.5-lb, 5-lb, and 40-lb units. Unknown information: packaging, labeling, or total quantity of product distributed. Keep refrigerated.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "unknown",
+   "raw_code_info": "AA051526"
+  },
+  "distribution": {
+   "regions": [
+    "MD",
+    "NY",
+    "VA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "MD, VA, NY"
+  },
+  "consumer_action": {
+   "instructions": "Product contaminated with Listeria monocytogenes.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0991-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0991-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Almond",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 29153000000 SAMPLER TRAY ITALIAN 16 INCH     This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "29153000000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "9 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Almond",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0745-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0745-2026",
+  "published_at": "20260513",
+  "last_updated": "20260506",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared Milk, Soy, Red #40.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Loard's Peppermint Ice Cream - 32 oz; 56 oz",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1061 units (32 oz/unit); 424 units (56 oz/unit)",
+   "raw_code_info": "None"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Loard's brand distributed to Loard's Ice Cream parlors located in Northern California. Private labels distributed to grocery stores located in Norther"
+  },
+  "consumer_action": {
+   "instructions": "Undeclared Milk, Soy, Red #40.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1179-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1179-2026",
+  "published_at": "20260729",
+  "last_updated": "20260721",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Botulism",
+  "product": {
+   "brand_name": "",
+   "product_name": "Brooklyn Roasting Company Pasteurized Cold Brew Concentrate; 2.5gal; bag in a box distributed between 04/01/2026 and 06/20/2026.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1219 units",
+   "raw_code_info": "Best By  codes range: 063026 through 093026"
+  },
+  "distribution": {
+   "regions": [
+    "NJ",
+    "NY"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "NY and NJ"
+  },
+  "consumer_action": {
+   "instructions": "Ambient storage of the product may lead to Clostridium botulinum toxin formation.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0988-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0988-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Walnut",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 29168800000 CARVING TRAY 16IN FS                    This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "29168800000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "12 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Walnut",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1191-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1191-2026",
+  "published_at": "20260805",
+  "last_updated": "20260728",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": "PHYSICAL",
+  "hazard_details": "Foreign material found in product (identified as metal shavings)",
+  "product": {
+   "brand_name": "DQ Chocolate Reduced Fat Ice Cream Mix",
+   "product_name": "5 GAL (18.9L). Keep refrigerated.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "74 Cases",
+   "raw_code_info": "JUN1226"
+  },
+  "distribution": {
+   "regions": [
+    "DE",
+    "MD",
+    "NJ",
+    "NY",
+    "PA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "The product was distributed to the following states: PA, DE, NJ, MD, NY"
+  },
+  "consumer_action": {
+   "instructions": "Foreign material found in product (identified as metal shavings)",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1022-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1022-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Walnut",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21195200000 READY MEALS SALAD FRESH BERRY & CHICKEN SS COLD    This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21195200000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "228 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Walnut",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1056-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1056-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21292200000 SALMON CAJUN PREMIUM FS COLD         This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21292200000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "41 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1085-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1085-2026",
+  "published_at": "20260701",
+  "last_updated": "20260623",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Product not adequately pasteurized",
+  "product": {
+   "brand_name": "",
+   "product_name": "Joy Pineapple Lassi 16 oz.",
+   "upc_codes": [
+    "68061710004"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "50 gallons (total)",
+   "raw_code_info": "Expiry June 30 through July 30, 2026 UPC: 68061710004"
+  },
+  "distribution": {
+   "regions": [
+    "NJ",
+    "NY",
+    "PA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "NY, NJ, PA"
+  },
+  "consumer_action": {
+   "instructions": "Product not adequately pasteurized",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0788-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0788-2026",
+  "published_at": "20260527",
+  "last_updated": "20260518",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Botulism",
+  "product": {
+   "brand_name": "",
+   "product_name": "Menopause Bully 16 oz and 32 oz.",
+   "upc_codes": [
+    "860010984420",
+    "860010984437"
+   ],
+   "lot_codes": [
+    "not provided"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "18,190 bottles total",
+   "raw_code_info": "16oz with upc: 860010984420 & 32oz with upc: 860010984437 Lots: not provided"
+  },
+  "distribution": {
+   "regions": [
+    "NY"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "NY and online sales"
+  },
+  "consumer_action": {
+   "instructions": "May be under-processed resulting in growth of Clostridium botulinum and lists health claims.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0908-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0908-2026",
+  "published_at": "20260610",
+  "last_updated": "20260604",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "Aramark Cheese Sauce New & Improved",
+   "product_name": "25 lb., packaged in a tied poly bag and packed 2 bags per case, UPC 0039954925121",
+   "upc_codes": [
+    "0039954925121"
+   ],
+   "lot_codes": [
+    "3565",
+    "0056",
+    "0196",
+    "0406",
+    "0546",
+    "0686",
+    "0826",
+    "0966",
+    "1106"
+   ],
+   "expiration_dates": [
+    "12/22/2027",
+    "01/05/2028",
+    "01/19/2028",
+    "02/09/2028",
+    "02/23/2028",
+    "03/09/2028",
+    "03/23/2028",
+    "04/06/2028",
+    "04/20/2028"
+   ],
+   "packaging_description": "10,958 cases",
+   "raw_code_info": "Product Number: SSP071425 Batch: 045542 through 045550 and 045552 through 045570, Lot: 3565, Best By: 12/22/2027 Batch: 045832 through 045871, Lot: 0056, Best By: 01/05/2028 Batch: 046298 through 0463"
+  },
+  "distribution": {
+   "regions": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "FL",
+    "GA",
+    "IA",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "WA",
+    "WI",
+    "WY"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "AL, AR, AZ, CA, CO, FL, GA, IL, IN, IA, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, NE, NH, NJ, NM, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA"
+  },
+  "consumer_action": {
+   "instructions": "Product contains dry milk powder ingredient recalled by the supplier due to potential Salmonella contamination",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0699-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0699-2026",
+  "published_at": "20260513",
+  "last_updated": "20260505",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Low Heat Non-Fat Dried Milk Powder - paper bags 25 kg.  (packed under 5 labels: Off Grade NFDM Variable; Extra Grade NFDM Standard rBST Free; Grade A NFDM LH Basic; Grade A NFDM LH Standard rBST Free; Grade A NFDM LH Tier 1 rBST Free)",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1,568,793 lbs.",
+   "raw_code_info": "Batch Codes for recalled product all start with  A  or  B    full list below. Batch Codes and Production Date: B22725-01-A 8/15/2025; B22725-01-B 8/15/2025; B22725-01-C 8/15/2025; B22725-01-D 8/15/202"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "U.S. Distribution: Unknown and to be determined during RAC assignment. Domestic consignees pick-up product from CDI. Foreign Distribution: Mexico, Phi"
+  },
+  "consumer_action": {
+   "instructions": "Potential contamination with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0770-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0770-2026",
+  "published_at": "20260520",
+  "last_updated": "20260508",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "PHYSICAL",
+  "hazard_details": "Foreign object (stainless steel dust/flakes or shreds of plastic)",
+  "product": {
+   "brand_name": "",
+   "product_name": "Dakota Honey Company Spreadable Spun Honey, Salted Caramel.  Stir before use.   Produced in Winner, SD.  Packaged in the following sized plastic jars:   1.  Net Wt 4 oz (113g) UPC 8 60012-41981 4.   2.  Net Wt 12 oz (340g) UPC 8 60010-57964 0.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1897 - 4 oz containers, and 286 - 12 oz containers Total.",
+   "raw_code_info": "Honey does not have any code on container.   1.  4 oz spun honey purchased from December 19, 2025 to April 3, 2026   2.  12 oz spun honey purchased from February 25, 2026 to April 3, 2026"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Retail locations in FL, GA, and SD   Internet sales Nationwide"
+  },
+  "consumer_action": {
+   "instructions": "Foreign object (stainless steel dust/flakes or shreds of plastic)",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0897-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0897-2026",
+  "published_at": "20260610",
+  "last_updated": "20260602",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Potential contamination with foreign objects (metal pieces).",
+  "product": {
+   "brand_name": "",
+   "product_name": "STRAUS FAMILY CREAMERY Mint Chip ORGANIC SUPER PREMIUM ICE CREAM ONE PINT (473mL)  Produced and Distributed by Straus Family Creamery,  Petaluma, CA 94952  UPC: 784830100504",
+   "upc_codes": [
+    "784830100504"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1,127 cases (8 units/case)",
+   "raw_code_info": "BEST BY: 30 DEC 26"
+  },
+  "distribution": {
+   "regions": [
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "FL",
+    "GA",
+    "IA",
+    "IL",
+    "IN",
+    "MD",
+    "NJ",
+    "OR",
+    "PA",
+    "SC",
+    "TX",
+    "WA",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Domestic: CA, CO, AZ, CT, FL, GA, IA, IL, IN, MD, NJ, OR, PA, SC, TX, WA, WI. Foreign: Not Applicable."
+  },
+  "consumer_action": {
+   "instructions": "Potential contamination with foreign objects (metal pieces).",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1187-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1187-2026",
+  "published_at": "20260729",
+  "last_updated": "20260723",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared colors: Yellow#5, and Yellow#6.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Man Fon Inc. Won Ton Wrappers Extra Thin; Net Wt. 10 oz; UPC# 757168 977315, Keep Refrigerated, Can be Frozen. Sold in 48 units (10oz)/case.",
+   "upc_codes": [],
+   "lot_codes": [
+    "codes"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "300 lbs",
+   "raw_code_info": "No lot codes."
+  },
+  "distribution": {
+   "regions": [
+    "CA",
+    "NM"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Firm distributes primarily to local restaurants (CA) with some of the product intended for retail distribution in grocery stores via a wholesaler (NM)"
+  },
+  "consumer_action": {
+   "instructions": "Undeclared colors: Yellow#5, and Yellow#6.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1068-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1068-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 23180600000 SALMON KABOB With CITRUS LEMON MARINADE         This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "23180600000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "Firm did not provide",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1222-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1222-2026",
+  "published_at": "20260812",
+  "last_updated": "20260805",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Zen Principle Naturals Moringa Leaf Powder dietary supplement, 900mg capsules, 180 capsules per PET white bottle. Intended Use: take 2 capsules per day. Route of Administration: OraI. Manufactured for Zen Principle 774 Mays Blvd Incline Village, NV 89451.  The product is offered as a 1-pack (180 cap",
+   "upc_codes": [],
+   "lot_codes": [
+    "A6FF4"
+   ],
+   "expiration_dates": [
+    "11/2028"
+   ],
+   "packaging_description": "2,048 bottles",
+   "raw_code_info": "LOT: A6FF4, Best By: 11/2028"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Distributed to Nevada for further distribution."
+  },
+  "consumer_action": {
+   "instructions": "Possible Salmonella in Moringa Leaf Powder product.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0884-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0884-2026",
+  "published_at": "20260610",
+  "last_updated": "20260529",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Karlsburger Kitchens Garlic N Cheese Topper, Net Wt: 20 oz. (567g).  Distributed by:  Karlsburger Foods, Inc., Monticello, MN  55362",
+   "upc_codes": [],
+   "lot_codes": [
+    "088382-4-1"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "168 jars",
+   "raw_code_info": "Lot: 087534-3-1 and Lot: 088382-4-1"
+  },
+  "distribution": {
+   "regions": [
+    "KS",
+    "MN",
+    "NY",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "KS, MN, NY, WI"
+  },
+  "consumer_action": {
+   "instructions": "Products may be potentially contaminated with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0764-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0764-2026",
+  "published_at": "20260513",
+  "last_updated": "20260507",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "E. coli",
+  "product": {
+   "brand_name": "",
+   "product_name": "RAW FARM RAW CHEDDAR SIMPLY SHREDDED Original MADE WITH: WHOLE RAW MILK TRULY RAW - NEVER WARMED ABOVE 102F MADE IN THE USA KEEP REFRIGERATED INGREDIENTS: WHOLE RAW MILK, VEGETABLE RENNET, CULTURES, KOSHER SEA SALT Produced By: RAW FARM, LLC www.rawfarmusa.com  8 oz (227g) UPC: 835204001184",
+   "upc_codes": [
+    "835204001184"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [
+    "5/13/2026"
+   ],
+   "packaging_description": "Not provided",
+   "raw_code_info": "8 oz - BATCH: 20260212, BEST BY: 5/13/2026 and all prior batches/dates."
+  },
+  "distribution": {
+   "regions": [
+    "AZ",
+    "CA",
+    "CO",
+    "FL",
+    "GA",
+    "IL",
+    "IN",
+    "MD",
+    "NV",
+    "TX"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "U.S. distribution: AZ, CA, CO, FL, GA, IL, IN, MD, NV, TX. Foreign distribution: None."
+  },
+  "consumer_action": {
+   "instructions": "Multi-state outbreak of E. coli O157:H7.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0957-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0957-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare pecan.",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 28848900000 Cake Yellow Fudge Pecan 1/2 8IN                  This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "28848900000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare pecan.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0822-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0822-2026",
+  "published_at": "20260527",
+  "last_updated": "20260521",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "Solina 6036195 Ranch Seasoning",
+   "product_name": "50lb bag",
+   "upc_codes": [],
+   "lot_codes": [
+    "334386"
+   ],
+   "expiration_dates": [
+    "06/20/2026"
+   ],
+   "packaging_description": "459 bags",
+   "raw_code_info": "Lot: 334386, 334882-334883; Use by: 06/20/2026, 07/14/2026"
+  },
+  "distribution": {
+   "regions": [
+    "CA",
+    "GA",
+    "IL",
+    "KS",
+    "MI",
+    "PA",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "MI WI PA IL GA CA KS"
+  },
+  "consumer_action": {
+   "instructions": "potential to be contaminated with Salmonella",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0773-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0773-2026",
+  "published_at": "20260520",
+  "last_updated": "20260508",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Product may contain foreign objects, specifically glass.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Alain MILLIAT; MARMELADE ORANGE; 300 g 10.6 oz; packaged in glass jars",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1 case (6 jars)",
+   "raw_code_info": "C250422AT DDM: 04/2028"
+  },
+  "distribution": {
+   "regions": [
+    "MA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "MA"
+  },
+  "consumer_action": {
+   "instructions": "Product may contain foreign objects, specifically glass.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1058-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1058-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21494500000 Ready Meals MEAL SALMON With LEMON CAPELLINI PASTA SS      This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21494500000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "9 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0812-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0812-2026",
+  "published_at": "20260527",
+  "last_updated": "20260521",
+  "status": "TERMINATED",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "VG7274D1 Natural Cream of Mushroom Type Flavor, Net Weight:  50 lbs. bag.  Item #:  R5302.    For Further Processing.  Fontana Flavors, Janesville, WI.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "3,000 lbs.",
+   "raw_code_info": "Lot Numbers:  110625F06, 112425F08, 032626F07."
+  },
+  "distribution": {
+   "regions": [
+    "IL",
+    "TN"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "IL, TN, and outside the US to Canada"
+  },
+  "consumer_action": {
+   "instructions": "Product was made with milk powder recalled by the supplier due to Salmonella contamination.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0993-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0993-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Almond",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 29133000000 TRAY COCKTAIL                                       This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "29133000000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "Firm did not provide",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Almond",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0711-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0711-2026",
+  "published_at": "20260513",
+  "last_updated": "20260505",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Package integrity compromised.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Horizon Organic Chocolate Organic Lowfat Milk. Saleable Unit UPC: 742365004322 (6-8 FL OZ Milk Boxes). Case: ORG MILK 1% DHA CHOCOLATE 3/6PK (item 136518). Case UPC: 742365004322. Three 6-Packs, 18-8 FL OZ Containers (236 mL)/case. Individual milk boxes are packed in 8-oz Tetra Pak cartons. Distribu",
+   "upc_codes": [
+    "742365004322"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "3,522 cases (18-8oz cartons/case)",
+   "raw_code_info": "BEST BY 14 AUG 2026 and BEST BY 15 AUG 2026"
+  },
+  "distribution": {
+   "regions": [
+    "AZ",
+    "CA",
+    "NV",
+    "OR"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Distributed to the following states: AZ, CA, NV, OR."
+  },
+  "consumer_action": {
+   "instructions": "Package integrity compromised.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1172-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1172-2026",
+  "published_at": "20260722",
+  "last_updated": "20260714",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "May contain undeclared milk, pecans, pistachios, yellow #5 and red #40.",
+  "product": {
+   "brand_name": "Ice Pop",
+   "product_name": "D'Dioses Tamarindo, 1 Bar (81.7 g), with UPC 827912008593",
+   "upc_codes": [
+    "827912008593"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "129 Cases",
+   "raw_code_info": "710594511867,710594511850, 710594511560, 827912008456, 8279120084732, 710594511829, 71059511812, 827912008487, 827912008548, 710594511836, 827912008531, 827912008494, 827912008593, 827912008449, 71059"
+  },
+  "distribution": {
+   "regions": [
+    "CT",
+    "NJ",
+    "NY",
+    "PA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Distributed in the following states: NJ, CT, NY, PA."
+  },
+  "consumer_action": {
+   "instructions": "May contain undeclared milk, pecans, pistachios, yellow #5 and red #40.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1070-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1070-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21877300000 SALMON SWEET CHILI KOSHER PO SS COLD       This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21877300000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "Firm did not provide",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0767-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0767-2026",
+  "published_at": "20260513",
+  "last_updated": "20260507",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "PHYSICAL",
+  "hazard_details": "Potential contamination with foreign materials.",
+  "product": {
+   "brand_name": "",
+   "product_name": "LUNDBERG FAMILY FAMRS WHITE RICE JASMINE NET WT 32 OZ (2 lb) 907 g  Manufactured and Distributed by: Lundberg Family Farms Richvale, CA 95974  UPC: 073416040281",
+   "upc_codes": [
+    "073416040281"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "27,324 packages (6 packages/case; 4,554 cases)",
+   "raw_code_info": "Lot, Best Before: 260201MA, 01FEB2027; 260202MA, 02FEB2027."
+  },
+  "distribution": {
+   "regions": [
+    "CA",
+    "CT",
+    "FL",
+    "IL",
+    "NC",
+    "NH",
+    "NY",
+    "PA",
+    "TN",
+    "VT",
+    "WA",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "U.S. States: CA, CT, FL, IL, NC, NH, NY, PA, TN, VT, WA, WI. Foreign distribution: None"
+  },
+  "consumer_action": {
+   "instructions": "Potential contamination with foreign materials.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0995-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0995-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Pollock",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 23285300000 IMITATION CRAB AND SHRIMP SALAD                                    This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "23285300000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "82 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Pollock",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1042-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1042-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Pollock",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21330300000 Ready Meals BAKED POLLOCK 4CT SS COLD                  This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21330300000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "5 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Pollock",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1152-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1152-2026",
+  "published_at": "20260722",
+  "last_updated": "20260713",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Subpotent for Vitamin A. The firm discovered that the testing laboratory used the wrong method when testing for Vitamin A. The test results gave a higher concentration of vitamin A than what is actually in the product.",
+  "product": {
+   "brand_name": "",
+   "product_name": "functional formularies LIQUID HOPE ORGANIC WHOLE FOODS MEAL REPLACEMENT PEPTIDE FORMULA BERRY MEDLEY NET WT. 12 OZ (341g) case UPC 8 57858 00453 3, package UPC 8 57858 00450 2",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1,363cs/12/12oz pouches + 16,298cs/24/12oz pouches",
+   "raw_code_info": "24 count case with BEST IF USED BY DATES up to and including March 15, 2028 12 count package BEST IF USED BY DATES up to and including October 7, 2027"
+  },
+  "distribution": {
+   "regions": [
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VT",
+    "WA",
+    "WI",
+    "WV"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Product was shipped to the following states: AK, AL, AR, AZ, CA, CO, CT, Washington DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN"
+  },
+  "consumer_action": {
+   "instructions": "Subpotent for Vitamin A. The firm discovered that the testing laboratory used the wrong method when testing for Vitamin A. The test results gave a higher concentration of vitamin A than what is actually in the product.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1080-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1080-2026",
+  "published_at": "20260701",
+  "last_updated": "20260622",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Botulism",
+  "product": {
+   "brand_name": "",
+   "product_name": "Dried Herring Fish 7 oz.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "69 cases",
+   "raw_code_info": "Lot Code: 26020. Expiration: 06.12.28  UPC Codes:  6946976817911"
+  },
+  "distribution": {
+   "regions": [
+    "AZ",
+    "CA",
+    "FL",
+    "HI",
+    "IL",
+    "KS",
+    "LA",
+    "MD",
+    "MO",
+    "NC",
+    "NH",
+    "NV",
+    "NY",
+    "OK",
+    "OR",
+    "PA",
+    "TX",
+    "UT",
+    "WA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "AZ, CA, FL, HI, IL, KS, LA, MD, MO, NC, NH, NV, NY, OK, OR, PA, TX, UT, WA"
+  },
+  "consumer_action": {
+   "instructions": "Improperly eviscerated which may result in Clostridium botulinum contamination",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1129-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1129-2026",
+  "published_at": "20260708",
+  "last_updated": "20260701",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "PHYSICAL",
+  "hazard_details": "Potential contamination with plastic material",
+  "product": {
+   "brand_name": "MorningStar Farms Buffalo Chik'n Nuggets",
+   "product_name": "100% Plant Protein Vegan Nuggets, Net Wt. 10.5 oz. (298g), packaged in a resealable plastic bag with UPC 028989101105, packed 6 bags per case",
+   "upc_codes": [
+    "028989101105"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "21,114 cases",
+   "raw_code_info": "Best If Used By: JUL 07 2027, JUL 08 2027"
+  },
+  "distribution": {
+   "regions": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "FL",
+    "GA",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "NC",
+    "NE",
+    "NJ",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "SC",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VT",
+    "WA",
+    "WI",
+    "WY"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "AL, AR, AZ, CA, CO, CT, FL GA, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, NC, NE, NJ, NV, NY, OH, OK, OR, PA, SC, TX, TN, UT, VA, VT, WA,"
+  },
+  "consumer_action": {
+   "instructions": "Potential contamination with plastic material",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0837-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0837-2026",
+  "published_at": "20260513",
+  "last_updated": "20260521",
+  "status": "TERMINATED",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Bulk WN-976-782-1 Seasoning for Cheese Sauce, Net Wt. 43.50 lbs., in a brown kraft bag",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "24,012 lbs.",
+   "raw_code_info": "Batch: CS00140785; Expiry Date: 26 SEP 2026"
+  },
+  "distribution": {
+   "regions": [
+    "MO"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "1 manufacturer in MO"
+  },
+  "consumer_action": {
+   "instructions": "Product has the potential to be contaminated with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0973-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0973-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Almond",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 25317100000 CROISSANTS ALMOND RASPBERRY FILLED 4CT              This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "25317100000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "15 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Almond",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1205-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1205-2026",
+  "published_at": "20260812",
+  "last_updated": "20260804",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Listeria monocytogenes",
+  "product": {
+   "brand_name": "Clover Hill Dairy LLP",
+   "product_name": "Mild Cheese Variety (Yummy Cheddar, White Cheddar, White Colby, Monterey Jack, Marble Jack). Sold in 1/2-lb, 1-lb, 2.5-lb, 5-lb, and 40-lb units. Unknown information: packaging, labeling, or total quantity of product distributed. Keep refrigerated.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "unknown",
+   "raw_code_info": "AA051526"
+  },
+  "distribution": {
+   "regions": [
+    "MD",
+    "NY",
+    "VA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "MD, VA, NY"
+  },
+  "consumer_action": {
+   "instructions": "Product contaminated with Listeria monocytogenes.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1065-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1065-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 23077600000 SALMON FILLET CARNE ASADA MARINADE     This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "23077600000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "6 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0887-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0887-2026",
+  "published_at": "20260610",
+  "last_updated": "20260529",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "#003020 Sour Cream & Onion",
+   "product_name": "Net Wt: 10 lbs. JCB Flavors, 1224 Clark St. Watertown, WI  53094.",
+   "upc_codes": [],
+   "lot_codes": [
+    "087307-2-1"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "5 cases (2 - 10 lb. bags per case)",
+   "raw_code_info": "Lot# 087307-2-1"
+  },
+  "distribution": {
+   "regions": [
+    "KS",
+    "MN",
+    "NY",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "KS, MN, NY, WI"
+  },
+  "consumer_action": {
+   "instructions": "Products may be potentially contaminated with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1160-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1160-2026",
+  "published_at": "20260722",
+  "last_updated": "20260714",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "May contain undeclared milk, pecans, pistachios, yellow #5 and red #40.",
+  "product": {
+   "brand_name": "Ice Pop",
+   "product_name": "D'Dioses Arroz con Leche, 4 oz (85 g), with UPC 710594511843",
+   "upc_codes": [
+    "710594511843"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "216 Cases",
+   "raw_code_info": "710594511867,710594511850, 710594511560, 827912008456, 8279120084732, 710594511829, 71059511812, 827912008487, 827912008548, 710594511836, 827912008531, 827912008494, 827912008593, 827912008449, 71059"
+  },
+  "distribution": {
+   "regions": [
+    "CT",
+    "NJ",
+    "NY",
+    "PA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Distributed in the following states: NJ, CT, NY, PA."
+  },
+  "consumer_action": {
+   "instructions": "May contain undeclared milk, pecans, pistachios, yellow #5 and red #40.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0850-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0850-2026",
+  "published_at": "20260603",
+  "last_updated": "20260526",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "Butter Parsley Bagel Crisps",
+   "product_name": "Item Number 18490, Net Weight:  10 lbs.  Legacy Bakehouse, LLC, N8W22100 Johnson Dr., Waukesha, WI  53166.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "750 - 10 lb. cases",
+   "raw_code_info": "Lot # / Production Date:  29 JAN 2026 and 12 APR 2026"
+  },
+  "distribution": {
+   "regions": [
+    "PA",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "PA, WI"
+  },
+  "consumer_action": {
+   "instructions": "Products were made with recalled California Dairies milk powder due to Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1020-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1020-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Almond",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 29433900000 Kitchen SALAD CHICKEN STRIP                 This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "29433900000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "55 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Almond",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1214-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1214-2026",
+  "published_at": "20260812",
+  "last_updated": "20260804",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Listeria monocytogenes",
+  "product": {
+   "brand_name": "Clover Hill Dairy LLP",
+   "product_name": "Pepper Jack Cheese Varieties (Snack Pack Assorted Pepperjack Stix (Jalapeno Cheddar, Pepper Jack)). Sold in approximate 0.40-lb (6.4oz) units. Unknown information: packaging, labeling, or total quantity of product distributed. Keep refrigerated.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "unknown",
+   "raw_code_info": "AA051526"
+  },
+  "distribution": {
+   "regions": [
+    "MD",
+    "NY",
+    "VA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "MD, VA, NY"
+  },
+  "consumer_action": {
+   "instructions": "Product contaminated with Listeria monocytogenes.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1114-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1114-2026",
+  "published_at": "20260701",
+  "last_updated": "20260624",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "1.5oz",
+   "product_name": "2oz Dirty Brand Salt and Vinegar Potato Chips , Plastic Bag.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "300595 Bags",
+   "raw_code_info": "83791520148, 26030070101, 26036070102"
+  },
+  "distribution": {
+   "regions": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "FL",
+    "GA",
+    "IA",
+    "IL",
+    "IN",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "NC",
+    "NJ",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "SC",
+    "TN",
+    "TX",
+    "VA",
+    "VT",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "The recalled product was distributed to the following states.  AL,AR,AZ,CA,CO,CT,FL,GA,IA,IL,IN, KY, LA,MA,MD,ME,MI,MN,MO,MS,NC,NJ,NV,NY, OH,OK,OR,PA,"
+  },
+  "consumer_action": {
+   "instructions": "Potential presence of Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0956-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0956-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare pecan.",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 28832500000 Cake Yellow Caramel Pecan 1/2 8IN        UPC 28831600000 Cake Yellow Caramel Pecan 2-Layer            These are Albertson's store-made items and sold by unit at point of sale with grocery store's scale labels.",
+   "upc_codes": [
+    "28832500000",
+    "28831600000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "39 units total",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare pecan.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0904-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0904-2026",
+  "published_at": "20260610",
+  "last_updated": "20260603",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared allergen (sesame). Ingredients panel does not list sesame as sub-ingredient of Za'atar spice and Contains statement does not declare sesame.",
+  "product": {
+   "brand_name": "Market of Choice Vegan Kale Caesar Salad",
+   "product_name": "Net Wt. 9.5oz. Finished product is pre-packaged into a clear flexible plastic clamshell container. Label has UPC 0 210126 01099 3. Market Central Kitchen 1150 Owen Loop S. Eugene, OR 97402  The Za'atar spice, which contains Sesame Seeds, is mixed with chickpeas and packaged into a 2-oz plastic cup. ",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "289 (9.5oz) units",
+   "raw_code_info": "Expiration dates:  4/20/2026 4/21/2026 4/24/2026 4/25/2026 4/27/2026 4/28/2026 5/1/2026 5/2/2026 5/4/2026 5/5/2026"
+  },
+  "distribution": {
+   "regions": [
+    "OR"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Only in OR state."
+  },
+  "consumer_action": {
+   "instructions": "Undeclared allergen (sesame). Ingredients panel does not list sesame as sub-ingredient of Za'atar spice and Contains statement does not declare sesame.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1133-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1133-2026",
+  "published_at": "20260701",
+  "last_updated": "20260701",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared allergen, sesame.",
+  "product": {
+   "brand_name": "",
+   "product_name": "boichik bagles Pumpernickel Mix Bagels  6 pre-sliced bagels NET WT 26.5 OZ (1.66 LB) 750g  Ingredients: Organic wheat flour ...  Contains Wheat  Topped flavors may additionally contain ... sesame seeds ...  Best by SE 26 26  UPC: 850016588067",
+   "upc_codes": [
+    "850016588067"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "426 packages (6 bagels/package)",
+   "raw_code_info": "Best by: MAY 25 26, JUN 20 26, JUL 15 26, AUG 23 26, SE 26 26"
+  },
+  "distribution": {
+   "regions": [
+    "CA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Domestic: CA Foreign: Not applicable"
+  },
+  "consumer_action": {
+   "instructions": "Undeclared allergen, sesame.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0856-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0856-2026",
+  "published_at": "20260603",
+  "last_updated": "20260529",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared Milk Allergen,",
+  "product": {
+   "brand_name": "Wawa Diet Iced Tea Lemon Pint (16oz)",
+   "product_name": "Plastic bottle",
+   "upc_codes": [
+    "726191018548"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "Wawa Diet Iced Tea Lemon Pint (16oz) \u0013 616",
+   "raw_code_info": "UPC: 726191018548"
+  },
+  "distribution": {
+   "regions": [
+    "DE",
+    "MD",
+    "NJ",
+    "PA",
+    "VA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "The product has been distributed to the following states: DE, MD, NJ, PA, VA"
+  },
+  "consumer_action": {
+   "instructions": "Undeclared Milk Allergen,",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0836-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0836-2026",
+  "published_at": "20260527",
+  "last_updated": "20260521",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Fisher Tex Mex Trail Mix 30 oz plastic jar UPC 070690275941, 6 jars per case",
+   "upc_codes": [
+    "070690275941"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [
+    "08/06/27"
+   ],
+   "packaging_description": "606 cases",
+   "raw_code_info": "BEST BY 08/06/27"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide"
+  },
+  "consumer_action": {
+   "instructions": "potential presence of Salmonella",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0775-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0775-2026",
+  "published_at": "20260520",
+  "last_updated": "20260511",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Contains undeclared allergens (cashews, milk, and soy).",
+  "product": {
+   "brand_name": "",
+   "product_name": "Uncle Giuseppe's Marketplace Milk Chocolate Bridge Mix, 11 oz Net Wt, packed in clear tamper resistant plastic container. UPC 812235023309.  Distributed by: WE R NUTS LLC, 99 Seaview Blvd, Port Washington, NY 11050",
+   "upc_codes": [
+    "812235023309"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "254 (11oz units)",
+   "raw_code_info": "Sell By dates range from 9/4/26-11/6/26. UPC: 812235023309"
+  },
+  "distribution": {
+   "regions": [
+    "NJ",
+    "NY"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "NY, NJ"
+  },
+  "consumer_action": {
+   "instructions": "Contains undeclared allergens (cashews, milk, and soy).",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1175-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1175-2026",
+  "published_at": "20260722",
+  "last_updated": "20260714",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared peanuts",
+  "product": {
+   "brand_name": "",
+   "product_name": "OLA-OLA POUNDED GROUNDNUTS (INTWILO) NET WT. 32 oz., 2 lbs. (0.907 kg)  Distributed by: Yusol International Foods Sacramento, CA 95828  Product of USA  INGREDIENTS: Pounded Groundnuts (Intwilo)  UPC: 650655764330",
+   "upc_codes": [
+    "650655764330"
+   ],
+   "lot_codes": [
+    "L536531"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "120 cases (16 bags/case)",
+   "raw_code_info": "Lots: L536531; L500505 Exp: 12/28"
+  },
+  "distribution": {
+   "regions": [
+    "TX"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Domestic: TX. Foreign: Not Applicable."
+  },
+  "consumer_action": {
+   "instructions": "Undeclared peanuts",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1001-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1001-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Shrimp",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 23043800000 SHRIMP 16-20 KABOB POLLO ASADA MARINADE   This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "23043800000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "4 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Shrimp",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0808-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0808-2026",
+  "published_at": "20260527",
+  "last_updated": "20260519",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": "CHEMICAL",
+  "hazard_details": "Deviations from current Good Manufacturing Practices (cGMP) that could lead to bacterial pathogen and possible C. Botulinum concerns.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Liposomal Sleep Spray. Dosage: 6 sprays Liquid. Packaging: Aluminum bottle. 30 ml. Firm Address: VitaminAlly LLC Chandler, AZ 85225",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "105 bottles",
+   "raw_code_info": "Distribution Dates: 10/01/2025-04/08/2026 Lot Number SL0925 Expiry Date 09/2027"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Products were distributed nationwide and the United States Territory of Puerto Rico."
+  },
+  "consumer_action": {
+   "instructions": "Deviations from current Good Manufacturing Practices (cGMP) that could lead to bacterial pathogen and possible C. Botulinum concerns.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1223-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1223-2026",
+  "published_at": "20260812",
+  "last_updated": "20260806",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "PHYSICAL",
+  "hazard_details": "Possible foreign object (thin, soft plastic strands).",
+  "product": {
+   "brand_name": "",
+   "product_name": "Pumpkin Tree Peter Rabbit Organics Banana & Strawberry fruit puree, 4oz/113g pouch, UPC 815367010780, PTO Item 10720.  Distributed by: PT Organics Ltd, 333 South State St, Suite V-142, Lake Oswego, OR 97034.  Product is pasteurized blend of banana and strawberry purees sold in single serve spouted f",
+   "upc_codes": [
+    "815367010780"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "4,385 (4-oz units) of defective pouches from total lot produced",
+   "raw_code_info": "Production lane number and Best By Dates on 4oz/113g pouches:  Number \"4\" on the yellow right seam on the back of the pouch which indicates the packaging production lane 4.   Best By Dates (BB): 01/19"
+  },
+  "distribution": {
+   "regions": [
+    "AL",
+    "AZ",
+    "CA",
+    "CO",
+    "GA",
+    "IA",
+    "IL",
+    "IN",
+    "KS",
+    "MI",
+    "MN",
+    "NC",
+    "NJ",
+    "NY",
+    "OH",
+    "OR",
+    "PA",
+    "SC",
+    "TN",
+    "TX",
+    "VA",
+    "WA",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Distributed in AL, AZ, CA, CO, GA, IA, IL, IN, KS, MI, MN, NC, NJ, NY, OH, OR, PA, SC, TN, TX, VA, WA, and WI."
+  },
+  "consumer_action": {
+   "instructions": "Possible foreign object (thin, soft plastic strands).",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0920-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0920-2026",
+  "published_at": "20260617",
+  "last_updated": "20260609",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared colors (Yellow #5, Yellow #6, and/or Red #40).",
+  "product": {
+   "brand_name": "",
+   "product_name": "Rollitos de DulceLeche [image] Caramel Rolls The Original, Net Wt. 15 oz, packaged in a transparent and rigid plastic clamshell container, one unit per container. KEEP REFRIGERATED. UPC 824790852454",
+   "upc_codes": [
+    "824790852454"
+   ],
+   "lot_codes": [
+    "034320462"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "1,334 (15-oz) units",
+   "raw_code_info": "Expiration Date: From 04/03/2026 to 05/03/2026 Lot#034320462, 034320562, 034320662, 034320962, 034321062, 034321162, 034321262, 034321362, 034321662, 034321762, 034321862, 034321962, 034322062, 034322"
+  },
+  "distribution": {
+   "regions": [
+    "FL",
+    "TX"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "FL and TX."
+  },
+  "consumer_action": {
+   "instructions": "Undeclared colors (Yellow #5, Yellow #6, and/or Red #40).",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1136-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1136-2026",
+  "published_at": "20260708",
+  "last_updated": "20260701",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared allergen (milk) and process deviation (product not held under refrigeration as required)",
+  "product": {
+   "brand_name": "Pepperoni Rolls",
+   "product_name": "Net Wt. 5 oz (141g), individually packaged in a clear plastic bag, UPC 601959803041",
+   "upc_codes": [
+    "601959803041"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "850 individual units",
+   "raw_code_info": "Sell by dates 061226 through 062126"
+  },
+  "distribution": {
+   "regions": [
+    "OH",
+    "WV"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "OH, WV"
+  },
+  "consumer_action": {
+   "instructions": "Undeclared allergen (milk) and process deviation (product not held under refrigeration as required)",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1063-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1063-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 23100200000 SALMON ATLANTIC PORTION PIRI PIRI MARINADE     This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "23100200000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "108 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0701-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0701-2026",
+  "published_at": "20260513",
+  "last_updated": "20260505",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "PHYSICAL",
+  "hazard_details": "Creamed honey products may contain stainless steel dust/flakes and/or small particles or shreds of plastic.",
+  "product": {
+   "brand_name": "Fain s Blackberry Honey Spread",
+   "product_name": "12oz net wt., UPC  01832213862",
+   "upc_codes": [
+    "01832213862"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "2,650 units (Total)",
+   "raw_code_info": "Packed after 12/1/2025"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Texas"
+  },
+  "consumer_action": {
+   "instructions": "Creamed honey products may contain stainless steel dust/flakes and/or small particles or shreds of plastic.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1045-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1045-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Cashew",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21425300000 READY MEALS SALAD KALE MANGO & COCONUT SS         UPC 21042400000 SALAD KALE MANGO & COCONUT FS          This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21425300000",
+    "21042400000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "271 units total",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Cashew",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1035-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1035-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Almond",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 29787500000 KITCHEN SALAD SPRING LARGE                This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "29787500000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "25 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Almond",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1117-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1117-2026",
+  "published_at": "20260701",
+  "last_updated": "20260624",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "2.0 oz Dirty Sour Cream and Onion Potato Chips, Plastic Bag.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "19200 Bags",
+   "raw_code_info": "Will be provided by firm."
+  },
+  "distribution": {
+   "regions": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "FL",
+    "GA",
+    "IA",
+    "IL",
+    "IN",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "NC",
+    "NJ",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "SC",
+    "TN",
+    "TX",
+    "VA",
+    "VT",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "The recalled product was distributed to the following states.  AL,AR,AZ,CA,CO,CT,FL,GA,IA,IL,IN, KY, LA,MA,MD,ME,MI,MN,MO,MS,NC,NJ,NV,NY, OH,OK,OR,PA,"
+  },
+  "consumer_action": {
+   "instructions": "Potential presence of Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0823-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0823-2026",
+  "published_at": "20260527",
+  "last_updated": "20260521",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Solina 6036443 Cheddar Cheese Powder Seasoning, 50lb bag",
+   "upc_codes": [],
+   "lot_codes": [
+    "335491"
+   ],
+   "expiration_dates": [
+    "07/14/2026"
+   ],
+   "packaging_description": "25 bags",
+   "raw_code_info": "Lot:335491; Use By: 07/14/2026"
+  },
+  "distribution": {
+   "regions": [
+    "CA",
+    "GA",
+    "IL",
+    "KS",
+    "MI",
+    "PA",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "MI WI PA IL GA CA KS"
+  },
+  "consumer_action": {
+   "instructions": "potential to be contaminated with Salmonella",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1039-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1039-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Tilapia",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21234900000 TILAPIA PARMESAN CRUSTED SS COLD                 This is Albertson's store-made item and sold by random weight at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21234900000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "15 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Tilapia",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1138-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1138-2026",
+  "published_at": "20260715",
+  "last_updated": "20260706",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared Sesame allergen",
+  "product": {
+   "brand_name": "",
+   "product_name": "Smoked Sausage Spice 32.86#",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "120 units",
+   "raw_code_info": "Lot Code(s): 26J000059877-01  Dates of Manufacture: 04/27/2026  Lot Code(s): 26J000059877-02  Dates of Manufacture: 04/28/2026"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Texas"
+  },
+  "consumer_action": {
+   "instructions": "Undeclared Sesame allergen",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1112-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1112-2026",
+  "published_at": "20260701",
+  "last_updated": "20260624",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "1.5oz Zapp's Bayou Blackened Ranch Kettle Chips, Plastic Bag.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "164640 Bags",
+   "raw_code_info": "83791272917"
+  },
+  "distribution": {
+   "regions": [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "FL",
+    "GA",
+    "IA",
+    "IL",
+    "IN",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "NC",
+    "NJ",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "SC",
+    "TN",
+    "TX",
+    "VA",
+    "VT",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "The recalled product was distributed to the following states.  AL,AR,AZ,CA,CO,CT,FL,GA,IA,IL,IN, KY, LA,MA,MD,ME,MI,MN,MO,MS,NC,NJ,NV,NY, OH,OK,OR,PA,"
+  },
+  "consumer_action": {
+   "instructions": "Potential presence of Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1143-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1143-2026",
+  "published_at": "20260715",
+  "last_updated": "20260706",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "undeclared soy",
+  "product": {
+   "brand_name": "",
+   "product_name": "Bakr Brown Butter Chocolate Chunk Ready to Bake Cookie Dough, 8-oz pouch 12 cookies per pouch, UPC 8 50073 08700 8,  8 pouches per case",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [
+    "06/02/2027"
+   ],
+   "packaging_description": "313 cases",
+   "raw_code_info": "Lot Code: 2606022 Expiration Date: 06/02/2027"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "The recalled Bakr Brown Butter Chocolate Chunk Ready To Bake Cookie Dough was distributed in Southern California, Southern Nevada, Arizona, and Utah t"
+  },
+  "consumer_action": {
+   "instructions": "undeclared soy",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0990-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0990-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Almond",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 27841000000 Ready Meals TRAY BRIE & BLEU CHEESE LARGE               This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "27841000000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "8 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Almond",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0771-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0771-2026",
+  "published_at": "20260520",
+  "last_updated": "20260508",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "PHYSICAL",
+  "hazard_details": "Foreign object (stainless steel dust/flakes or shreds of plastic)",
+  "product": {
+   "brand_name": "",
+   "product_name": "Dakota Honey Company Spreadable Spun Honey, Jalapeno.  Stir before use.   Produced in Winner, SD.  Packaged in the following sized plastic jars:   1.  Net Wt 4 oz (113g) UPC 8 60012-41982 1.   2.  Net Wt 12 oz (340g)  UPC 8 60010-57965 7.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1897 - 4 oz containers, and 286 - 12 oz containers Total.",
+   "raw_code_info": "Honey does not have any code on container.   1.  4 oz spun honey purchased from December 19, 2025 to April 3, 2026   2.  12 oz spun honey purchased from February 25, 2026 to April 3, 2026"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Retail locations in FL, GA, and SD   Internet sales Nationwide"
+  },
+  "consumer_action": {
+   "instructions": "Foreign object (stainless steel dust/flakes or shreds of plastic)",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0724-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0724-2026",
+  "published_at": "20260513",
+  "last_updated": "20260506",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Undeclared Milk, Red #40.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Loard's Champagne Sherbert - 32 oz",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "188 units (32 oz/unit)",
+   "raw_code_info": "None"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Loard's brand distributed to Loard's Ice Cream parlors located in Northern California. Private labels distributed to grocery stores located in Norther"
+  },
+  "consumer_action": {
+   "instructions": "Undeclared Milk, Red #40.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0976-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0976-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare TUNA",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21788400000 Ready Meals SANDWICH TUNA SALAD CROISSANT SS COLD              This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21788400000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "156 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare TUNA",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1095-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1095-2026",
+  "published_at": "20260701",
+  "last_updated": "20260623",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Motor City Pizza Co. 5 Cheese Bread Single retail pack; 22.43 oz. (1 lb. 6.4 oz.) 636g UPC 8 70375 00511 1; 6 retail units per case Motor City Pizza Co. 5 Cheese Bread Twin retail pack; 44.86 oz. (2 lb. 12.9 oz.) 1272g UPC 8 70375 00509 8; 10 retail units per case",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "997,821 retail units",
+   "raw_code_info": "Sell By dates: Single retail pack: 2/4/2027, 2/5/2027, 2/23/2027, 2/24/2027, 3/9/2027, 3/10/2027, 3/17/2027, 3/18/2027, 3/24/2027, 3/25/2027, 4/7/2027, 4/8/2027, 4/20/2027, 4/21/2027 Twin retail pack:"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Affected 5 Cheese Bread lots were distributed and sold nationwide at retailers including Costco, Walmart, Giant Landover, Grocery Outlet, Jewel, Kroge"
+  },
+  "consumer_action": {
+   "instructions": "potential salmonella contamination",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1094-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1094-2026",
+  "published_at": "20260701",
+  "last_updated": "20260623",
+  "status": "ACTIVE",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Product not adequately pasteurized",
+  "product": {
+   "brand_name": "",
+   "product_name": "Joy Saffron Cardamon Lassi 16 oz.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "50 gallons (total)",
+   "raw_code_info": "Expiry June 30 through July 30, 2026 68061710034"
+  },
+  "distribution": {
+   "regions": [
+    "NJ",
+    "NY",
+    "PA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "NY, NJ, PA"
+  },
+  "consumer_action": {
+   "instructions": "Product not adequately pasteurized",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1128-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1128-2026",
+  "published_at": "20260708",
+  "last_updated": "20260629",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "MOGO PURE MORINGA OLEIFERA CAPSULES",
+   "product_name": "HERBAL SUPPLEMENT, 180 QUICK RELEASE VEGGIE CAPSULE, 100% PURE, 350 MG PER CAPSULE, SUPPLEMENT FACTS MORINGA POWDER 1050 mg, Ingredients: 100% Pure Moringa Leaf Powder (Moringa Oleifera), MANUFACTURED IN USA AND Marketed by: MOGO MIRINGA LLC, PO BOX 32066 Saint Louis, MO 63132",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [
+    "6/2027",
+    "1/2028"
+   ],
+   "packaging_description": "23,186 bottles",
+   "raw_code_info": "Lot codes:  15525AA exp date: 6/2027 00926AA exp date: 1/2028"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Products were sold nationwide via ecommerce (Amazon, Ebay, Etsy, and mogomiranga.com)"
+  },
+  "consumer_action": {
+   "instructions": "Product may be contaminated with Salmonella Typhimurium",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-1031-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-1031-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Salmon",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21299900000 LOX AVOCADO TOAST FS COLD                             This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21299900000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "19 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Salmon",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0698-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0698-2026",
+  "published_at": "20260513",
+  "last_updated": "20260505",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Low Heat Non-Fat Dried Milk Powder - plastic totes (NTE) 2200 lbs.  (packed under 5 labels: Off Grade NFDM Variable; Grade A NFDM LH Basic; Grade A NFDM LH Green Loop rBST Free; Grade A NFDM LH Standard NC rBST Free; NFDM LH Variable Standard)",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "1,110,564 lbs.",
+   "raw_code_info": "Batch Codes for recalled product all start with  A  or  B    full list below. Batch Code and Production Date: B22625-01-1 8/14/2025; B22625-01-2 8/14/2025; B22625-01-3 8/14/2025; B22625-01-4 8/14/2025"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "U.S. Distribution: Unknown and to be determined during RAC assignment. Domestic consignees pick-up product from CDI. Foreign Distribution: Mexico, Phi"
+  },
+  "consumer_action": {
+   "instructions": "Potential contamination with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0892-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0892-2026",
+  "published_at": "20260610",
+  "last_updated": "20260602",
+  "status": "ACTIVE",
+  "severity": "CLASS_III",
+  "hazard_type": "LABELING",
+  "hazard_details": "Product does not meet label claim for Vitamin E.",
+  "product": {
+   "brand_name": "",
+   "product_name": "Yunker(branded) Energy & Health Herbal Supplement with Vitamins; Manufactured by Sato Pharmaceuticals Co. Ltd.; 30ml container. Packed in single serving, 3 units/pack, and 10 units per pack.  Single UPC: 49873-916-11 3pack UPC: 49873-916-15 10pack UPC: 49873-916-07",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "25,130 units across all package sizes",
+   "raw_code_info": "Lot:                         Expiration date: single CXW T          Jan-27 3pack CXW T          Jan-27 10pack PXW Z        Mar-26 10pack XXW W       Dec-27"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Product was distributed to two domestic consignees who further distribute nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Product does not meet label claim for Vitamin E.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0691-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0691-2026",
+  "published_at": "20260513",
+  "last_updated": "20260504",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "",
+   "product_name": "Costco Service Deli Department 63 MEATLOAF SEASONING MORE FLV Pack Size: 4-5lb. Bags Net Weight: 20lbs Allergy Information: CONTAINS: MILK, WHEAT Packed BY: Griffith Foods STONECREST, GA 30058",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [
+    "2-18-2027",
+    "2-19-2027"
+   ],
+   "packaging_description": "2,374/4/5lb bags",
+   "raw_code_info": "Lot 669648 Use By: 2-18-2027, Lot 669649 Use By: 2-18-2027, Lot 669650 Use By: 2-18-2027, Lot 669651 Use By: 2-19-2027, Lot 669652 Use By: 2-19-2027, Lot 669653 Use By: 2-19-2027, Lot 669654 Use By: 2"
+  },
+  "distribution": {
+   "regions": [
+    "AZ",
+    "CA",
+    "CO",
+    "FL",
+    "GA",
+    "IL",
+    "LA",
+    "MD",
+    "MI",
+    "NC",
+    "PA",
+    "SC",
+    "TN",
+    "TX",
+    "WA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Product was shipped to the following states: AZ, CA, CO, FL, GA, IL, LA, MD, MI, NC, PA, SC, TN, TX & WA."
+  },
+  "consumer_action": {
+   "instructions": "Potential Salmonella contamination. The firm was notified from their supplier that the nonfat dry milk may be contaminated with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0817-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0817-2026",
+  "published_at": "20260527",
+  "last_updated": "20260521",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "Blackstone Parmesan Ranch Seasoning",
+   "product_name": "Net Wt 7.3 oz (207g).  UPC 7 17604-04106 2.  Manufactured for North Atlantic Imports, LLC, Logan, UT  84321.",
+   "upc_codes": [],
+   "lot_codes": [],
+   "expiration_dates": [
+    "07/04/2027",
+    "08/05/2027",
+    "08/14/2027"
+   ],
+   "packaging_description": "22532.4 lbs.",
+   "raw_code_info": "Lot #: 2025-43282  Exp 07/04/2027 or 07/05/2027 Lot 2025-46172  Exp 08/05/2027  Lot 2026-54751  Exp 08/14/2027"
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide"
+  },
+  "consumer_action": {
+   "instructions": "Product was made with milk powder recalled by the supplier due to Salmonella contamination.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0985-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0985-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_II",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Walnut",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 22321200000 MUFFINS PISTACHIO 2CT                    UPC 22770600000 MUFFINS PISTACHIO 4CT                     This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "22321200000",
+    "22770600000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "354 units total",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Walnut",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0888-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0888-2026",
+  "published_at": "20260610",
+  "last_updated": "20260529",
+  "status": "ACTIVE",
+  "severity": "CLASS_I",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Salmonella",
+  "product": {
+   "brand_name": "#003740 Dill & Garlic Seasoning",
+   "product_name": "Net Wt: 10 lbs.   JCB Flavors, 1224 Clark St. Watertown, WI  53094.",
+   "upc_codes": [],
+   "lot_codes": [
+    "087307-1-1"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "5 cases (2 - 10 lb. bags per case)",
+   "raw_code_info": "Lot# 087307-1-1"
+  },
+  "distribution": {
+   "regions": [
+    "KS",
+    "MN",
+    "NY",
+    "WI"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "KS, MN, NY, WI"
+  },
+  "consumer_action": {
+   "instructions": "Products may be potentially contaminated with Salmonella.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0696-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0696-2026",
+  "published_at": "20260513",
+  "last_updated": "20260505",
+  "status": "ACTIVE",
+  "severity": "CLASS_III",
+  "hazard_type": "CHEMICAL",
+  "hazard_details": "Potential contamination with pesticides, haloxyfop and thiamethoxam",
+  "product": {
+   "brand_name": "",
+   "product_name": "SunRidge Farms Organic CHILI BEAN BLEND CERTIFIED ORGANIC BY QAI NET WT. 15 LBS  Item: 003056 UPC: 086700030561",
+   "upc_codes": [
+    "086700030561"
+   ],
+   "lot_codes": [
+    "3132585"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "276 cases (4,140 lbs.)",
+   "raw_code_info": "Lots: 3132585, 2652535, 0282570, 2302416."
+  },
+  "distribution": {
+   "regions": [
+    "CA",
+    "CO",
+    "HI",
+    "MO",
+    "TX",
+    "VT",
+    "WA"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "U.S. Distribution: CA, CO, HI, MO, TX, VT, WA. Foreign Distribution: None."
+  },
+  "consumer_action": {
+   "instructions": "Potential contamination with pesticides, haloxyfop and thiamethoxam",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "FDA-H-0998-2026",
+  "source_agency": "FDA",
+  "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search=H-0998-2026",
+  "published_at": "20260610",
+  "last_updated": "20260618",
+  "status": "TERMINATED",
+  "severity": "CLASS_III",
+  "hazard_type": null,
+  "hazard_details": "Contains statement does not declare Shrimp",
+  "product": {
+   "brand_name": "",
+   "product_name": "UPC 21963800000 Ready Meals CHIMICHURRI SHRIMP BOWL SS COLD  This is Albertson's store-made item and sold by unit at point of sale with grocery store's scale label.",
+   "upc_codes": [
+    "21963800000"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "20 units",
+   "raw_code_info": "Product was labeled with a Packed On date of May 05. 26 or before."
+  },
+  "distribution": {
+   "regions": [],
+   "retailers": [],
+   "nationwide": true,
+   "raw_distribution": "Nationwide."
+  },
+  "consumer_action": {
+   "instructions": "Contains statement does not declare Shrimp",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "CFIA-RA-82523",
+  "source_agency": "CFIA",
+  "source_url": "https://recalls-rappels.canada.ca/en/alert-recall/kim-phat-brand-seafood-medley-recalled-due-undeclared-egg-fish-soy-and-wheat",
+  "published_at": "",
+  "last_updated": "2026-08-21",
+  "status": "ACTIVE",
+  "severity": "CFIA_Class_1",
+  "hazard_type": "ALLERGEN",
+  "hazard_details": "Food - Allergen - Egg Food - Allergen - Fish Food - Allergen - Gluten Food - Allergen - Soy Food - Allergen - Wheat",
+  "product": {
+   "brand_name": "Kim Phat",
+   "product_name": "Seafood Medley 500 g",
+   "upc_codes": [
+    "628790001962"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [
+    "25/08/16",
+    "27/08/15"
+   ],
+   "packaging_description": "",
+   "products_table": [
+    {
+     "brand": "Kim Phat",
+     "product": "Seafood Medley",
+     "size": "500 g",
+     "upc": "6 28790 00196 2",
+     "codes": "Production Date: 25/08/16 Best Before Date: 27/08/15",
+     "upc_codes": [
+      "628790001962"
+     ],
+     "lot_codes": [],
+     "expiration_dates": [
+      "25/08/16",
+      "27/08/15"
+     ]
+    }
+   ]
+  },
+  "distribution": {
+   "regions": [
+    "Quebec"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Quebec"
+  },
+  "consumer_action": {
+   "instructions": "Do not consume recalled products to which you are allergic or sensitive. Do not consume the recalled product if you have celiac disease or other gluten-related disorders. Distribution Quebec Previous Next Affected products Brand Product Size UPC Codes Kim Phat Seafood Medley 500 g 6 28790 00196 2 Production Date: 25/08/16 Best Before Date: 27/08/15 Issue The affected product is being recalled from the marketplace because it contains egg, fish, soy, and wheat which are not declared on the label. What you should do Check to see if you have recalled products Do not consume recalled products to which you are allergic or sensitive as they may cause a serious or life-threatening reaction If you have celiac disease or other gluten-related disorders, do not consume the recalled product as it may cause a serious or life-threatening reaction Do not serve, use, sell or distribute recalled products Recalled products should be thrown out or returned to the location where they were purchased Learn more: Learn more about common food allergies Sign up for recall notifications by email and follow us on social media View our detailed explanation of the food safety investigation and recall process Report a food safety or labelling concern Additional information Background This recall was triggered by a complaint. There have been no reported reactions associated with the consumption of this product. What is being done The Canadian Food Inspection Agency (CFIA) is conducting a food safety investigation, which may lead to the recall of other products. The CFIA is verifying that industry is removing recalled products from the marketplace. Details Original published date: 2026-08-21 Alert / recall type Food recall warning Category Food - Fish and seafood - Frozen Companies Recalling firm: Ocean Packers Inc.  Published by Canadian Food Inspection Agency",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "CFIA-RA-82522",
+  "source_agency": "CFIA",
+  "source_url": "https://recalls-rappels.canada.ca/en/alert-recall/onetang-brand-walnut-soft-candy-black-sesame-recalled-due-presence-stones",
+  "published_at": "",
+  "last_updated": "2026-08-21",
+  "status": "ACTIVE",
+  "severity": "CFIA_Class_3",
+  "hazard_type": null,
+  "hazard_details": "Food - Extraneous Material",
+  "product": {
+   "brand_name": "OneTang",
+   "product_name": "Walnut Soft Candy with Black Sesame 160 g",
+   "upc_codes": [
+    "6954427522321"
+   ],
+   "lot_codes": [],
+   "expiration_dates": [],
+   "packaging_description": "",
+   "products_table": [
+    {
+     "brand": "OneTang",
+     "product": "Walnut Soft Candy with Black Sesame",
+     "size": "160 g",
+     "upc": "6 954427 522321",
+     "codes": "Best before: 2027/MAY/02",
+     "upc_codes": [
+      "6954427522321"
+     ],
+     "lot_codes": [],
+     "expiration_dates": []
+    }
+   ]
+  },
+  "distribution": {
+   "regions": [
+    "Manitoba"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Manitoba"
+  },
+  "consumer_action": {
+   "instructions": "Do not use, sell, serve or distribute the affected product.",
+   "symptoms_to_monitor": ""
+  }
+ },
+ {
+  "alert_id": "CFIA-RA-82519",
+  "source_agency": "CFIA",
+  "source_url": "https://recalls-rappels.canada.ca/en/alert-recall/compliments-brand-and-selection-brand-corn-dogs-recalled-due-listeria-monocytogenes",
+  "published_at": "",
+  "last_updated": "2026-08-21",
+  "status": "ACTIVE",
+  "severity": "CFIA_Class_2",
+  "hazard_type": "BIOLOGICAL",
+  "hazard_details": "Listeria monocytogenes",
+  "product": {
+   "brand_name": "Compliments",
+   "product_name": "Corn Dogs 1.35 kg | Chicken and Pork Corn Dog 1.5 kg",
+   "upc_codes": [
+    "055742568363",
+    "059749996389"
+   ],
+   "lot_codes": [
+    "21526",
+    "21526"
+   ],
+   "expiration_dates": [],
+   "packaging_description": "",
+   "products_table": [
+    {
+     "brand": "Compliments",
+     "product": "Corn Dogs",
+     "size": "1.35 kg",
+     "upc": "0 55742 56836 3",
+     "codes": "BB 2027 AU 03 Lot: 21526",
+     "upc_codes": [
+      "055742568363"
+     ],
+     "lot_codes": [
+      "21526"
+     ],
+     "expiration_dates": []
+    },
+    {
+     "brand": "Selection",
+     "product": "Chicken and Pork Corn Dog",
+     "size": "1.5 kg",
+     "upc": "0 59749 99638 9",
+     "codes": "BB 2027 AU 03 Lot: 21526",
+     "upc_codes": [
+      "059749996389"
+     ],
+     "lot_codes": [
+      "21526"
+     ],
+     "expiration_dates": []
+    }
+   ]
+  },
+  "distribution": {
+   "regions": [
+    "Quebec"
+   ],
+   "retailers": [],
+   "nationwide": false,
+   "raw_distribution": "Quebec"
+  },
+  "consumer_action": {
+   "instructions": "Do not use, sell, serve or distribute the affected products.",
+   "symptoms_to_monitor": ""
+  }
+ }
+]
