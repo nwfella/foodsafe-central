@@ -270,12 +270,14 @@
 
   <div class="statusline"><span id="countLine">Loading…</span></div>
 
+  <noscript>
   <div class="noscript">
     <!--__SUMMARY_START__-->
     <h3>Recall snapshot</h3>
     <p>This page loads its numbers with JavaScript. The summary below is baked in at build time.</p>
     <!--__SUMMARY_END__-->
   </div>
+  </noscript>
 
   <div id="list"></div>
 </div>
@@ -326,7 +328,7 @@ function setTheme(t){
   document.querySelectorAll("#swatches .sw").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.theme === t)));
   const meta = document.querySelector('meta[name="theme-color"]');
   if(meta) meta.setAttribute("content", getComputedStyle(document.body).backgroundColor);
-  drawChart();
+  updateChart();
 }
 document.getElementById("swatches").addEventListener("click", e => {
   const b = e.target.closest(".sw");
@@ -347,8 +349,7 @@ async function load(){
     }
     buildIndex();
     renderStats();
-    buildChart();
-    render();
+    render();          // render() also refreshes the timeline chart from the same filter state
   }catch(e){
     const box = $("#err");
     box.style.display = "block";
@@ -395,21 +396,42 @@ function monthKeys(n){
   }
   return out;
 }
-let chartData = null;
-function buildChart(){
-  const months = monthKeys(12);
-  const idx = {};
+let chartData = null, chartScope = "", chartInScope = 0;
+function updateChart(){
+  if(!state.data) return;
+  const f = filterState(), upcQ = upcFromQuery(f.q);
+  const months = monthKeys(12), idx = {};
   months.forEach((m,i) => { idx[m.key] = i; m.fda = 0; m.usda = 0; });
+  let inScope = 0;
   for(const r of state.data.recalls){
+    if(!passes(r, f, upcQ)) continue;
+    inScope++;
     const k = (r.published_at||"").slice(0,7);
     if(!(k in idx)) continue;
     const m = months[idx[k]];
     if(r.agency === "FDA") m.fda++; else m.usda++;
   }
   chartData = months;
-  const total = months.reduce((a,m) => a + m.fda + m.usda, 0);
-  $("#chSub").textContent = months.length + " months · " + total + " recalls";
+  chartScope = buildScopeLabel(f);
+  chartInScope = inScope;
+  const sum = months.reduce((a,m) => a + m.fda + m.usda, 0);
+  $("#chSub").textContent = months.length + " months · " + sum + " recalls" + (chartScope ? " · " + chartScope : "");
   drawChart();
+}
+
+function buildScopeLabel(f){
+  const bits = [];
+  if(f.region){
+    const opt = $("#state").querySelector('option[value="' + f.region + '"]');
+    bits.push(opt ? opt.textContent : f.region);
+  }
+  if(f.agency) bits.push(f.agency);
+  if(f.sev) bits.push((SEV[f.sev] || [f.sev])[0].split("·")[0].trim());
+  if(f.st && f.st !== "ACTIVE") bits.push(f.st === "TERMINATED" ? "terminated" : "all statuses");
+  if(state.recent) bits.push("last " + (state.recent === "week" ? "7" : "30") + " days");
+  if(state.quick) bits.push({class1:"Class I", allergen:"allergens", pathogen:"pathogens"}[state.quick] || "");
+  if(f.q) bits.push("“" + (f.q.length > 18 ? f.q.slice(0,18) + "…" : f.q) + "”");
+  return bits.filter(Boolean).join(" · ");
 }
 
 function cssv(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#888"; }
@@ -425,6 +447,13 @@ function drawChart(){
   ctx.clearRect(0,0,W,H);
 
   const cFda = cssv("--accent"), cUsda = cssv("--amber"), cGrid = cssv("--border"), cTxt = cssv("--muted"), cText = cssv("--text");
+  const barTotal = chartData.reduce((a,m) => a + m.fda + m.usda, 0);
+  if(barTotal === 0){
+    ctx.fillStyle = cTxt; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.font = "12px -apple-system,Segoe UI,Roboto,sans-serif";
+    ctx.fillText("No recalls match the current filter" + (chartScope ? " (" + chartScope + ")" : ""), W / 2, H / 2);
+    return;
+  }
   const padL = 26, padR = 4, padT = 8, padB = 18;
   const plotW = Math.max(10, W - padL - padR), plotH = Math.max(10, H - padT - padB);
   const maxV = Math.max(1, ...chartData.map(m => m.fda + m.usda));
@@ -478,25 +507,41 @@ function score(r, q, upcQ){
   return s;
 }
 
-function current(){
+function filterState(){
   const q = $("#q").value.trim().toLowerCase();
-  const sev = $("#sev").value, st = $("#status").value, agency = $("#agency").value, region = $("#state").value;
-  const upcQ = /^\d{8,14}$/.test(q.replace(/\D/g,"")) ? q.replace(/\D/g,"") : null;
-  const since = state.recent ? daysAgoIso(state.recent === "week" ? 7 : 30) : null;
+  return {
+    q: q,
+    sev: $("#sev").value, st: $("#status").value,
+    agency: $("#agency").value, region: $("#state").value,
+    since: state.recent ? daysAgoIso(state.recent === "week" ? 7 : 30) : null,
+    quick: state.quick,
+  };
+}
+const upcFromQuery = q => /^\d{8,14}$/.test(q.replace(/\D/g,"")) ? q.replace(/\D/g,"") : null;
+
+/* single source of truth: the list AND the timeline chart both use this */
+function passes(r, f, upcQ){
+  if(f.agency && r.agency !== f.agency) return false;
+  if(f.sev && r.severity !== f.sev) return false;
+  if(f.st && r.status !== f.st) return false;
+  if(f.since && (r.published_at||"") < f.since) return false;
+  if(f.quick === "class1" && r.severity !== "CLASS_I") return false;
+  if(f.quick === "allergen" && r.hazard_type !== "ALLERGEN") return false;
+  if(f.quick === "pathogen" && r.hazard_type !== "BIOLOGICAL") return false;
+  if(f.region){
+    if(f.region === "NATIONWIDE"){ if(!r.distribution.nationwide) return false; }
+    else if(!(r.distribution.regions||[]).includes(f.region)) return false;
+  }
+  if(upcQ) return r._upc.has(upcQ) || score(r, f.q, upcQ) > 0;
+  return !f.q || score(r, f.q, null) > 0;
+}
+
+function current(){
+  const f = filterState(), upcQ = upcFromQuery(f.q);
   const out = [];
   for(const r of state.data.recalls){
-    if(agency && r.agency !== agency) continue;
-    if(sev && r.severity !== sev) continue;
-    if(st && r.status !== st) continue;
-    if(since && (r.published_at||"") < since) continue;
-    if(state.quick === "class1" && r.severity !== "CLASS_I") continue;
-    if(state.quick === "allergen" && r.hazard_type !== "ALLERGEN") continue;
-    if(state.quick === "pathogen" && r.hazard_type !== "BIOLOGICAL") continue;
-    if(region){
-      if(region === "NATIONWIDE"){ if(!r.distribution.nationwide) continue; }
-      else if(!(r.distribution.regions||[]).includes(region)) continue;
-    }
-    const s = score(r, q, upcQ);
+    if(!passes(r, f, upcQ)) continue;
+    const s = score(r, f.q, upcQ);
     if(s) out.push([s, r]);
   }
   out.sort((a,b) => b[0]-a[0] || (b[1].published_at||"").localeCompare(a[1].published_at||""));
@@ -512,7 +557,7 @@ const sevOf = r => SEV[r.severity] || [r.severity ? r.severity.replace(/_/g," ")
 function card(r){
   const p = r.product, d = r.distribution;
   const sv = sevOf(r);
-  const shortSev = r.severity ? sv[0].split("·")[0].trim() : "FSIS";
+  const shortSev = r.severity ? sv[0].split("·")[0].trim() : "Class n/a";
   const haz = HAZ[r.hazard_type] || (r.hazard_type ? r.hazard_type : "Unclassified");
   const upcs = (p.upc_codes||[]).length ? `<span class="chip upc">${(p.upc_codes||[]).slice(0,3).map(esc).join(", ")}${(p.upc_codes||[]).length>3?"…":""}</span>` : "";
   const where = d.nationwide ? "Nationwide" : ((d.regions||[]).slice(0,4).join(", ") + ((d.regions||[]).length>4?"…":"") || "See notice");
@@ -550,7 +595,13 @@ function render(){
   else bits.push(`<span class="dot g"></span> ${res.length} recalls · newest first`);
   if(state.recent) bits.push(`last ${state.recent === "week" ? "7" : "30"} days`);
   if(state.quick) bits.push(esc({class1:"Class I only", allergen:"allergens only", pathogen:"pathogens only"}[state.quick] || ""));
+  if($("#state").value){
+    const opt = $("#state").querySelector('option[value="' + $("#state").value + '"]');
+    bits.push(esc(opt ? opt.textContent : $("#state").value));
+  }
+  if($("#agency").value) bits.push(esc($("#agency").value));
   $("#countLine").innerHTML = bits.filter(Boolean).join(" · ");
+  updateChart();
   const list = $("#list");
   if(!res.length){
     list.innerHTML = `<div class="empty">No recalls match these filters.${q ? " Try a different brand, product, or UPC." : ""}</div>`;

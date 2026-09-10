@@ -42,14 +42,6 @@ US_STATES = {s for s in "AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA M
 # FSIS pathauto aliases are greedily filled with whole words up to 84 characters
 # (verified 2026-09 against 20 archived notice URLs -> 20/20 exact matches).
 FSIS_SLUG_MAX = 84
-FSIS_HAZARD_FALLBACK = {
-    "ineligible": ("INELIGIBLE", "Import ineligibility"),
-    "inspection": ("INSPECTION", "Produced without inspection"),
-    "misbranding": ("LABELING", "Misbranding"),
-    "mislabeling": ("LABELING", "Mislabeling"),
-}
-
-
 # ------------------------------------------------------------------ helpers
 def slug_words(text, max_len=FSIS_SLUG_MAX):
     """FSIS pathauto slug: ascii lowercase, drop stop-words <= 2 chars, greedy fill to max_len."""
@@ -98,7 +90,7 @@ def hazard_from_text(text):
         return "ALLERGEN", None
     if "extraneous material" in t or "foreign material" in t or "foreign matter" in t or "metal" in t or "plastic" in t:
         return "PHYSICAL", None
-    if "ineligible" in t:
+    if "ineligib" in t:
         return "INELIGIBLE", "Import ineligibility"
     if "without benefit of inspection" in t or "produced without" in t:
         return "INSPECTION", "Produced without inspection"
@@ -213,6 +205,7 @@ def normalize_fda(r):
 FSIS_NOISE = (
     "summary of recall", "recalls & public health alerts", "recall and pha cases",
     "recall cases in calendar", "fsis recalls 0", "high - class", "annual report",
+    "retail list", "recall number", "product labels", "recall alert archive",
 )
 
 
