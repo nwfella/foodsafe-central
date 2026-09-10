@@ -8,7 +8,7 @@ FDA food recalls plus USDA FSIS recalls (meat, poultry, processed egg products),
 ## What it does
 
 - **Search-as-you-type** across brand, product, hazard, UPC and lot codes
-- **Clickable stat tiles** — Active recalls, Published in the last 7 days, FDA and USDA FSIS counts are rounded buttons that filter the list *and* the timeline; clicking one again clears it, and the tiles stay in sync with the selects and quick chips in both directions
+- **Five radio "views"** at the top — *Active recalls · Published in the last 7 days · FDA · USDA FSIS · All recalls* — **one card at a time (issue #1)**. Each card is a *complete scope*, so the number printed on it always equals the rows you get: the FDA card really returns 1,377 (it used to return 510 while claiming 1,377). Picking a card also re-buckets the timeline; refining a view-owned dimension shows an honest **custom** badge instead of falsely leaving a card selected; radio dots (not checkboxes), EN/FR tooltips and arrow-key navigation
 - **Filters** for agency (FDA / USDA FSIS), classification (Class I / II / III / not stated), status (active by default) and distribution region
 - **Quick chips** — last 7 days, last 30 days, Class I only, allergens, pathogens, reset
 - **Detail view** per recall: hazard, dates, distribution, product &amp; codes, plain-language action, the **raw official text** the parsed fields came from, and a link to the official notice

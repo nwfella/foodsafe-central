@@ -127,58 +127,88 @@ const switchTheme = (t) => d.querySelector(`[data-theme='${t}']`).dispatchEvent(
     ok(usda.length > 0 && usda.every((c) => /USDA FSIS/.test(c.textContent)), `USDA filter shows only USDA FSIS cards (${usda.length})`);
     ok(d.querySelector("#chSub").textContent.indexOf("USDA FSIS") >= 0, `timeline subtitle follows the agency filter (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
 
-    // 6b. the four top stat tiles are clickable filters, kept in sync with selects + chips
-    const tiles = [...d.querySelectorAll("[data-stat]")];
-    const pressed = () => Object.fromEntries(tiles.map((t) => [t.dataset.stat, t.getAttribute("aria-pressed")]));
-    const clickTile = (k) => d.querySelector(`[data-stat='${k}']`).dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
-    ok(tiles.length === 4, `four stat tiles present (${tiles.length})`);
-    ok(tiles.every((t) => t.tagName === "BUTTON" && t.getAttribute("type") === "button"), "stat tiles are real <button type=button> elements");
-    chip("reset");
-    await sleep(250);
-    ok(JSON.stringify(pressed()) === JSON.stringify({ active: "true", recent7: "false", fda: "false", usda: "false" }),
-      `default tile state mirrors the default filters: ${JSON.stringify(pressed())}`);
+    // 6b. the five top cards are ONE radio group of self-contained "views" (issue #1)
+    const tiles = [...d.querySelectorAll("[data-view]")];
+    const checked = () => tiles.filter((t) => t.getAttribute("aria-checked") === "true").map((t) => t.dataset.view);
+    const clickTile = (k) => d.querySelector(`[data-view='${k}']`).dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
+    const listCount = () => { const m = d.querySelector("#countLine").textContent.match(/(\d[\d,]*)\s+recalls/); return m ? Number(m[1].replace(/,/g, "")) : -1; };
+    const arrow = (key) => d.querySelector(".stats").dispatchEvent(new w.KeyboardEvent("keydown", { key, bubbles: true }));
+    const expectCard = {
+      active: meta.by_status.ACTIVE,
+      week: meta.new_7d,
+      fda: meta.by_agency.FDA,
+      usda: meta.by_agency["USDA FSIS"],
+      all: meta.total,
+    };
 
+    ok(tiles.length === 5, `five cards: 4 scopes + "All recalls" (${tiles.length})`);
+    ok(tiles.every((t) => t.tagName === "BUTTON" && t.getAttribute("role") === "radio"), "cards are <button role=radio>");
+    ok(d.querySelector(".stats").getAttribute("role") === "radiogroup", "cards are wrapped in role=radiogroup");
+    chip("reset");
+    await sleep(260);
+    ok(JSON.stringify(checked()) === JSON.stringify(["active"]), `default view is "Active recalls" (${JSON.stringify(checked())})`);
+    ok(tiles.every((t) => (t.getAttribute("aria-checked") === "true") === (t.getAttribute("tabindex") === "0")), "roving tabindex follows the checked card");
+    ok(tiles.filter((t) => t.getAttribute("tabindex") === "0").length === 1, "exactly one card is tab-focusable");
+
+    // THE TICKET: one card at a time, and each card's number equals the rows you actually get
+    for (const k of ["fda", "usda", "week", "all", "active"]) {
+      clickTile(k);
+      await sleep(260);
+      const on = checked();
+      ok(on.length === 1 && on[0] === k, `"${k}": exactly one card checked, the others cleared (${JSON.stringify(on)})`);
+      ok(listCount() === expectCard[k], `"${k}" card number == result set (${listCount()} vs ${expectCard[k]})`);
+    }
+    ok(d.querySelector("#agency").value === "" && d.querySelector("#status").value === "ACTIVE", "the Active card leaves the selects consistent");
+
+    // radios never toggle off; refining a view-owned dimension honestly reads "custom"
     clickTile("fda");
-    await sleep(250);
-    ok(d.querySelector("#agency").value === "FDA", "FDA tile drives the agency select (tile -> select sync)");
-    ok(pressed().fda === "true" && pressed().usda === "false", `FDA tile presses and USDA releases: ${JSON.stringify(pressed())}`);
-    ok(cards().length > 0 && cards().every((c) => /FDA/.test(c.textContent)), `FDA tile scopes the list to FDA (${cards().length})`);
-    ok(d.querySelector("#chSub").textContent.indexOf("FDA") >= 0, `timeline follows the FDA tile (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
+    await sleep(260);
+    clickTile("fda");
+    await sleep(260);
+    ok(JSON.stringify(checked()) === JSON.stringify(["fda"]), "clicking the checked card keeps it checked (radio, not checkbox)");
+    set("#status", "ACTIVE");
+    await sleep(260);
+    ok(checked().length === 0 && !d.querySelector("#statMode").hidden, `refining a view-owned dimension marks the group custom (${JSON.stringify(checked())})`);
+    ok(tiles.filter((t) => t.getAttribute("tabindex") === "0").length === 1, "a custom scope still keeps exactly one card focusable (group stays reachable)");
+    chip("reset");
+    await sleep(260);
 
-    set("#agency", "USDA FSIS");
-    await sleep(250);
-    ok(pressed().usda === "true" && pressed().fda === "false", `select drives the tiles back the other way: ${JSON.stringify(pressed())}`);
-    ok(cards().every((c) => /USDA FSIS/.test(c.textContent)), `USDA tile agrees with the select (${cards().length} cards)`);
+    // cards and chips read one state, in both directions
+    clickTile("week");
+    await sleep(260);
+    ok(d.querySelector("[data-quick='week']").getAttribute("aria-pressed") === "true", "the week card lights the week chip (card -> chip)");
+    ok(d.querySelector("#chSub").textContent.indexOf("last 7 days") >= 0, `timeline follows the week card (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
+    ok(d.querySelector("#countLine").textContent.indexOf("last 7 days") >= 0, `count line follows the week card (${JSON.stringify(d.querySelector("#countLine").textContent)})`);
+    chip("week");
+    await sleep(260);
+    ok(JSON.stringify(checked()) === JSON.stringify(["all"]), `toggling the week chip off lands on the neutral "All recalls" scope (${JSON.stringify(checked())})`);
+    chip("reset");
+    await sleep(260);
 
-    clickTile("usda");
-    await sleep(250);
-    ok(d.querySelector("#agency").value === "", "clicking the pressed tile again clears the agency filter");
+    // arrow keys walk the group and wrap
+    arrow("ArrowRight");
+    await sleep(260);
+    ok(JSON.stringify(checked()) === JSON.stringify(["week"]), `ArrowRight selects the next card (${JSON.stringify(checked())})`);
+    arrow("ArrowLeft");
+    await sleep(260);
+    ok(JSON.stringify(checked()) === JSON.stringify(["active"]), `ArrowLeft selects the previous card (${JSON.stringify(checked())})`);
+    arrow("ArrowLeft");
+    await sleep(260);
+    ok(JSON.stringify(checked()) === JSON.stringify(["all"]), `arrow keys wrap around the group (${JSON.stringify(checked())})`);
 
-    clickTile("recent7");
-    await sleep(250);
-    ok(pressed().recent7 === "true", "last-7-days tile presses");
-    ok(d.querySelector("[data-quick='week']").getAttribute("aria-pressed") === "true", "7-day tile lights the matching quick chip (tile -> chip sync)");
-    ok(d.querySelector("#chSub").textContent.indexOf("last 7 days") >= 0, `timeline follows the 7-day tile (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
-    ok(d.querySelector("#countLine").textContent.indexOf("last 7 days") >= 0, `count line follows the 7-day tile (${JSON.stringify(d.querySelector("#countLine").textContent)})`);
-    clickTile("recent7");
-    await sleep(250);
-    ok(pressed().recent7 === "false" && d.querySelector("[data-quick='week']").getAttribute("aria-pressed") === "false", "7-day tile toggles back off and clears the chip");
-
-    const activeCount = cards().length;
-    clickTile("active");
-    await sleep(250);
-    ok(d.querySelector("#status").value === "", "Active tile un-press flips the status select to all statuses");
-    ok(pressed().active === "false", "Active tile shows unpressed while showing all statuses");
-    ok(cards().length >= activeCount, `all-statuses view is >= the active-only view (${activeCount} -> ${cards().length})`);
-    clickTile("active");
-    await sleep(250);
-    ok(d.querySelector("#status").value === "ACTIVE" && pressed().active === "true", "clicking the Active tile again restores active-only");
+    // select -> card sync (clear status so the scope really matches the FDA card)
+    chip("reset");
+    await sleep(260);
+    set("#status", "");
+    await sleep(260);
+    set("#agency", "FDA");
+    await sleep(260);
+    ok(JSON.stringify(checked()) === JSON.stringify(["fda"]), `the agency select drives the card back (select -> card sync): ${JSON.stringify(checked())}`);
 
     chip("reset");
-    await sleep(250);
-    ok(JSON.stringify(pressed()) === JSON.stringify({ active: "true", recent7: "false", fda: "false", usda: "false" }),
-      `reset restores the default tile state: ${JSON.stringify(pressed())}`);
-    ok(d.querySelector("#chSub").textContent.indexOf("FDA") < 0 && d.querySelector("#chSub").textContent.indexOf("USDA") < 0, "reset also clears the tile scope from the timeline");
+    await sleep(260);
+    ok(JSON.stringify(checked()) === JSON.stringify(["active"]), `reset returns to the default card (${JSON.stringify(checked())})`);
+    ok(d.querySelector("#chSub").textContent.indexOf("FDA") < 0 && d.querySelector("#chSub").textContent.indexOf("USDA") < 0, "reset also clears the scope from the timeline");
 
     // 6c. clicking a bar filters to that month; clicking it again goes back to the whole range
     const L = w.eval("chartLayout");
@@ -204,14 +234,22 @@ const switchTheme = (t) => d.querySelector(`[data-theme='${t}']`).dispatchEvent(
     ok(drawCalls.strokeRect > ringBefore, "the selected month's column is ringed");
     ok(w.eval("chartSelected") === key, `chart keeps the selected key (${w.eval("chartSelected")})`);
 
-    // month + a tile compose
+    // a view card is a COMPLETE scope: picking one clears the month slice
     clickTile("fda");
-    await sleep(250);
+    await sleep(260);
+    ok(w.eval("chartSelected") === "", "picking a view card clears the month slice (cards are complete scopes)");
+    ok(listCount() === meta.by_agency.FDA, `the FDA card still equals its number after a month click (${listCount()} vs ${meta.by_agency.FDA})`);
+
+    // month + a refinement (agency select) compose
+    clickCanvas(cx, cy);
+    await sleep(260);
+    set("#agency", "FDA");
+    await sleep(260);
     const combo = d.querySelector("#chSub").textContent;
-    ok(combo.indexOf("selected " + label) >= 0 && combo.indexOf("FDA") >= 0, `month + FDA tile compose (${JSON.stringify(combo)})`);
+    ok(combo.indexOf("selected " + label) >= 0 && combo.indexOf("FDA") >= 0, `month + agency refinement compose (${JSON.stringify(combo)})`);
     ok(cards().every((c) => /FDA/.test(c.textContent) && c.textContent.indexOf(mShort) >= 0), `list is ${label} AND FDA only (${cards().length})`);
-    clickTile("fda");
-    await sleep(250);
+    set("#agency", "");
+    await sleep(260);
 
     clickCanvas(cx, cy);
     await sleep(250);
