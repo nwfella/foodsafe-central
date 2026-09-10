@@ -125,6 +125,59 @@ const switchTheme = (t) => d.querySelector(`[data-theme='${t}']`).dispatchEvent(
     ok(usda.length > 0 && usda.every((c) => /USDA FSIS/.test(c.textContent)), `USDA filter shows only USDA FSIS cards (${usda.length})`);
     ok(d.querySelector("#chSub").textContent.indexOf("USDA FSIS") >= 0, `timeline subtitle follows the agency filter (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
 
+    // 6b. the four top stat tiles are clickable filters, kept in sync with selects + chips
+    const tiles = [...d.querySelectorAll("[data-stat]")];
+    const pressed = () => Object.fromEntries(tiles.map((t) => [t.dataset.stat, t.getAttribute("aria-pressed")]));
+    const clickTile = (k) => d.querySelector(`[data-stat='${k}']`).dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
+    ok(tiles.length === 4, `four stat tiles present (${tiles.length})`);
+    ok(tiles.every((t) => t.tagName === "BUTTON" && t.getAttribute("type") === "button"), "stat tiles are real <button type=button> elements");
+    chip("reset");
+    await sleep(250);
+    ok(JSON.stringify(pressed()) === JSON.stringify({ active: "true", recent7: "false", fda: "false", usda: "false" }),
+      `default tile state mirrors the default filters: ${JSON.stringify(pressed())}`);
+
+    clickTile("fda");
+    await sleep(250);
+    ok(d.querySelector("#agency").value === "FDA", "FDA tile drives the agency select (tile -> select sync)");
+    ok(pressed().fda === "true" && pressed().usda === "false", `FDA tile presses and USDA releases: ${JSON.stringify(pressed())}`);
+    ok(cards().length > 0 && cards().every((c) => /FDA/.test(c.textContent)), `FDA tile scopes the list to FDA (${cards().length})`);
+    ok(d.querySelector("#chSub").textContent.indexOf("FDA") >= 0, `timeline follows the FDA tile (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
+
+    set("#agency", "USDA FSIS");
+    await sleep(250);
+    ok(pressed().usda === "true" && pressed().fda === "false", `select drives the tiles back the other way: ${JSON.stringify(pressed())}`);
+    ok(cards().every((c) => /USDA FSIS/.test(c.textContent)), `USDA tile agrees with the select (${cards().length} cards)`);
+
+    clickTile("usda");
+    await sleep(250);
+    ok(d.querySelector("#agency").value === "", "clicking the pressed tile again clears the agency filter");
+
+    clickTile("recent7");
+    await sleep(250);
+    ok(pressed().recent7 === "true", "last-7-days tile presses");
+    ok(d.querySelector("[data-quick='week']").getAttribute("aria-pressed") === "true", "7-day tile lights the matching quick chip (tile -> chip sync)");
+    ok(d.querySelector("#chSub").textContent.indexOf("last 7 days") >= 0, `timeline follows the 7-day tile (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
+    ok(d.querySelector("#countLine").textContent.indexOf("last 7 days") >= 0, `count line follows the 7-day tile (${JSON.stringify(d.querySelector("#countLine").textContent)})`);
+    clickTile("recent7");
+    await sleep(250);
+    ok(pressed().recent7 === "false" && d.querySelector("[data-quick='week']").getAttribute("aria-pressed") === "false", "7-day tile toggles back off and clears the chip");
+
+    const activeCount = cards().length;
+    clickTile("active");
+    await sleep(250);
+    ok(d.querySelector("#status").value === "", "Active tile un-press flips the status select to all statuses");
+    ok(pressed().active === "false", "Active tile shows unpressed while showing all statuses");
+    ok(cards().length >= activeCount, `all-statuses view is >= the active-only view (${activeCount} -> ${cards().length})`);
+    clickTile("active");
+    await sleep(250);
+    ok(d.querySelector("#status").value === "ACTIVE" && pressed().active === "true", "clicking the Active tile again restores active-only");
+
+    chip("reset");
+    await sleep(250);
+    ok(JSON.stringify(pressed()) === JSON.stringify({ active: "true", recent7: "false", fda: "false", usda: "false" }),
+      `reset restores the default tile state: ${JSON.stringify(pressed())}`);
+    ok(d.querySelector("#chSub").textContent.indexOf("FDA") < 0 && d.querySelector("#chSub").textContent.indexOf("USDA") < 0, "reset also clears the tile scope from the timeline");
+
     // 7. REGION filter must move the timeline chart, not just the list
     chip("reset");
     await sleep(250);

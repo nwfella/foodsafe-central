@@ -89,10 +89,17 @@
   .overview{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); gap:12px; margin:18px 0 6px}
   @media(max-width:820px){ .overview{grid-template-columns:1fr} }
   .stats{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-  .stat{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px 14px}
-  .stat .n{font-size:24px; font-weight:700; line-height:1.1; color:var(--text)}
+  .stat{display:block; width:100%; text-align:left; font-family:inherit; color:var(--text); cursor:pointer;
+        background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:12px 14px;
+        -webkit-tap-highlight-color:transparent; transition:border-color .12s, background .12s, transform .12s}
+  .stat .n{display:block; font-size:24px; font-weight:700; line-height:1.1; color:var(--text)}
   .stat .n.red{color:var(--red)} .stat .n.green{color:var(--green)} .stat .n.amber{color:var(--amber)}
-  .stat .k{font-size:12px; color:var(--muted); margin-top:3px}
+  .stat .k{display:block; font-size:12px; color:var(--muted); margin-top:3px}
+  .stat[aria-pressed="true"]{border-color:var(--accent); background:color-mix(in srgb, var(--accent) 12%, transparent)}
+  .stat[aria-pressed="true"] .k{color:var(--text)}
+  .stat[aria-pressed="true"] .k::after{content:" ✓"; color:var(--accent); font-weight:700}
+  .stat:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  @media (hover:hover){ .stat:hover{border-color:var(--accent); transform:translateY(-1px)} }
   .chartcard{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px 14px 8px; display:flex; flex-direction:column; min-height:150px}
   .chartcard .ch-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap}
   .chartcard .ch-head h2{font-size:13.5px; font-weight:600}
@@ -218,10 +225,10 @@
 
   <div class="overview">
     <div class="stats">
-      <div class="stat"><div class="n red" id="sActive">–</div><div class="k">Active recalls (FDA + USDA)</div></div>
-      <div class="stat"><div class="n green" id="sNew">–</div><div class="k">Published in the last 7 days</div></div>
-      <div class="stat"><div class="n" id="sFda">–</div><div class="k">FDA food recalls · 12 months</div></div>
-      <div class="stat"><div class="n amber" id="sUsda">–</div><div class="k">USDA FSIS recalls · 12 months</div></div>
+      <button class="stat" type="button" data-stat="active" aria-pressed="false" title="Show active recalls only — click again to include terminated recalls"><span class="n red" id="sActive">–</span><span class="k">Active recalls (FDA + USDA)</span></button>
+      <button class="stat" type="button" data-stat="recent7" aria-pressed="false" title="Show only recalls published in the last 7 days — click again to clear"><span class="n green" id="sNew">–</span><span class="k">Published in the last 7 days</span></button>
+      <button class="stat" type="button" data-stat="fda" aria-pressed="false" title="Show FDA recalls only — click again for both agencies"><span class="n" id="sFda">–</span><span class="k">FDA food recalls · 12 months</span></button>
+      <button class="stat" type="button" data-stat="usda" aria-pressed="false" title="Show USDA FSIS recalls only (meat, poultry, egg) — click again for both agencies"><span class="n amber" id="sUsda">–</span><span class="k">USDA FSIS recalls · 12 months</span></button>
     </div>
     <div class="chartcard">
       <div class="ch-head">
@@ -264,7 +271,6 @@
     <button class="qchip" data-quick="class1" aria-pressed="false">🚨 Class I</button>
     <button class="qchip" data-quick="allergen" aria-pressed="false">🥜 Allergens</button>
     <button class="qchip" data-quick="pathogen" aria-pressed="false">🦠 Pathogens</button>
-    <button class="qchip" data-quick="usda" aria-pressed="false">🇺🇸 USDA only</button>
     <button class="qchip" data-quick="reset" aria-pressed="false">↺ Reset</button>
   </div>
 
@@ -304,7 +310,7 @@
 const RECALLS_DATA = null;
 /*__DATA_END__*/
 const $ = s => document.querySelector(s);
-const state = { data: null, recent: "", quick: "" };
+const state = { data: null, f: { q:"", sev:"", st:"ACTIVE", agency:"", region:"", recent:"", quick:"" } };
 
 /* ---------- helpers ---------- */
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -349,6 +355,7 @@ async function load(){
     }
     buildIndex();
     renderStats();
+    syncUI();          // light up the tiles/selects/chips that match the default filter state
     render();          // render() also refreshes the timeline chart from the same filter state
   }catch(e){
     const box = $("#err");
@@ -428,8 +435,8 @@ function buildScopeLabel(f){
   if(f.agency) bits.push(f.agency);
   if(f.sev) bits.push((SEV[f.sev] || [f.sev])[0].split("·")[0].trim());
   if(f.st && f.st !== "ACTIVE") bits.push(f.st === "TERMINATED" ? "terminated" : "all statuses");
-  if(state.recent) bits.push("last " + (state.recent === "week" ? "7" : "30") + " days");
-  if(state.quick) bits.push({class1:"Class I", allergen:"allergens", pathogen:"pathogens"}[state.quick] || "");
+  if(f.since) bits.push("last " + (state.f.recent === "week" ? "7" : "30") + " days");
+  if(f.quick) bits.push({class1:"Class I", allergen:"allergens", pathogen:"pathogens"}[f.quick] || "");
   if(f.q) bits.push("“" + (f.q.length > 18 ? f.q.slice(0,18) + "…" : f.q) + "”");
   return bits.filter(Boolean).join(" · ");
 }
@@ -508,13 +515,10 @@ function score(r, q, upcQ){
 }
 
 function filterState(){
-  const q = $("#q").value.trim().toLowerCase();
+  const f = state.f;
   return {
-    q: q,
-    sev: $("#sev").value, st: $("#status").value,
-    agency: $("#agency").value, region: $("#state").value,
-    since: state.recent ? daysAgoIso(state.recent === "week" ? 7 : 30) : null,
-    quick: state.quick,
+    q: f.q, sev: f.sev, st: f.st, agency: f.agency, region: f.region, quick: f.quick,
+    since: f.recent ? daysAgoIso(f.recent === "week" ? 7 : 30) : null,
   };
 }
 const upcFromQuery = q => /^\d{8,14}$/.test(q.replace(/\D/g,"")) ? q.replace(/\D/g,"") : null;
@@ -593,13 +597,13 @@ function render(){
   const bits = [];
   if(q) bits.push(`${res.length} match${res.length===1?"":"es"} for “${esc(q)}”`);
   else bits.push(`<span class="dot g"></span> ${res.length} recalls · newest first`);
-  if(state.recent) bits.push(`last ${state.recent === "week" ? "7" : "30"} days`);
-  if(state.quick) bits.push(esc({class1:"Class I only", allergen:"allergens only", pathogen:"pathogens only"}[state.quick] || ""));
-  if($("#state").value){
-    const opt = $("#state").querySelector('option[value="' + $("#state").value + '"]');
-    bits.push(esc(opt ? opt.textContent : $("#state").value));
+  if(state.f.recent) bits.push(`last ${state.f.recent === "week" ? "7" : "30"} days`);
+  if(state.f.quick) bits.push(esc({class1:"Class I only", allergen:"allergens only", pathogen:"pathogens only"}[state.f.quick] || ""));
+  if(state.f.region){
+    const opt = $("#state").querySelector('option[value="' + state.f.region + '"]');
+    bits.push(esc(opt ? opt.textContent : state.f.region));
   }
-  if($("#agency").value) bits.push(esc($("#agency").value));
+  if(state.f.agency) bits.push(esc(state.f.agency));
   $("#countLine").innerHTML = bits.filter(Boolean).join(" · ");
   updateChart();
   const list = $("#list");
@@ -657,13 +661,53 @@ ${r.consumer_action.raw_reason?`\nReason: ${esc(r.consumer_action.raw_reason)}`:
 }
 function closeDetail(){ $("#ov").classList.remove("open"); document.body.style.overflow = ""; }
 
+/* ---------- filter surfaces stay in sync (tiles <-> selects <-> chips) ---------- */
+const DEFAULTS = { q:"", sev:"", st:"ACTIVE", agency:"", region:"", recent:"", quick:"" };
+
+/* does a given stat tile describe the current filter state? */
+function statOn(k){
+  const f = state.f;
+  if(k === "active") return f.st === "ACTIVE";
+  if(k === "recent7") return f.recent === "week";
+  if(k === "fda") return f.agency === "FDA";
+  if(k === "usda") return f.agency === "USDA FSIS";
+  return false;
+}
+
+/* one write-path for the tiles: toggle exactly one dimension */
+function toggleStat(k){
+  const f = state.f;
+  if(k === "active") f.st = f.st === "ACTIVE" ? "" : "ACTIVE";
+  else if(k === "recent7") f.recent = f.recent === "week" ? "" : "week";
+  else if(k === "fda") f.agency = f.agency === "FDA" ? "" : "FDA";
+  else if(k === "usda") f.agency = f.agency === "USDA FSIS" ? "" : "USDA FSIS";
+  syncUI();
+  render();
+}
+
+/* reflect the single filter state back into every control */
+function syncUI(){
+  const f = state.f;
+  if($("#q").value.trim().toLowerCase() !== f.q) $("#q").value = f.q;   // only when another control changed it
+  $("#sev").value = f.sev; $("#status").value = f.st; $("#agency").value = f.agency; $("#state").value = f.region;
+  document.querySelectorAll(".qchip").forEach(c => {
+    const k = c.dataset.quick;
+    c.setAttribute("aria-pressed", String(k === "week" || k === "month" ? f.recent === k : (k !== "reset" && f.quick === k)));
+  });
+  document.querySelectorAll("[data-stat]").forEach(b => b.setAttribute("aria-pressed", String(statOn(b.dataset.stat))));
+}
+
 /* ---------- events ---------- */
 let tmr;
+const FROM_DOM = { q: el => el.value.trim().toLowerCase(), sev: el => el.value, status: el => el.value,
+                   state: el => el.value, agency: el => el.value };
+const TO_STATE = { q: "q", sev: "sev", status: "st", state: "region", agency: "agency" };
 ["q","sev","status","state","agency"].forEach(id => {
   const el = document.getElementById(id);
   if(!el) return;                                      // never let a missing control kill the boot
-  el.addEventListener("input", () => { clearTimeout(tmr); tmr = setTimeout(render, 60); });
-  el.addEventListener("change", () => { clearTimeout(tmr); tmr = setTimeout(render, 60); });
+  const write = () => { state.f[TO_STATE[id]] = FROM_DOM[id](el); clearTimeout(tmr); tmr = setTimeout(() => { syncUI(); render(); }, 60); };
+  el.addEventListener("input", write);
+  el.addEventListener("change", write);
 });
 
 document.querySelector(".quickrow").addEventListener("click", e => {
@@ -671,24 +715,19 @@ document.querySelector(".quickrow").addEventListener("click", e => {
   if(!b) return;
   const k = b.dataset.quick;
   if(k === "reset"){
-    state.recent = ""; state.quick = "";
-    $("#q").value = ""; $("#agency").value = ""; $("#sev").value = ""; $("#status").value = "ACTIVE"; $("#state").value = "";
+    state.f = Object.assign({}, DEFAULTS);
   } else if(k === "week" || k === "month"){
-    state.recent = (state.recent === k) ? "" : k;
-  } else if(k === "usda"){
-    $("#agency").value = $("#agency").value === "USDA FSIS" ? "" : "USDA FSIS";
+    state.f.recent = state.f.recent === k ? "" : k;
   } else {
-    state.quick = (state.quick === k) ? "" : k;
+    state.f.quick = state.f.quick === k ? "" : k;
   }
-  document.querySelectorAll(".qchip").forEach(c => {
-    const ck = c.dataset.quick;
-    let on = false;
-    if(ck === "week" || ck === "month") on = state.recent === ck;
-    else if(ck === "usda") on = $("#agency").value === "USDA FSIS";
-    else if(ck !== "reset") on = state.quick === ck;
-    c.setAttribute("aria-pressed", String(on));
-  });
+  syncUI();
   render();
+});
+
+document.querySelector(".stats").addEventListener("click", e => {
+  const b = e.target.closest("[data-stat]");
+  if(b) toggleStat(b.dataset.stat);
 });
 
 $("#list").addEventListener("click", e => { const c = e.target.closest(".card"); if(c) openDetail(+c.dataset.i); });
