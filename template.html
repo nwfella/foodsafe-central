@@ -3,21 +3,63 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="FoodSafe Central - verified food recalls from government sources. Search by brand, product, UPC, or lot.">
-<title>FoodSafe Central · Food Recall & Safety Alerts</title>
+<meta name="description" content="FoodSafe Central - US food recalls and safety alerts from FDA and USDA FSIS in one searchable dashboard. Search by brand, product, UPC, or lot code.">
+<meta name="theme-color" content="#0d1117">
+<title>FoodSafe Central · US Food Recall & Safety Alerts</title>
+<script>
+/* Theme must be applied before first paint (render-blocking) so there is no flash. */
+(function () {
+  try {
+    var t = localStorage.getItem("foodsafe-theme") || "pantry";
+    if (["pantry", "chartreuse", "paper", "berry"].indexOf(t) < 0) t = "pantry";
+    document.documentElement.className = "theme-" + t;
+  } catch (e) { document.documentElement.className = "theme-pantry"; }
+})();
+</script>
 <style>
-  :root{
+  /* ---------------- themes ---------------- */
+  :root,
+  html.theme-pantry {
     --bg:#0d1117; --panel:#161b22; --panel2:#1c2430; --border:#30363d; --text:#e6edf3;
-    --muted:#8b949e; --accent:#58a6ff; --red:#f85149; --amber:#d29922; --blue:#58a6ff;
-    --green:#3fb950; --gray:#6e7681;
+    --muted:#8b949e; --accent:#58a6ff; --accent2:#79c0ff; --red:#f85149; --amber:#d29922;
+    --green:#3fb950; --blue:#58a6ff; --gray:#6e7681; --chip-text:#e6edf3; --btn-text:#0d1117;
+    --header-bg:linear-gradient(180deg,#10161f 0%,#0d1117 100%);
+    --overlay:rgba(13,17,23,.84); --raw-bg:#0b0e13; --action-bg:#0f2b1d; --hover:rgba(88,166,255,.08);
+    --dot-bg:#0d1117;
   }
+  html.theme-chartreuse {
+    --bg:#0b0d06; --panel:#141703; --panel2:#1c2106; --border:#3a4209; --text:#eaf6c8;
+    --muted:#a3b06a; --accent:#d4ff00; --accent2:#8fd400; --red:#ff6b57; --amber:#ffc857;
+    --green:#b9ff3d; --blue:#9fe8ff; --gray:#6d7a4a; --chip-text:#eaf6c8; --btn-text:#0b0d06;
+    --header-bg:linear-gradient(180deg,#171b05 0%,#0b0d06 100%);
+    --overlay:rgba(11,13,6,.86); --raw-bg:#080a04; --action-bg:#1a2405; --hover:rgba(212,255,0,.10);
+    --dot-bg:#0b0d06;
+  }
+  html.theme-paper {
+    --bg:#f5f7f2; --panel:#ffffff; --panel2:#f0f3ec; --border:#d6dbd1; --text:#1d231e;
+    --muted:#5b655b; --accent:#1f6feb; --accent2:#1259c3; --red:#c0392b; --amber:#8a6100;
+    --green:#1e7a45; --blue:#1f6feb; --gray:#8a938a; --chip-text:#1d231e; --btn-text:#ffffff;
+    --header-bg:linear-gradient(180deg,#ffffff 0%,#f5f7f2 100%);
+    --overlay:rgba(29,35,30,.42); --raw-bg:#f4f6f1; --action-bg:#e8f5ec; --hover:rgba(31,111,235,.07);
+    --dot-bg:#ffffff;
+  }
+  html.theme-berry {
+    --bg:#140d18; --panel:#1d1224; --panel2:#261730; --border:#3d2749; --text:#f4e9f7;
+    --muted:#b39ac0; --accent:#ff6ec7; --accent2:#ffb3e6; --red:#ff5f6d; --amber:#ffce6b;
+    --green:#7ee787; --blue:#8ab4ff; --gray:#7d6a88; --chip-text:#f4e9f7; --btn-text:#140d18;
+    --header-bg:linear-gradient(180deg,#21142b 0%,#140d18 100%);
+    --overlay:rgba(20,13,24,.86); --raw-bg:#0f0913; --action-bg:#2a1230; --hover:rgba(255,110,199,.10);
+    --dot-bg:#1d1224;
+  }
+
   *{box-sizing:border-box; margin:0; padding:0}
   html{scrollbar-color:var(--border) var(--bg)}
   body{background:var(--bg); color:var(--text); font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; min-height:100vh}
   .wrap{max-width:1180px; margin:0 auto; padding:0 18px}
 
   /* header */
-  header{background:linear-gradient(180deg,#10161f 0%,var(--bg) 100%); border-bottom:1px solid var(--border); padding:26px 0 18px}
+  header{background:var(--header-bg); border-bottom:1px solid var(--border); padding:24px 0 16px; transition:background .18s}
+  .brandrow{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap}
   .brand{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
   .brand h1{font-size:26px; letter-spacing:.3px}
   .brand h1 .shield{color:var(--accent)}
@@ -25,84 +67,148 @@
   .pills{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
   .pill{font-size:12.5px; padding:4px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted); background:var(--panel)}
   .pill b{color:var(--text); font-weight:600}
-  .pill.alert{color:#ffd7d5; border-color:#f8514966; background:#f8514914}
+  .pill.alert{color:var(--red); border-color:color-mix(in srgb, var(--red) 40%, transparent); background:color-mix(in srgb, var(--red) 10%, transparent)}
   .pill.alert b{color:var(--red)}
-  .pill.new{color:#a5d6a7; border-color:#3fb95055; background:#3fb95014}
+  .pill.new{color:var(--green); border-color:color-mix(in srgb, var(--green) 40%, transparent); background:color-mix(in srgb, var(--green) 10%, transparent)}
   .pill.new b{color:var(--green)}
+  .pill.usda{color:var(--amber); border-color:color-mix(in srgb, var(--amber) 40%, transparent); background:color-mix(in srgb, var(--amber) 10%, transparent)}
+  .pill.usda b{color:var(--amber)}
+
+  /* theme switch */
+  .themer{display:flex; align-items:center; gap:8px}
+  .themer .lbl{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.6px}
+  .swatches{display:flex; gap:6px}
+  .sw{width:30px; height:30px; border-radius:9px; border:2px solid var(--border); background:var(--sw1,#333); cursor:pointer; position:relative; padding:0; overflow:hidden; transition:transform .12s}
+  .sw span{position:absolute; inset:0}
+  .sw span::before{content:""; position:absolute; left:0; top:0; width:50%; height:100%; background:var(--sw1)}
+  .sw span::after{content:""; position:absolute; right:0; top:0; width:50%; height:100%; background:var(--sw2)}
+  .sw[aria-pressed="true"]{border-color:var(--accent); transform:translateY(-1px)}
+  @media (hover:hover){ .sw:hover{border-color:var(--accent)} }
+
+  /* stat tiles + timeline */
+  .overview{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); gap:12px; margin:18px 0 6px}
+  @media(max-width:820px){ .overview{grid-template-columns:1fr} }
+  .stats{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .stat{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px 14px}
+  .stat .n{font-size:24px; font-weight:700; line-height:1.1; color:var(--text)}
+  .stat .n.red{color:var(--red)} .stat .n.green{color:var(--green)} .stat .n.amber{color:var(--amber)}
+  .stat .k{font-size:12px; color:var(--muted); margin-top:3px}
+  .chartcard{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px 14px 8px; display:flex; flex-direction:column; min-height:150px}
+  .chartcard .ch-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap}
+  .chartcard .ch-head h2{font-size:13.5px; font-weight:600}
+  .chartcard .ch-head .sub{font-size:11.5px; color:var(--muted)}
+  .ch-legend{display:flex; gap:12px; font-size:11.5px; color:var(--muted)}
+  .ch-legend i{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px}
+  #timeline{width:100%; height:110px; display:block; margin-top:6px}
 
   /* controls */
-  .controls{display:grid; grid-template-columns:1fr auto auto auto; gap:10px; margin:18px 0 8px}
-  @media(max-width:900px){ .controls{grid-template-columns:1fr 1fr} }
+  .controls{display:grid; grid-template-columns:1fr auto auto auto auto; gap:10px; margin:14px 0 8px}
+  @media(max-width:1000px){ .controls{grid-template-columns:1fr 1fr} }
   @media(max-width:560px){ .controls{grid-template-columns:1fr} }
-  input,select{background:var(--panel); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:10px 12px; font-size:15px; outline:none}
-  input:focus,select:focus{border-color:var(--accent); box-shadow:0 0 0 3px #58a6ff22}
+  input,select{background:var(--panel); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:10px 12px; font-size:15px; outline:none; font-family:inherit}
+  input:focus,select:focus{border-color:var(--accent)}
+  input::placeholder{color:var(--muted)}
   #q{grid-column:1 / -1}
-  @media(max-width:900px){ #q{grid-column:1 / -1} }
+  @media(max-width:1000px){ #q{grid-column:1 / -1} }
   select{min-width:150px; cursor:pointer}
+  select option{background:var(--panel); color:var(--text)}
+
+  .quickrow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:2px 0 10px}
+  .qchip{font-size:12.5px; padding:6px 12px; border-radius:999px; border:1px solid var(--border); background:var(--panel);
+         color:var(--muted); cursor:pointer; font-family:inherit; -webkit-tap-highlight-color:transparent}
+  .qchip[aria-pressed="true"]{background:var(--accent); color:var(--btn-text); border-color:var(--accent); font-weight:600}
+  @media (hover:hover){ .qchip:hover{box-shadow:0 0 0 3px var(--hover)} }
 
   .statusline{color:var(--muted); font-size:13px; margin:6px 2px 12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-  .statusline .dot{width:8px; height:8px; border-radius:50%; display:inline-block}
-  .dot.g{background:var(--green)} .dot.r{background:var(--red)} .dot.o{background:var(--amber)}
+  .statusline .dot,.dot{width:8px; height:8px; border-radius:50%; display:inline-block}
+  .dot.g{background:var(--green)} .dot.r{background:var(--red)} .dot.o{background:var(--amber)} .dot.b{background:var(--accent)}
 
   /* cards */
   #list{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:12px; padding-bottom:30px}
-  .card{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px 16px; cursor:pointer; transition:border-color .12s, transform .12s}
-  .card:hover{border-color:var(--accent); transform:translateY(-1px)}
+  .card{background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px 16px; cursor:pointer; transition:border-color .12s}
+  @media (hover:hover){ .card:hover{border-color:var(--accent); box-shadow:0 3px 14px var(--hover)} }
   .card .top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
-  .card h3{font-size:15.5px; font-weight:600; line-height:1.35}
-  .card .brand{color:var(--muted); font-size:13px; margin-top:2px; display:block}
-  .badge{font-size:11.5px; font-weight:700; padding:3px 9px; border-radius:999px; white-space:nowrap; letter-spacing:.3px}
-  .b-I{background:#f8514922; color:var(--red); border:1px solid #f8514955}
-  .b-II{background:#d2992222; color:var(--amber); border:1px solid #d2992255}
-  .b-III{background:#58a6ff22; color:var(--blue); border:1px solid #58a6ff55}
-  .b-NOT_YET_CLASSIFIED,.b-UNKNOWN,.b-{background:#6e768122; color:var(--muted); border:1px solid #6e768155}
+  .card h3{font-size:15.5px; font-weight:600; line-height:1.35; overflow-wrap:anywhere}
+  .card .brandname{color:var(--muted); font-size:13px; margin-top:2px; display:block; overflow-wrap:anywhere}
+  .badges{display:flex; flex-direction:column; align-items:flex-end; gap:6px; flex:none}
+  .badge{font-size:11.5px; font-weight:700; padding:3px 9px; border-radius:999px; white-space:nowrap; letter-spacing:.3px; border:1px solid transparent}
+  .b-I{background:color-mix(in srgb, var(--red) 16%, transparent); color:var(--red); border-color:color-mix(in srgb, var(--red) 45%, transparent)}
+  .b-II{background:color-mix(in srgb, var(--amber) 16%, transparent); color:var(--amber); border-color:color-mix(in srgb, var(--amber) 45%, transparent)}
+  .b-III{background:color-mix(in srgb, var(--blue) 16%, transparent); color:var(--blue); border-color:color-mix(in srgb, var(--blue) 45%, transparent)}
+  .b-NOT_STATED,.b-NOT_YET_CLASSIFIED,.b-UNKNOWN,.b-{background:color-mix(in srgb, var(--gray) 16%, transparent); color:var(--muted); border-color:color-mix(in srgb, var(--gray) 40%, transparent)}
+  .ag{font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:999px; letter-spacing:.4px; border:1px solid transparent}
+  .ag-fda{background:color-mix(in srgb, var(--accent) 16%, transparent); color:var(--accent); border-color:color-mix(in srgb, var(--accent) 45%, transparent)}
+  .ag-usda{background:color-mix(in srgb, var(--amber) 16%, transparent); color:var(--amber); border-color:color-mix(in srgb, var(--amber) 45%, transparent)}
   .card .meta{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; font-size:12.5px; color:var(--muted)}
   .chip{background:var(--panel2); border:1px solid var(--border); padding:2px 8px; border-radius:6px}
-  .chip.upc{color:#79c0ff; border-color:#58a6ff44}
-  .card .reason{color:var(--muted); font-size:13px; margin-top:9px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
-  .card .foot{display:flex; justify-content:space-between; margin-top:10px; font-size:12px; color:var(--muted)}
-  .st{display:inline-flex; align-items:center; gap:6px}
+  .chip.upc{color:var(--accent2); border-color:color-mix(in srgb, var(--accent) 30%, transparent)}
+  .card .reason{color:var(--muted); font-size:13px; margin-top:9px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere}
+  .card .foot{display:flex; justify-content:space-between; gap:10px; margin-top:10px; font-size:12px; color:var(--muted)}
+  .st{display:inline-flex; align-items:center; gap:6px; white-space:nowrap}
   .st .dot{width:7px; height:7px}
   .empty{grid-column:1/-1; text-align:center; color:var(--muted); padding:60px 0; border:1px dashed var(--border); border-radius:10px}
 
   /* detail overlay */
-  #ov{position:fixed; inset:0; background:#0d1117cc; backdrop-filter:blur(3px); display:none; z-index:50; overflow-y:auto; padding:30px 16px}
+  #ov{position:fixed; inset:0; background:var(--overlay); display:none; z-index:50; overflow-y:auto; padding:30px 16px}
   #ov.open{display:block}
   .sheet{max-width:820px; margin:0 auto; background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:26px 28px; position:relative}
-  .sheet h2{font-size:20px; line-height:1.35; padding-right:40px}
+  .sheet h2{font-size:20px; line-height:1.35; padding-right:40px; overflow-wrap:anywhere}
   .close{position:absolute; top:16px; right:18px; background:none; border:1px solid var(--border); color:var(--muted); width:34px; height:34px; border-radius:8px; font-size:17px; cursor:pointer}
-  .close:hover{color:var(--text); border-color:var(--accent)}
+  @media (hover:hover){ .close:hover{color:var(--text); border-color:var(--accent)} }
   .kv{display:grid; grid-template-columns:150px 1fr; gap:6px 14px; margin:18px 0; font-size:14px}
   @media(max-width:560px){ .kv{grid-template-columns:1fr} }
   .kv dt{color:var(--muted)}
   .kv dd{color:var(--text); word-break:break-word}
   .prodrow{border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin:6px 0; background:var(--panel2); font-size:13.5px}
-  .prodrow .codes{color:var(--muted); margin-top:4px; font-size:12.5px}
-  .raw{background:#0b0e13; border:1px dashed var(--border); border-radius:8px; padding:12px 14px; margin-top:14px; font-size:12.5px; color:var(--muted); white-space:pre-wrap; word-break:break-word}
-  .raw b{color:#79c0ff; font-weight:600}
+  .prodrow .codes{color:var(--muted); margin-top:4px; font-size:12.5px; overflow-wrap:anywhere}
+  .raw{background:var(--raw-bg); border:1px dashed var(--border); border-radius:8px; padding:12px 14px; margin-top:14px; font-size:12.5px; color:var(--muted); white-space:pre-wrap; word-break:break-word}
+  .raw b{color:var(--accent2); font-weight:600}
   a{color:var(--accent)}
-  .action{background:#0f2b1d; border:1px solid #3fb95055; border-radius:8px; padding:12px 14px; margin:14px 0; font-size:14px}
+  .action{background:var(--action-bg); border:1px solid color-mix(in srgb, var(--green) 40%, transparent); border-radius:8px; padding:12px 14px; margin:14px 0; font-size:14px}
   .action b{color:var(--green)}
+  .notice{background:var(--panel2); border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin:12px 0; font-size:13px; color:var(--muted)}
 
+  /* footer */
   footer{border-top:1px solid var(--border); color:var(--muted); font-size:12.5px; padding:22px 0 40px; margin-top:10px}
   footer p{margin:4px 0}
-  #err{display:none; background:#f8514914; border:1px solid #f8514955; color:#ffd7d5; border-radius:8px; padding:12px 14px; margin:14px 0; font-size:14px}
+  .credit{margin-top:16px; padding:14px 16px; border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+          border-radius:12px; background:color-mix(in srgb, var(--accent) 8%, transparent); font-size:14px; color:var(--text); text-align:center}
+  .credit b{color:var(--accent)}
+  .credit .hearts{font-size:16px; letter-spacing:2px}
+  #err{display:none; background:color-mix(in srgb, var(--red) 10%, transparent); border:1px solid color-mix(in srgb, var(--red) 40%, transparent);
+       color:var(--red); border-radius:8px; padding:12px 14px; margin:14px 0; font-size:14px}
   .hint{font-size:12px; color:var(--gray)}
+  .noscript{margin:14px 0; padding:14px 16px; border:1px dashed var(--border); border-radius:10px; background:var(--panel); font-size:13.5px}
+  .noscript h3{font-size:14px; margin-bottom:6px}
+  .noscript ul{margin:6px 0 0 18px} .noscript li{margin:4px 0}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <div class="brand">
-      <h1><span class="shield">🛡️</span> FoodSafe Central</h1>
-      <span class="tag">Verified food recalls & safety alerts from official government sources</span>
-    </div>
-    <div class="pills">
-      <span class="pill alert"><b id="cActive">–</b> active recalls</span>
-      <span class="pill"><b id="cTotal">–</b> recalls · last 12 months</span>
-      <span class="pill">Updated <b id="cUpdated">–</b></span>
-      <span class="pill new">🇺🇸 US · FDA <b>live</b></span>
-      <span class="pill">🇨🇦 Canada · CFIA soon</span>
+    <div class="brandrow">
+      <div>
+        <div class="brand">
+          <h1><span class="shield">🛡️</span> FoodSafe Central</h1>
+          <span class="tag">US food recalls &amp; safety alerts — FDA + USDA FSIS in one place</span>
+        </div>
+        <div class="pills">
+          <span class="pill alert"><b id="cActive">–</b> active recalls</span>
+          <span class="pill"><b id="cTotal">–</b> total · 12 months</span>
+          <span class="pill new"><b id="cNew">–</b> new in 7 days</span>
+          <span class="pill usda">🇺🇸 USDA FSIS <b id="cUsda">–</b></span>
+          <span class="pill"><span class="dot g"></span> Updated <b id="cUpdated">–</b> · refreshes daily</span>
+        </div>
+      </div>
+      <div class="themer">
+        <span class="lbl">Theme</span>
+        <div class="swatches" id="swatches" role="group" aria-label="Colour theme">
+          <button class="sw" data-theme="pantry" style="--sw1:#58a6ff;--sw2:#161b22" aria-pressed="false" title="Pantry (dark)" aria-label="Pantry dark theme"><span></span></button>
+          <button class="sw" data-theme="chartreuse" style="--sw1:#d4ff00;--sw2:#141703" aria-pressed="false" title="Chartreuse" aria-label="Chartreuse theme"><span></span></button>
+          <button class="sw" data-theme="paper" style="--sw1:#1f6feb;--sw2:#ffffff" aria-pressed="false" title="Paper (light)" aria-label="Paper light theme"><span></span></button>
+          <button class="sw" data-theme="berry" style="--sw1:#ff6ec7;--sw2:#1d1224" aria-pressed="false" title="Berry" aria-label="Berry theme"><span></span></button>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -110,17 +216,41 @@
 <div class="wrap">
   <div id="err"></div>
 
+  <div class="overview">
+    <div class="stats">
+      <div class="stat"><div class="n red" id="sActive">–</div><div class="k">Active recalls (FDA + USDA)</div></div>
+      <div class="stat"><div class="n green" id="sNew">–</div><div class="k">Published in the last 7 days</div></div>
+      <div class="stat"><div class="n" id="sFda">–</div><div class="k">FDA food recalls · 12 months</div></div>
+      <div class="stat"><div class="n amber" id="sUsda">–</div><div class="k">USDA FSIS recalls · 12 months</div></div>
+    </div>
+    <div class="chartcard">
+      <div class="ch-head">
+        <h2>Recalls per month</h2>
+        <div class="ch-legend"><span><i style="background:var(--accent)"></i>FDA</span><span><i style="background:var(--amber)"></i>USDA FSIS</span></div>
+        <span class="sub" id="chSub">last 12 months</span>
+      </div>
+      <canvas id="timeline" width="900" height="220" aria-label="Recalls per month, FDA and USDA FSIS" role="img"></canvas>
+    </div>
+  </div>
+
   <div class="controls">
-    <input id="q" type="search" placeholder="Search brand, product, UPC, or lot…" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <input id="q" type="search" placeholder="Search brand, product, hazard, UPC, or lot…" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <select id="agency">
+      <option value="">Both agencies</option>
+      <option value="FDA">FDA only</option>
+      <option value="USDA FSIS">USDA FSIS only</option>
+    </select>
     <select id="sev">
-      <option value="">All severities</option>
+      <option value="">All classifications</option>
       <option value="CLASS_I">Class I — Critical</option>
       <option value="CLASS_II">Class II — Moderate</option>
       <option value="CLASS_III">Class III — Low</option>
+      <option value="NOT_STATED">Class not stated (FSIS)</option>
     </select>
     <select id="status">
       <option value="ACTIVE">Active only</option>
       <option value="">All statuses</option>
+      <option value="TERMINATED">Terminated only</option>
     </select>
     <select id="state">
       <option value="">All regions</option>
@@ -128,16 +258,39 @@
     </select>
   </div>
 
+  <div class="quickrow">
+    <button class="qchip" data-quick="week" aria-pressed="false">🆕 Last 7 days</button>
+    <button class="qchip" data-quick="month" aria-pressed="false">📆 Last 30 days</button>
+    <button class="qchip" data-quick="class1" aria-pressed="false">🚨 Class I</button>
+    <button class="qchip" data-quick="allergen" aria-pressed="false">🥜 Allergens</button>
+    <button class="qchip" data-quick="pathogen" aria-pressed="false">🦠 Pathogens</button>
+    <button class="qchip" data-quick="usda" aria-pressed="false">🇺🇸 USDA only</button>
+    <button class="qchip" data-quick="reset" aria-pressed="false">↺ Reset</button>
+  </div>
+
   <div class="statusline"><span id="countLine">Loading…</span></div>
+
+  <div class="noscript">
+    <!--__SUMMARY_START__-->
+    <h3>Recall snapshot</h3>
+    <p>This page loads its numbers with JavaScript. The summary below is baked in at build time.</p>
+    <!--__SUMMARY_END__-->
+  </div>
+
   <div id="list"></div>
 </div>
 
 <footer>
   <div class="wrap">
-    <p><b>FoodSafe Central</b> is not affiliated with any government agency.</p>
-    <p>Data source: FDA <a href="https://open.fda.gov/apis/food/enforcement/" target="_blank" rel="noopener">openFDA</a> food enforcement records (US). Every recall links back to the official FDA announcement.</p>
-    <p><b>Important:</b> recall databases are never complete — a product with no matching recall here is <u>not</u> confirmed safe. UPC/lot data is parsed from official text; always check the linked official notice.</p>
-    <p class="hint">If you suspect food poisoning or an allergic reaction, contact a healthcare provider. Report problems to the FDA via <a href="https://www.fda.gov/safety/report-problem-fda" target="_blank" rel="noopener">fda.gov/report-problem</a>.</p>
+    <p><b>FoodSafe Central</b> is an independent project — not affiliated with the FDA, USDA, or any government agency.</p>
+    <p><b>Sources:</b> FDA <a href="https://open.fda.gov/apis/food/enforcement/" target="_blank" rel="noopener">openFDA food enforcement</a> records and USDA
+       <a href="https://www.fsis.usda.gov/recalls" target="_blank" rel="noopener">FSIS recall notices &amp; public health alerts</a> (meat, poultry and processed egg products — the categories FDA does not cover).
+       Every item links back to its official notice.</p>
+    <p><b>Important:</b> recall databases are never complete, and a product with no matching recall here is <u>not</u> confirmed safe. Brand, lot and UPC details are parsed from official text — always check the linked official notice before acting. FSIS classifications are published inside each notice.</p>
+    <p class="hint">If you suspect food poisoning or an allergic reaction, contact a healthcare provider. Report a problem to the FDA at
+       <a href="https://www.fda.gov/safety/report-problem-fda" target="_blank" rel="noopener">fda.gov/report-problem</a> or to USDA FSIS at
+       <a href="https://www.fsis.usda.gov/contact-us/ask-fsis" target="_blank" rel="noopener">fsis.usda.gov</a>.</p>
+    <p class="credit">Made with 🤗 hugs and 💚💖🧡❤️ hearts for <b>Lil Mandalay</b> — thank you, always.</p>
   </div>
 </footer>
 
@@ -149,47 +302,167 @@
 const RECALLS_DATA = null;
 /*__DATA_END__*/
 const $ = s => document.querySelector(s);
-const state = { data: null, hay: [] };
+const state = { data: null, recent: "", quick: "" };
+
+/* ---------- helpers ---------- */
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function daysAgoIso(n){
+  const d = new Date(Date.now() - n * 86400000);
+  return d.toISOString().slice(0,10);
+}
+function fmtDate(s){
+  if(!s) return "—";
+  const d = new Date(s + "T00:00:00Z");
+  if(isNaN(d)) return s;
+  return d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"numeric"});
+}
+
+/* ---------- themes ---------- */
+const THEMES = ["pantry","chartreuse","paper","berry"];
+function setTheme(t){
+  if(THEMES.indexOf(t) < 0) t = "pantry";
+  document.documentElement.className = "theme-" + t;
+  try { localStorage.setItem("foodsafe-theme", t); } catch(e){}
+  document.querySelectorAll("#swatches .sw").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.theme === t)));
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if(meta) meta.setAttribute("content", getComputedStyle(document.body).backgroundColor);
+  drawChart();
+}
+document.getElementById("swatches").addEventListener("click", e => {
+  const b = e.target.closest(".sw");
+  if(b) setTheme(b.dataset.theme);
+});
 
 /* ---------- data ---------- */
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-
 async function load(){
   try{
     if (typeof RECALLS_DATA !== "undefined" && RECALLS_DATA && RECALLS_DATA.recalls) {
-      state.data = RECALLS_DATA;                    // baked at build time - zero network calls
+      state.data = RECALLS_DATA;                       // baked at build time - zero network calls
     } else {
-      const ac = new AbortController();             // local dev fallback
+      const ac = new AbortController();                // local dev fallback
       const to = setTimeout(() => ac.abort(), 15000);
       const t = await (await fetch("data/recalls.json", {cache:"no-cache", signal: ac.signal})).text();
       clearTimeout(to);
       state.data = JSON.parse(t);
     }
     buildIndex();
-    $("#cActive").textContent = state.data.meta.by_status.ACTIVE ?? 0;
-    $("#cTotal").textContent = state.data.meta.total;
-    $("#cUpdated").textContent = (state.data.meta.generated_at||"").slice(0,10);
+    renderStats();
+    buildChart();
     render();
   }catch(e){
-    $("#err").style.display = "block";
-    $("#err").innerHTML = "<b>Could not load recall data.</b> Open this page over HTTP(S) (GitHub Pages or a local server) — the file:// protocol blocks data loading. <span class='hint'>(" + esc(e.message) + ")</span>";
+    const box = $("#err");
+    box.style.display = "block";
+    box.innerHTML = "<b>Could not load recall data.</b> Open this page over HTTP(S) — the file:// protocol blocks data loading. <span class='hint'>(" + esc(e.message) + ")</span>";
     $("#countLine").textContent = "Data unavailable";
   }
 }
 
 function buildIndex(){
   const states = new Set();
-  state.data.recalls.forEach((r,i) => { r._i = i; });   // stable indices for detail lookup
+  const regs = new Set();
+  state.data.recalls.forEach((r,i) => { r._i = i; });
   for(const r of state.data.recalls){
     const p = r.product;
-    r._hay = [p.brand_name, p.product_name, r.hazard_details, r.consumer_action.instructions,
-              r.alert_id, (p.upc_codes||[]).join(" "), (p.lot_codes||[]).join(" ")]
-             .join(" ").toLowerCase();
+    r._hay = [p.brand_name, p.product_name, r.hazard_details, r.consumer_action.instructions, r.alert_id,
+              r.agency, (p.upc_codes||[]).join(" "), (p.lot_codes||[]).join(" ")].join(" ").toLowerCase();
     r._upc = new Set((p.upc_codes||[]).map(u => u.replace(/\D/g,"")));
-    for(const s of r.distribution.regions||[]) states.add(s);
+    for(const s of r.distribution.regions||[]) { states.add(s); regs.add(s); }
   }
   const sel = $("#state");
-  for(const s of [...states].sort()) sel.insertAdjacentHTML("beforeend", `<option value="${s}">${s}</option>`);
+  const opts = [...states].sort().map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join("");
+  sel.insertAdjacentHTML("beforeend", opts);
+}
+
+function renderStats(){
+  const m = state.data.meta;
+  $("#cActive").textContent = (m.by_status && m.by_status.ACTIVE) || 0;
+  $("#cTotal").textContent = m.total;
+  $("#cNew").textContent = m.new_7d || 0;
+  $("#cUsda").textContent = (m.by_agency && m.by_agency["USDA FSIS"]) || 0;
+  $("#cUpdated").textContent = fmtDate((m.generated_at||"").slice(0,10));
+  $("#sActive").textContent = (m.by_status && m.by_status.ACTIVE) || 0;
+  $("#sNew").textContent = m.new_7d || 0;
+  $("#sFda").textContent = (m.by_agency && m.by_agency.FDA) || 0;
+  $("#sUsda").textContent = (m.by_agency && m.by_agency["USDA FSIS"]) || 0;
+}
+
+/* ---------- chart ---------- */
+function monthKeys(n){
+  const out = [], now = new Date();
+  for(let i = n - 1; i >= 0; i--){
+    const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i, 1));
+    out.push({ key: d.toISOString().slice(0,7), label: d.toLocaleDateString(undefined,{month:"short"}) });
+  }
+  return out;
+}
+let chartData = null;
+function buildChart(){
+  const months = monthKeys(12);
+  const idx = {};
+  months.forEach((m,i) => { idx[m.key] = i; m.fda = 0; m.usda = 0; });
+  for(const r of state.data.recalls){
+    const k = (r.published_at||"").slice(0,7);
+    if(!(k in idx)) continue;
+    const m = months[idx[k]];
+    if(r.agency === "FDA") m.fda++; else m.usda++;
+  }
+  chartData = months;
+  const total = months.reduce((a,m) => a + m.fda + m.usda, 0);
+  $("#chSub").textContent = months.length + " months · " + total + " recalls";
+  drawChart();
+}
+
+function cssv(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#888"; }
+
+function drawChart(){
+  const cv = $("#timeline");
+  if(!cv || !chartData) return;
+  const ctx = cv.getContext("2d");
+  const W = cv.clientWidth || 900, H = 110;
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+
+  const cFda = cssv("--accent"), cUsda = cssv("--amber"), cGrid = cssv("--border"), cTxt = cssv("--muted"), cText = cssv("--text");
+  const padL = 26, padR = 4, padT = 8, padB = 18;
+  const plotW = Math.max(10, W - padL - padR), plotH = Math.max(10, H - padT - padB);
+  const maxV = Math.max(1, ...chartData.map(m => m.fda + m.usda));
+  const nice = Math.ceil(maxV / 20) * 20 || 20;
+
+  ctx.font = "10px -apple-system,Segoe UI,Roboto,sans-serif";
+  ctx.fillStyle = cTxt;
+  ctx.textAlign = "right"; ctx.textBaseline = "middle";
+  for(const g of [0, nice/2, nice]){
+    const y = padT + plotH - (g / nice) * plotH;
+    ctx.strokeStyle = cGrid; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(padL, Math.round(y)+0.5); ctx.lineTo(W - padR, Math.round(y)+0.5); ctx.stroke();
+    ctx.fillText(String(g), padL - 5, y);
+  }
+
+  const slot = plotW / chartData.length;
+  const bw = Math.max(4, slot * 0.62);
+  chartData.forEach((m, i) => {
+    const x = padL + slot * i + (slot - bw) / 2;
+    let yBase = padT + plotH;
+    const hF = (m.fda / nice) * plotH;
+    if(hF > 0){
+      ctx.fillStyle = cFda;
+      ctx.fillRect(x, yBase - hF, bw, hF);
+      yBase -= hF;
+    }
+    const hU = (m.usda / nice) * plotH;
+    if(hU > 0){
+      ctx.fillStyle = cUsda;
+      ctx.fillRect(x, yBase - hU, bw, hU);
+    }
+    ctx.fillStyle = cTxt; ctx.textAlign = "center"; ctx.textBaseline = "top";
+    ctx.fillText(m.label, x + bw / 2, padT + plotH + 5);
+    if(m.fda + m.usda > 0){
+      ctx.fillStyle = cText; ctx.textBaseline = "bottom";
+      ctx.fillText(String(m.fda + m.usda), x + bw / 2, yBase - hU - 2);
+    }
+  });
 }
 
 /* ---------- search & filter ---------- */
@@ -207,12 +480,18 @@ function score(r, q, upcQ){
 
 function current(){
   const q = $("#q").value.trim().toLowerCase();
-  const sev = $("#sev").value, st = $("#status").value, region = $("#state").value;
+  const sev = $("#sev").value, st = $("#status").value, agency = $("#agency").value, region = $("#state").value;
   const upcQ = /^\d{8,14}$/.test(q.replace(/\D/g,"")) ? q.replace(/\D/g,"") : null;
+  const since = state.recent ? daysAgoIso(state.recent === "week" ? 7 : 30) : null;
   const out = [];
   for(const r of state.data.recalls){
+    if(agency && r.agency !== agency) continue;
     if(sev && r.severity !== sev) continue;
     if(st && r.status !== st) continue;
+    if(since && (r.published_at||"") < since) continue;
+    if(state.quick === "class1" && r.severity !== "CLASS_I") continue;
+    if(state.quick === "allergen" && r.hazard_type !== "ALLERGEN") continue;
+    if(state.quick === "pathogen" && r.hazard_type !== "BIOLOGICAL") continue;
     if(region){
       if(region === "NATIONWIDE"){ if(!r.distribution.nationwide) continue; }
       else if(!(r.distribution.regions||[]).includes(region)) continue;
@@ -226,46 +505,60 @@ function current(){
 
 /* ---------- render ---------- */
 const SEV = {CLASS_I:["Class I · Critical","b-I"], CLASS_II:["Class II · Moderate","b-II"], CLASS_III:["Class III · Low","b-III"]};
-const HAZ = {BIOLOGICAL:"Pathogen", ALLERGEN:"Allergen", CHEMICAL:"Chemical", PHYSICAL:"Foreign material", LABELING:"Labeling"};
+const HAZ = {BIOLOGICAL:"Pathogen", ALLERGEN:"Allergen", CHEMICAL:"Chemical", PHYSICAL:"Foreign material",
+             LABELING:"Labeling", INELIGIBLE:"Import ineligible", INSPECTION:"Uninspect'd product"};
+const sevOf = r => SEV[r.severity] || [r.severity ? r.severity.replace(/_/g," ") : "Class n/a", "b-NOT_STATED"];
 
 function card(r){
   const p = r.product, d = r.distribution;
-  const sv = SEV[r.severity] || [r.severity?.replace(/_/g," ") || "Unclassified", "b-UNKNOWN"];
+  const sv = sevOf(r);
+  const shortSev = r.severity ? sv[0].split("·")[0].trim() : "FSIS";
   const haz = HAZ[r.hazard_type] || (r.hazard_type ? r.hazard_type : "Unclassified");
   const upcs = (p.upc_codes||[]).length ? `<span class="chip upc">${(p.upc_codes||[]).slice(0,3).map(esc).join(", ")}${(p.upc_codes||[]).length>3?"…":""}</span>` : "";
-  const where = d.nationwide ? "Nationwide" : (d.regions||[]).slice(0,4).join(", ") + ((d.regions||[]).length>4?"…":"");
+  const where = d.nationwide ? "Nationwide" : ((d.regions||[]).slice(0,4).join(", ") + ((d.regions||[]).length>4?"…":"") || "See notice");
   const active = r.status === "ACTIVE";
   return `<div class="card" data-i="${r._i}">
     <div class="top">
-      <div><h3>${esc(p.product_name || p.brand_name || r.alert_id)}</h3>${p.brand_name?`<span class="brand">${esc(p.brand_name)}</span>`:""}</div>
-      <span class="badge ${sv[1]}">${sv[0].split("·")[0].trim()}</span>
+      <div>
+        <h3>${esc(p.product_name || p.brand_name || r.alert_id)}</h3>
+        ${p.brand_name?`<span class="brandname">${esc(p.brand_name)}</span>`:""}
+      </div>
+      <div class="badges">
+        <span class="ag ${r.agency === "FDA" ? "ag-fda" : "ag-usda"}">${esc(r.agency)}</span>
+        <span class="badge ${sv[1]}">${esc(shortSev)}</span>
+      </div>
     </div>
     <div class="meta">
-      <span class="chip">${haz}</span>${upcs}
-      <span class="chip">${where || "—"}</span>
-      <span class="chip">${(r.published_at||"").slice(0,10)}</span>
+      <span class="chip">${esc(haz)}</span>${upcs}
+      <span class="chip">${esc(where)}</span>
+      <span class="chip">${esc(fmtDate(r.published_at))}</span>
     </div>
     <div class="reason">${esc(r.hazard_details || r.consumer_action.instructions)}</div>
     <div class="foot">
-      <span class="st"><span class="dot ${active?"g":"o"}"></span>${active?"ACTIVE":r.status}</span>
-      <span>${esc(r.alert_id)}</span>
+      <span class="st"><span class="dot ${active?"g":"o"}"></span>${esc(active ? "ACTIVE" : r.status)}</span>
+      <span>${esc(r.alert_id.length > 34 ? r.alert_id.slice(0,32) + "…" : r.alert_id)}</span>
     </div>
   </div>`;
 }
 
+const MAX_SHOWN = 300;
 function render(){
   const res = current();
   const q = $("#q").value.trim();
-  $("#countLine").innerHTML = q
-    ? `${res.length} match${res.length===1?"":"es"} for “${esc(q)}”`
-    : `<span class="dot g"></span> ${res.length} recalls · newest first`;
+  const bits = [];
+  if(q) bits.push(`${res.length} match${res.length===1?"":"es"} for “${esc(q)}”`);
+  else bits.push(`<span class="dot g"></span> ${res.length} recalls · newest first`);
+  if(state.recent) bits.push(`last ${state.recent === "week" ? "7" : "30"} days`);
+  if(state.quick) bits.push(esc({class1:"Class I only", allergen:"allergens only", pathogen:"pathogens only"}[state.quick] || ""));
+  $("#countLine").innerHTML = bits.filter(Boolean).join(" · ");
   const list = $("#list");
-  if(!res.length){ list.innerHTML = `<div class="empty">No recalls match. ${q?"Try a different brand, product, or UPC.":"—"}</div>`; return; }
-  const shown = res.slice(0,200);
+  if(!res.length){
+    list.innerHTML = `<div class="empty">No recalls match these filters.${q ? " Try a different brand, product, or UPC." : ""}</div>`;
+    return;
+  }
+  const shown = res.slice(0, MAX_SHOWN);
   list.innerHTML = shown.map(([,r]) => card(r)).join("");
-  if(res.length > 200) list.insertAdjacentHTML("beforeend", `<div class="empty">Showing 200 of ${res.length} — refine your search</div>`);
-  const visible = new Set(shown.map(([,r]) => r._i));
-  state.visibleIdx = visible;
+  if(res.length > MAX_SHOWN) list.insertAdjacentHTML("beforeend", `<div class="empty">Showing ${MAX_SHOWN} of ${res.length} — refine your search</div>`);
 }
 
 /* ---------- detail ---------- */
@@ -273,36 +566,41 @@ function openDetail(i){
   const r = state.data.recalls[i];
   if(!r) return;
   const p = r.product, d = r.distribution;
-  const sv = SEV[r.severity] || [r.severity?.replace(/_/g," ") || "Unclassified", "b-UNKNOWN"];
+  const sv = sevOf(r);
   const haz = HAZ[r.hazard_type] || (r.hazard_type ? r.hazard_type : "Unclassified");
-  const rows = (p.upc_codes||[]).length || (p.lot_codes||[]).length || (p.expiration_dates||[]).length
-    ? `<h3 style="margin:14px 0 6px;font-size:15px">Products & codes</h3>
-       <div class="prodrow"><b>${esc(p.product_name||"—")}</b>${p.brand_name?`<div class="codes">Brand: ${esc(p.brand_name)}</div>`:""}
+  const isFsis = r.agency !== "FDA";
+  const codes = (p.upc_codes||[]).length || (p.lot_codes||[]).length || (p.expiration_dates||[]).length
+    ? `<h3 style="margin:14px 0 6px;font-size:15px">Products &amp; codes</h3>
+       <div class="prodrow"><b>${esc(p.product_name||"—")}</b>${p.brand_name?`<div class="codes">Brand / firm: ${esc(p.brand_name)}</div>`:""}
        ${(p.upc_codes||[]).length?`<div class="codes">UPC: ${p.upc_codes.map(esc).join(" · ")}</div>`:""}
        ${(p.lot_codes||[]).length?`<div class="codes">Lot: ${p.lot_codes.map(esc).join(" · ")}</div>`:""}
        ${(p.expiration_dates||[]).length?`<div class="codes">Expiry: ${p.expiration_dates.map(esc).join(" · ")}</div>`:""}
        ${p.packaging_description?`<div class="codes">Qty: ${esc(p.packaging_description)}</div>`:""}</div>` : "";
-  const dist = d.nationwide ? "Nationwide" : (d.regions||[]).join(", ") || "—";
+  const dist = d.nationwide ? "Nationwide" : ((d.regions||[]).join(", ") || esc(d.raw_distribution || "See official notice"));
   $("#sheet").innerHTML = `
     <button class="close" onclick="closeDetail()">✕</button>
-    <span class="badge ${sv[1]}">${sv[0]}</span>
+    <span class="ag ${isFsis ? "ag-usda" : "ag-fda"}">${esc(r.agency)}</span>
+    <span class="badge ${sv[1]}" style="margin-left:6px">${esc(sv[0])}</span>
     <h2 style="margin-top:10px">${esc(p.product_name || p.brand_name || r.alert_id)}</h2>
-    ${p.brand_name?`<div class="brand" style="color:var(--muted)">${esc(p.brand_name)}</div>`:""}
+    ${p.brand_name?`<div style="color:var(--muted)">${esc(p.brand_name)}</div>`:""}
     <dl class="kv">
       <dt>Agency</dt><dd>${esc(r.source_agency)} · <a href="${esc(r.source_url)}" target="_blank" rel="noopener">view official notice ↗</a></dd>
       <dt>Recall ID</dt><dd>${esc(r.alert_id)}</dd>
-      <dt>Status</dt><dd>${r.status === "ACTIVE" ? '<span style="color:var(--green)">● ACTIVE</span>' : esc(r.status)}</dd>
-      <dt>Hazard</dt><dd>${haz}${r.hazard_details?` — ${esc(r.hazard_details)}`:""}</dd>
-      <dt>Published</dt><dd>${esc(r.published_at||"—")}</dd>
-      <dt>Last updated</dt><dd>${esc(r.last_updated||"—")}</dd>
-      <dt>Distribution</dt><dd>${esc(dist)}${d.raw_distribution&&!d.nationwide?` <span class="hint">(${esc(d.raw_distribution)})</span>`:""}</dd>
+      <dt>Status</dt><dd>${r.status === "ACTIVE" ? '<span style="color:var(--green)">● ACTIVE</span>' : esc(r.status)}${isFsis ? ' <span class="hint">(as published in the FSIS notice)</span>' : ""}</dd>
+      <dt>Classification</dt><dd>${esc(sv[0])}${isFsis ? ' <span class="hint">— FSIS states the class inside the notice</span>' : ""}</dd>
+      <dt>Hazard</dt><dd>${esc(haz)}${r.hazard_details?` — ${esc(r.hazard_details)}`:""}</dd>
+      <dt>Published</dt><dd>${esc(fmtDate(r.published_at))}</dd>
+      <dt>Last updated</dt><dd>${esc(fmtDate(r.last_updated))}</dd>
+      <dt>Distribution</dt><dd>${dist}${d.raw_distribution && !d.nationwide && !isFsis ? ` <span class="hint">(${esc(d.raw_distribution)})</span>` : ""}</dd>
     </dl>
     ${r.consumer_action.instructions?`<div class="action"><b>What to do:</b> ${esc(r.consumer_action.instructions)}</div>`:""}
-    ${rows}
+    ${isFsis?`<div class="notice">USDA FSIS notice — check the official notice for affected lot codes, brands and the product labels. ${r.slug_verified ? "This deep link was verified against the archived FSIS notice list." : "If this link does not open, use the full FSIS recall list link below."}</div>`:""}
+    ${codes}
     <div class="raw"><b>Parsed from official text</b> — verify details on the linked notice.
 ${p.raw_code_info?`\n${esc(p.raw_code_info)}`:""}
 ${d.raw_distribution?`\nDistribution: ${esc(d.raw_distribution)}`:""}
-${r.consumer_action.raw_reason?`\nReason: ${esc(r.consumer_action.raw_reason)}`:""}</div>`;
+${r.consumer_action.raw_reason?`\nReason: ${esc(r.consumer_action.raw_reason)}`:""}</div>
+    ${isFsis?`<p class="hint" style="margin-top:10px">All USDA FSIS notices: <a href="https://www.fsis.usda.gov/recalls" target="_blank" rel="noopener">fsis.usda.gov/recalls ↗</a></p>`:""}`;
   $("#ov").classList.add("open");
   document.body.style.overflow = "hidden";
 }
@@ -310,11 +608,45 @@ function closeDetail(){ $("#ov").classList.remove("open"); document.body.style.o
 
 /* ---------- events ---------- */
 let tmr;
-["q","sev","status","state"].forEach(id => $(id).addEventListener("input", () => { clearTimeout(tmr); tmr = setTimeout(render, 60); }));
+["q","sev","status","state","agency"].forEach(id => {
+  const el = document.getElementById(id);
+  if(!el) return;                                      // never let a missing control kill the boot
+  el.addEventListener("input", () => { clearTimeout(tmr); tmr = setTimeout(render, 60); });
+  el.addEventListener("change", () => { clearTimeout(tmr); tmr = setTimeout(render, 60); });
+});
+
+document.querySelector(".quickrow").addEventListener("click", e => {
+  const b = e.target.closest(".qchip");
+  if(!b) return;
+  const k = b.dataset.quick;
+  if(k === "reset"){
+    state.recent = ""; state.quick = "";
+    $("#q").value = ""; $("#agency").value = ""; $("#sev").value = ""; $("#status").value = "ACTIVE"; $("#state").value = "";
+  } else if(k === "week" || k === "month"){
+    state.recent = (state.recent === k) ? "" : k;
+  } else if(k === "usda"){
+    $("#agency").value = $("#agency").value === "USDA FSIS" ? "" : "USDA FSIS";
+  } else {
+    state.quick = (state.quick === k) ? "" : k;
+  }
+  document.querySelectorAll(".qchip").forEach(c => {
+    const ck = c.dataset.quick;
+    let on = false;
+    if(ck === "week" || ck === "month") on = state.recent === ck;
+    else if(ck === "usda") on = $("#agency").value === "USDA FSIS";
+    else if(ck !== "reset") on = state.quick === ck;
+    c.setAttribute("aria-pressed", String(on));
+  });
+  render();
+});
+
 $("#list").addEventListener("click", e => { const c = e.target.closest(".card"); if(c) openDetail(+c.dataset.i); });
 $("#ov").addEventListener("click", e => { if(e.target.id === "ov") closeDetail(); });
 document.addEventListener("keydown", e => { if(e.key === "Escape") closeDetail(); });
+let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(drawChart, 120); });
 
+/* ---------- boot ---------- */
+setTheme((function(){ try { return localStorage.getItem("foodsafe-theme") || "pantry"; } catch(e){ return "pantry"; } })());
 load();
 </script>
 </body>

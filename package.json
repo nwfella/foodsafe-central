@@ -1,0 +1,16 @@
+{
+  "name": "foodsafe-central",
+  "version": "2.0.0",
+  "private": true,
+  "description": "US food recall dashboard (FDA openFDA + USDA FSIS), static-baked, GitHub Pages",
+  "scripts": {
+    "collect": "python build_data.py --out data/recalls.json",
+    "bake": "python bake.py",
+    "build": "npm run collect && npm run bake",
+    "verify": "node scripts/verify_site.js",
+    "serve": "python -m http.server 8931"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.3"
+  }
+}

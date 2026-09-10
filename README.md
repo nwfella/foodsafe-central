@@ -1,49 +1,76 @@
 # 🛡️ FoodSafe Central
 
-Verified food recalls & safety alerts from official government sources — one searchable dashboard.
+US food recalls &amp; safety alerts from **two federal agencies in one searchable dashboard** —
+FDA food recalls plus USDA FSIS recalls (meat, poultry, processed egg products), which FDA does not cover.
 
 **Live:** https://nwfella.github.io/foodsafe-central/
 
 ## What it does
 
-- **Search-as-you-type** across brand, product, UPC, and lot codes
-- **Severity filter** (FDA Class I / II / III), **status filter** (active recalls default), **state/region filter**
-- **Detail view** for every recall: hazard, dates, distribution, products & codes, plain-language action — plus the **raw official text** every parsed field came from, and a link to the official FDA notice
-- **12-month window**, refreshed automatically **2×/day** by GitHub Actions (06:00 / 18:00 UTC)
+- **Search-as-you-type** across brand, product, hazard, UPC and lot codes
+- **Filters** for agency (FDA / USDA FSIS), classification (Class I / II / III / not stated), status (active by default) and distribution region
+- **Quick chips** — last 7 days, last 30 days, Class I only, allergens, pathogens, USDA only, reset
+- **Detail view** per recall: hazard, dates, distribution, product &amp; codes, plain-language action, the **raw official text** the parsed fields came from, and a link to the official notice
+- **12-month timeline** (canvas) of recalls per month, split FDA vs USDA FSIS
+- **4 colour themes** — Pantry (dark), **Chartreuse**, Paper (light), Berry — picked from swatches, remembered in `localStorage`
+- **Zero runtime fetch** — data is baked into `index.html` at build time, so the page works on locked-down/IT-managed machines where `fetch`/XHR is blocked
+- A **no-JavaScript snapshot** (counts + newest notices with official links) is baked in too
+- Refreshed **once every 24 hours** by GitHub Actions (plus an optional local watchdog job)
 
 ## Data sources
 
-| Source | Method | Status |
-|---|---|---|
-| FDA openFDA (`/food/enforcement.json`) | REST API, CORS-open | ✅ live |
-| CFIA (recalls-rappels.canada.ca) | HTML scrape + open.canada.ca | 🔜 soon |
+| Source | Coverage | Method | Status |
+|---|---|---|---|
+| [FDA openFDA food enforcement](https://open.fda.gov/apis/food/enforcement/) | FDA-regulated foods (everything except meat/poultry/egg) | REST API, structured, 12-month window | ✅ live |
+| [USDA FSIS recall notices &amp; public health alerts](https://www.fsis.usda.gov/recalls) | Meat, poultry, processed egg products | FSIS blocks datacenter traffic at its CDN edge (HTTP 403 from GitHub runners *and* from residential curl), so notices are indexed from the Google News feed filtered to `site:fsis.usda.gov`, then deep links are rebuilt with FSIS's own URL slug rule and verified against the Wayback CDX archive | ✅ live |
+| CFIA (Canada) | Canadian recalls | — | 🔜 not in scope |
 
-No secondary aggregation — every record traces back to a government notice. A barcode/lot check finding *no* recall does **not** mean a product is safe; recall databases are never complete.
+No secondary aggregation — every record traces back to a government notice.
+
+### Notes on FSIS records
+
+- FSIS does not expose a public API, and its site returns **403** to automated clients. The collector therefore reads the official *headline*, *publication date* and *notice path* from Google's index of `fsis.usda.gov`.
+- Deep links are reconstructed with FSIS's pathauto slug rule (ASCII lowercase, words ≤2 characters dropped, greedily filled to 84 characters) — verified 20/20 against archived notice URLs — and each link is additionally checked against the Wayback CDX archive when a snapshot exists (`slug_verified`).
+- FSIS states the recall **class inside the notice body**, so FSIS records show "Class n/a" with the class noted in the detail sheet rather than inventing a classification.
 
 ## Architecture
 
 ```
-GitHub Actions cron (2×/day)          GitHub Pages (static)
-┌────────────────────────────┐        ┌──────────────────────┐
-│ build_data.py (stdlib)     │  commit│ index.html (1 file,  │
-│ openFDA → normalize →      │───────▶│  zero-dep, dark UI)  │
-│ data/recalls.json + meta   │        │ data/recalls.json    │
-└────────────────────────────┘        └──────────────────────┘
+GitHub Actions (daily, 09:00 UTC)          GitHub Pages (static)
+┌──────────────────────────────┐           ┌────────────────────────────┐
+│ build_data.py (stdlib)       │  commit   │ index.html (1 file,        │
+│  openFDA ─┐                  │──────────▶│  zero-dep, baked data,     │
+│  FSIS ────┴─▶ normalize      │           │  4 themes, timeline)       │
+│ bake.py   → index.html       │           │ data/recalls.json          │
+└──────────────────────────────┘           └────────────────────────────┘
+        ▲
+        └── local watchdog (Hermes cron, daily): rebase → collect → bake → push
+            only when the published data is older than ~30 h
 ```
 
-- `build_data.py` — fetch + normalize (UPC/lot/expiry parsed from free text, hazard classification, lifecycle status)
-- `bake.py` — splices the JSON into `template.html` → `index.html`, so the live page needs **zero runtime fetch** (works in fetch-blocked / IT-constrained environments)
-- `.github/workflows/refresh.yml` — 2×/day schedule, regenerates data + bakes page, commits on change
-- `index.html` — generated single-file dashboard, no frameworks, ~2 ms search over 1,344 records
-- `spikes/001-source-parse-quality/` — feasibility spike that validated the parsers (with measured parse rates)
+- `build_data.py` — fetch + normalize both agencies (UPC/lot/expiry parsed from free text, hazard classification, lifecycle status, per-agency meta)
+- `bake.py` — splices the JSON and a static summary into `template.html` → `index.html` (idempotent; both marker pairs persist)
+- `scripts/verify_site.js` — jsdom boot + interaction gate: baked payload, stat tiles, card indices resolving to records, search/filter narrowing, theme switching + persistence, canvas bars drawn, attribution present, no boot error
+- `.github/workflows/refresh.yml` — daily 24 h refresh, commits only on change
 
 ## Development
 
 ```bash
-python build_data.py --out data/recalls.json   # regenerate data
-python bake.py                                 # bake data into index.html
+python build_data.py --out data/recalls.json   # collect (FDA + USDA FSIS)
+python bake.py                                 # bake into index.html
+npm install && node scripts/verify_site.js     # verified gate (28 checks)
 python -m http.server 8931                     # serve locally
 ```
+
+## Attribution
+
+🤗💚🧡❤️ Made with hugs and hearts for **Lil Mandalay**.
+
+## Disclaimer
+
+Independent project — not affiliated with the FDA, USDA or any government agency.
+Recall databases are never complete: a product with no matching recall here is **not** confirmed safe.
+Brand, lot and UPC values are parsed from official text — always check the linked official notice.
 
 ## License
 

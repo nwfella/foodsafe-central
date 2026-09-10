@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
+node_modules/
+package-lock.json
+scratch_*.js
+scratch_*.py
 spikes/001-source-parse-quality/_inline_check.js
