@@ -35,6 +35,21 @@ No secondary aggregation — every record traces back to a government notice.
 - Deep links are reconstructed with FSIS's pathauto slug rule (ASCII lowercase, words ≤2 characters dropped, greedily filled to 84 characters) — verified 20/20 against archived notice URLs — and each link is additionally checked against the Wayback CDX archive when a snapshot exists (`slug_verified`).
 - FSIS states the recall **class inside the notice body**, so FSIS records show "Class n/a" with the class noted in the detail sheet rather than inventing a classification.
 
+## Official links — what each record links to, and why
+
+Every record carries a `link_kind` so the UI can label the link honestly:
+
+| `link_kind` | Meaning | Which records |
+|---|---|---|
+| `official` | a **verified deep link to that specific notice** | USDA FSIS notices whose exact URL is confirmed in the Wayback CDX archive (exact or strict ≥0.90 near-match, within a ±75-day snapshot window) |
+| `list` | the **official recall list** for that agency | every FDA record, plus FSIS notices not yet archived |
+
+**Why FDA records link to a list.** openFDA's food-enforcement records contain **no URL field**, fda.gov's recalls table export (`/datatables-data`) carries no URLs, and the page's search parameter is not honoured (`?search=…` renders an empty result — a soft 404). Rather than fabricate a deep link, the record links to the official FDA recalls list, where the newest recalls appear first and the table has its own in-browser search. Each such record also carries a `search_url` ("Search for this notice ↗") that pre-fills a site-scoped web search.
+
+**Why FSIS deep links are verified, not computed.** FSIS returns HTTP 403 to every automated client (including GitHub runners), so notice URLs cannot be discovered by crawling. They also *cannot be computed reliably*: FSIS slugs keep editors' quirks (apostrophes folded in, `Inc.` producing a double hyphen, `-0` de-duplication suffixes). The collector therefore reproduces the slug, then **only ships it if the archive proves that exact URL existed** within a sane date window of publication; otherwise the record falls back to the official FSIS list. Newly published notices are usually archived within days, so the daily refresh upgrades them to deep links automatically.
+
+`meta.links` reports the split (`official_deep` / `agency_list`) on every build, and the verification gate fails the build if any record ships an unverified FSIS slug, an invented FDA URL, or a non-agency host.
+
 ## Architecture
 
 ```

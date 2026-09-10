@@ -38,7 +38,8 @@ def summary_block(data):
             "<li><b>{date}</b> · {agency} · {name} <span class='hint'>{url}</span></li>".format(
                 date=esc(r.get("published_at", "")), agency=esc(r.get("agency", "")),
                 name=esc(name[:150]),
-                url=f'<a href="{esc(r.get("source_url",""))}" rel="noopener">official notice</a>',
+                url=f'<a href="{esc(r.get("source_url",""))}" rel="noopener">'
+                    f'{"official notice" if r.get("link_kind") == "official" else "official recall list"}</a>',
             )
         )
     src = " / ".join(

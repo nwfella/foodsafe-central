@@ -105,7 +105,7 @@ const switchTheme = (t) => d.querySelector(`[data-theme='${t}']`).dispatchEvent(
     cards()[0].dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
     const sheet = d.querySelector("#sheet");
     ok(d.querySelector("#ov").classList.contains("open"), "card click opens the detail overlay");
-    ok(/view official notice/.test(sheet.textContent) && /https?:\/\//.test(sheet.innerHTML), "detail sheet links to the official notice");
+    ok(/view official notice|open the official (FDA|FSIS) recall list/.test(sheet.textContent) && /https?:\/\//.test(sheet.innerHTML), "detail sheet links to the official source");
     ok(/Lil Mandalay/.test(d.querySelector("footer").textContent), "attribution present in footer");
     ok(/🤗/.test(d.querySelector("footer").textContent) && /💚|❤|🧡|💖/.test(d.querySelector("footer").textContent), "hug + heart emojis present in attribution");
     d.querySelector(".close").dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
@@ -356,6 +356,41 @@ const switchTheme = (t) => d.querySelector(`[data-theme='${t}']`).dispatchEvent(
     ok(/May/.test(firstOfMonth) && !/Apr/.test(firstOfMonth), `first-of-month dates stay in their own month (${firstOfMonth})`);
     const midMonth = w.eval('fmtDate("2026-05-26")');
     ok(/May/.test(midMonth), `mid-month dates correct (${midMonth})`);
+
+    // 10c. LINK INTEGRITY - every shipped URL must resolve (regression guard for the issue
+    // where FDA shipped a dead ?search= param and FSIS shipped a guessed, 404ing slug)
+    const recs = w.eval("RECALLS_DATA.recalls");
+    const fdaListUrl = "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts";
+    const fsisListUrl = "https://www.fsis.usda.gov/recalls";
+    const badHost = recs.filter((r) => !/^https:\/\/www\.(fda|fsis\.usda)\.gov\//.test(r.source_url));
+    ok(badHost.length === 0, `every record links to an official agency host (${badHost.length} bad)`);
+    ok(recs.every((r) => r.link_kind === "official" || r.link_kind === "list"), `link_kind is only official|list (${[...new Set(recs.map((r) => r.link_kind))]})`);
+    const guessed = recs.filter((r) => r.agency !== "FDA" && /\/recalls-alerts\//.test(r.source_url) && !(r.link_kind === "official" && r.slug_verified));
+    ok(guessed.length === 0, `no FSIS record ships an unverified reconstructed slug (${guessed.length})`);
+    const bogusFda = recs.filter((r) => r.agency === "FDA" && r.source_url !== fdaListUrl);
+    ok(bogusFda.length === 0, `every FDA record links the official list, not an invented ?search= URL (${bogusFda.length})`);
+    ok(recs.filter((r) => r.agency !== "FDA").every((r) => r.link_kind === "official" ? r.source_url.startsWith("https://www.fsis.usda.gov/recalls-alerts/") : r.source_url === fsisListUrl),
+      "unverified FSIS records fall back to the official FSIS list");
+    ok(recs.every((r) => !r.search_url || /^https:\/\/www\.google\.com\/search\?q=/.test(r.search_url)), "search fallbacks are well-formed");
+    ok(meta.links && meta.links.official_deep + meta.links.agency_list === meta.total,
+      `meta.links accounts for every record (deep ${meta.links.official_deep} + list ${meta.links.agency_list} = ${meta.total})`);
+
+    // a "list" record must say so in the sheet, and a deep link must not
+    const listRec = recs.find((r) => r.link_kind === "list");
+    const deepRec = recs.find((r) => r.link_kind === "official");
+    const openRec = (r) => { cards().find((c) => Number(c.dataset.i) === r._i).dispatchEvent(new w.MouseEvent("click", { bubbles: true })); };
+    openRec(listRec);
+    await sleep(60);
+    ok(/open the official .* recall list/.test(d.querySelector("#sheet").textContent) && /Why this is a list link/.test(d.querySelector("#sheet").textContent),
+      `a list-type record labels the link honestly (${JSON.stringify(d.querySelector("#sheet").textContent.slice(0, 90))})`);
+    d.querySelector(".close").dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
+    if (deepRec) {
+      openRec(deepRec);
+      await sleep(60);
+      ok(/view official notice/.test(d.querySelector("#sheet").textContent) && !/Why this is a list link/.test(d.querySelector("#sheet").textContent),
+        "a verified deep-link record shows the notice label and no list caveat");
+      d.querySelector(".close").dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
+    }
 
     // 11. static no-JS snapshot (inside <noscript> => raw text when scripting is on)
     ok(/<noscript>[\s\S]*Recall snapshot[\s\S]*<\/noscript>/.test(html), "static snapshot wrapped in <noscript>");

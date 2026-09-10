@@ -16,6 +16,7 @@ rebuilt with FSIS's own pathauto slug rule (verified against the Wayback CDX ind
 stdlib only. Runs in GitHub Actions (daily) or locally.
 """
 import argparse
+import difflib
 import json
 import os
 import re
@@ -28,6 +29,9 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 
 FDA_BASE = "https://api.fda.gov/food/enforcement.json"
+# fda.gov's recalls page supports NO working per-recall query (?search= is ignored -> soft 404),
+# the DataTables export carries no URLs, and openFDA has no URL field: link the official list.
+FDA_LIST = "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts"
 FSIS_INDEX = "https://www.fsis.usda.gov/recalls"
 FSIS_ALERT = "https://www.fsis.usda.gov/recalls-alerts/"
 GNEWS = "https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
@@ -39,16 +43,21 @@ BROWSER_UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 
 US_STATES = {s for s in "AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC".split()}
 
-# FSIS pathauto aliases are greedily filled with whole words up to 84 characters
-# (verified 2026-09 against 20 archived notice URLs -> 20/20 exact matches).
+# FSIS pathauto aliases: lowercase, ASCII, drop short FUNCTION words (but keep "and", "El",
+# "DBA" - they appear in real slugs), then greedily fill whole words up to 84 characters.
+# Measured against the Wayback CDX corpus it raises exact reproduction from 8/45 to 19/45 -
+# and because it is imperfect it is NEVER used to guess a link: a slug is only shipped when the
+# archive proves the URL exists (see normalize_fsis).
 FSIS_SLUG_MAX = 84
+FSIS_STOPWORDS = {"a", "an", "at", "by", "for", "from", "in", "into", "of", "on", "or",
+                  "the", "to", "with", "is", "its"}
 # ------------------------------------------------------------------ helpers
 def slug_words(text, max_len=FSIS_SLUG_MAX):
-    """FSIS pathauto slug: ascii lowercase, drop stop-words <= 2 chars, greedy fill to max_len."""
+    """FSIS pathauto slug: ascii lowercase, drop function words, greedy whole-word fill to max_len."""
     t = unicodedata.normalize("NFKD", text or "").encode("ascii", "ignore").decode().lower()
     out = ""
     for w in re.split(r"[^a-z0-9]+", t):
-        if len(w) <= 2:
+        if not w or w in FSIS_STOPWORDS:
             continue
         cand = f"{out}-{w}" if out else w
         if len(cand) > max_len:
@@ -169,8 +178,10 @@ def normalize_fda(r):
         "alert_id": f"FDA-{num}",
         "agency": "FDA",
         "source_agency": "FDA",
-        "source_url": f"https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts?search={num}",
-        "link_kind": "official",
+        "source_url": FDA_LIST,
+        "link_kind": "list",          # official list page - openFDA publishes no per-recall URL
+        "search_url": "https://www.google.com/search?q=" + urllib.parse.quote(
+            'site:fda.gov/safety/recalls-market-withdrawals-safety-alerts ' + " ".join((brand + " " + product).split()[:9])),
         "published_at": to_iso(r.get("report_date") or r.get("recall_initiation_date")),
         "last_updated": to_iso(r.get("center_classification_date")),
         "status": "ACTIVE" if "ong" in status.lower() else ("TERMINATED" if ("term" in status.lower() or "complet" in status.lower()) else status.upper()),
@@ -292,20 +303,72 @@ def parse_fsis_title(title):
     }
 
 
+def match_fsis_slug(core, known_slugs, published):
+    """Return (slug, how) for a REAL FSIS notice URL, or (None, None) - never guess.
+
+    FSIS slugs cannot be computed exactly (editors' slugs keep apostrophes folded in, add
+    double hyphens for "Inc.", append "-0" dedup suffixes...), so:
+      1. exact match inside a +/-75 day snapshot window, else
+      2. a STRICT near-match (>=0.90 string similarity AND >=0.80 token overlap) in the same
+         window - measured to lift coverage from 18/46 to 39/46 with every accepted pair verified
+         by hand, while ignoring the generic "fsis-issues-public-health-alert-" prefixes that
+         made naive prefix matching link the wrong notice.
+    """
+    slug = slug_words(core)
+    if fsis_slug_verified(slug, known_slugs, published):
+        return slug, "exact"
+    try:
+        pub = datetime.strptime(published, "%Y-%m-%d")
+    except Exception:  # noqa: BLE001
+        return None, None
+    mine = set(slug.split("-"))
+    best, best_ratio = None, 0.0
+    for cand, ts in known_slugs.items():
+        try:
+            if abs((datetime.strptime(ts[:8], "%Y%m%d") - pub).days) > 75:
+                continue
+        except Exception:  # noqa: BLE001
+            continue
+        ratio = difflib.SequenceMatcher(None, slug, cand).ratio()
+        if ratio < 0.90 or ratio <= best_ratio:
+            continue
+        toks = set(cand.split("-"))
+        jaccard = len(mine & toks) / max(1, len(mine | toks))
+        if jaccard >= 0.80:
+            best, best_ratio = cand, ratio
+    return (best, "similar") if best else (None, None)
+
+
+def fsis_slug_verified(slug, known_slugs, published):
+    """True only if the archive proves this exact URL exists, within a sane date window."""
+    ts = known_slugs.get(slug)
+    if not ts:
+        return False
+    try:
+        snap = datetime.strptime(ts[:8], "%Y%m%d")
+        pub = datetime.strptime(published, "%Y-%m-%d")
+    except Exception:  # noqa: BLE001
+        return False
+    return abs((snap - pub).days) <= 75
+
+
 def normalize_fsis(item, known_slugs, cutoff):
     if item["date"] < cutoff:
         return None
     parsed = parse_fsis_title(item["title"])
     if not parsed:
         return None
-    slug = slug_words(parsed["core"])
-    verified = slug in known_slugs
+    slug, how = match_fsis_slug(parsed["core"], known_slugs, item["date"])
+    verified = slug is not None
     return {
         "alert_id": f"FSIS-{slug[:60]}" if slug else f"FSIS-{item['date']}",
         "agency": "USDA FSIS",
         "source_agency": "USDA FSIS",
-        "source_url": (FSIS_ALERT + slug) if slug else FSIS_INDEX,
-        "link_kind": "official" if verified else "official-slug",
+        # never guess a slug: unverified -> the official FSIS list (which shows the newest notices)
+        "source_url": (FSIS_ALERT + slug) if verified else FSIS_INDEX,
+        "link_kind": "official" if verified else "list",
+        "search_url": "https://www.google.com/search?q=" + urllib.parse.quote(
+            'site:fsis.usda.gov/recalls-alerts "' + parsed["core"][:120] + '"'),
         "published_at": item["date"],
         "last_updated": item["date"],
         "status": "ACTIVE",
@@ -330,6 +393,7 @@ def normalize_fsis(item, known_slugs, cutoff):
             "raw_reason": parsed["core"],
         },
         "slug_verified": verified,
+        "slug_match": how,
         "coverage_url": item["link"],
     }
 
@@ -415,6 +479,10 @@ def main():
         "new_24h": sum(1 for r in merged if (r["published_at"] or "") >= d1),
         "new_7d": sum(1 for r in merged if (r["published_at"] or "") >= d7),
         "newest": merged[0]["published_at"] if merged else "",
+        "links": {
+            "official_deep": sum(1 for r in merged if r.get("link_kind") == "official"),
+            "agency_list": sum(1 for r in merged if r.get("link_kind") == "list"),
+        },
         "with_upc": sum(1 for r in merged if r["product"]["upc_codes"]),
         "with_lot": sum(1 for r in merged if r["product"]["lot_codes"]),
         "sources": sources,

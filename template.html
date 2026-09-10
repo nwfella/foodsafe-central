@@ -719,6 +719,9 @@ function openDetail(i){
        ${(p.expiration_dates||[]).length?`<div class="codes">Expiry: ${p.expiration_dates.map(esc).join(" · ")}</div>`:""}
        ${p.packaging_description?`<div class="codes">Qty: ${esc(p.packaging_description)}</div>`:""}</div>` : "";
   const dist = d.nationwide ? "Nationwide" : ((d.regions||[]).join(", ") || esc(d.raw_distribution || "See official notice"));
+  const deep = r.link_kind === "official";
+  const linkLabel = deep ? "view official notice ↗"
+    : (isFsis ? "open the official FSIS recall list ↗" : "open the official FDA recall list ↗");
   $("#sheet").innerHTML = `
     <button class="close" onclick="closeDetail()">✕</button>
     <span class="ag ${isFsis ? "ag-usda" : "ag-fda"}">${esc(r.agency)}</span>
@@ -726,7 +729,7 @@ function openDetail(i){
     <h2 style="margin-top:10px">${esc(p.product_name || p.brand_name || r.alert_id)}</h2>
     ${p.brand_name?`<div style="color:var(--muted)">${esc(p.brand_name)}</div>`:""}
     <dl class="kv">
-      <dt>Agency</dt><dd>${esc(r.source_agency)} · <a href="${esc(r.source_url)}" target="_blank" rel="noopener">view official notice ↗</a></dd>
+      <dt>Agency</dt><dd>${esc(r.source_agency)} · <a href="${esc(r.source_url)}" target="_blank" rel="noopener">${linkLabel}</a></dd>
       <dt>Recall ID</dt><dd>${esc(r.alert_id)}</dd>
       <dt>Status</dt><dd>${r.status === "ACTIVE" ? '<span style="color:var(--green)">● ACTIVE</span>' : esc(r.status)}${isFsis ? ' <span class="hint">(as published in the FSIS notice)</span>' : ""}</dd>
       <dt>Classification</dt><dd>${esc(sv[0])}${isFsis ? ' <span class="hint">— FSIS states the class inside the notice</span>' : ""}</dd>
@@ -736,13 +739,18 @@ function openDetail(i){
       <dt>Distribution</dt><dd>${dist}${d.raw_distribution && !d.nationwide && !isFsis ? ` <span class="hint">(${esc(d.raw_distribution)})</span>` : ""}</dd>
     </dl>
     ${r.consumer_action.instructions?`<div class="action"><b>What to do:</b> ${esc(r.consumer_action.instructions)}</div>`:""}
-    ${isFsis?`<div class="notice">USDA FSIS notice — check the official notice for affected lot codes, brands and the product labels. ${r.slug_verified ? "This deep link was verified against the archived FSIS notice list." : "If this link does not open, use the full FSIS recall list link below."}</div>`:""}
+    ${isFsis?`<div class="notice">USDA FSIS notice — check the official notice for affected lot codes, brands and product labels.</div>`:""}
+    ${!deep?`<div class="notice"><b>Why this is a list link:</b> ${isFsis
+        ? "FSIS publishes no feed of notice web addresses, and its site blocks automated clients, so a direct link is only shipped once the notice has been archived and the exact URL verified. Until then this opens the official FSIS recall list (newest first), where this notice appears near the top."
+        : "the FDA openFDA feed carries no web address for an individual recall and fda.gov exposes no reachable per-recall feed. This opens the official FDA recall list, where the newest recalls appear at the top."}
+      ${r.search_url?` <a href="${esc(r.search_url)}" target="_blank" rel="noopener">Search for this notice ↗</a>`:""}</div>`:""}
     ${codes}
     <div class="raw"><b>Parsed from official text</b> — verify details on the linked notice.
 ${p.raw_code_info?`\n${esc(p.raw_code_info)}`:""}
 ${d.raw_distribution?`\nDistribution: ${esc(d.raw_distribution)}`:""}
 ${r.consumer_action.raw_reason?`\nReason: ${esc(r.consumer_action.raw_reason)}`:""}</div>
     ${isFsis?`<p class="hint" style="margin-top:10px">All USDA FSIS notices: <a href="https://www.fsis.usda.gov/recalls" target="_blank" rel="noopener">fsis.usda.gov/recalls ↗</a></p>`:""}`;
+  if(!deep) $("#sheet").querySelectorAll("a[href]").forEach(a => a.setAttribute("rel", "noopener noreferrer"));
   $("#ov").classList.add("open");
   document.body.style.overflow = "hidden";
 }
