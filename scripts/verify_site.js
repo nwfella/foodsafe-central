@@ -22,15 +22,17 @@ const ok = (cond, msg) => (cond ? info.push("  ok   " + msg) : fails.push("  FAI
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // ---- stub canvas 2d context (jsdom has no canvas without the native pkg) ----
-const drawCalls = { fillRect: 0, fillText: 0, beginPath: 0, clearRect: 0 };
+const drawCalls = { fillRect: 0, fillText: 0, beginPath: 0, clearRect: 0, strokeRect: 0, setLineDash: 0, texts: [] };
 function stubCtx() {
   const noop = () => {};
   return new Proxy(
     {
       fillRect: () => drawCalls.fillRect++,
-      fillText: () => drawCalls.fillText++,
+      fillText: (t) => { drawCalls.fillText++; drawCalls.texts.push(String(t)); },
       beginPath: () => drawCalls.beginPath++,
       clearRect: () => drawCalls.clearRect++,
+      strokeRect: () => drawCalls.strokeRect++,
+      setLineDash: () => drawCalls.setLineDash++,
       moveTo: noop, lineTo: noop, stroke: noop, fill: noop, setTransform: noop, arc: noop, closePath: noop,
       createLinearGradient: () => ({ addColorStop() {} }),
       measureText: () => ({ width: 10 }),
@@ -178,6 +180,61 @@ const switchTheme = (t) => d.querySelector(`[data-theme='${t}']`).dispatchEvent(
       `reset restores the default tile state: ${JSON.stringify(pressed())}`);
     ok(d.querySelector("#chSub").textContent.indexOf("FDA") < 0 && d.querySelector("#chSub").textContent.indexOf("USDA") < 0, "reset also clears the tile scope from the timeline");
 
+    // 6c. clicking a bar filters to that month; clicking it again goes back to the whole range
+    const L = w.eval("chartLayout");
+    ok(L && L.slot > 0 && L.padL > 0, `chart layout captured for hit-testing (slot ${L && L.slot.toFixed(1)}px)`);
+    const totals = w.eval("chartData.map(m => m.fda + m.usda)");
+    const bi = totals.indexOf(Math.max(...totals));
+    const key = w.eval(`chartData[${bi}].key`);
+    const label = w.eval(`monthLabel(${JSON.stringify(key)})`);
+    const [mShort, mYear] = label.split(" ");
+    const cx = L.padL + L.slot * bi + L.bw / 2, cy = L.padT + 5;
+    const beforeMonth = cards().length;
+    const ringBefore = drawCalls.strokeRect;
+    const clickCanvas = (x, y) => d.querySelector("#timeline").dispatchEvent(new w.MouseEvent("click", { clientX: x, clientY: y, bubbles: true }));
+
+    clickCanvas(cx, cy);
+    await sleep(250);
+    ok(d.querySelector("#chSub").textContent.indexOf("selected " + label) >= 0, `bar click scopes the timeline to ${label} (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
+    ok(!d.querySelector("#chClear").hidden && d.querySelector("#chClearMonth").textContent === label, `clear-month control appears for ${label}`);
+    ok(cards().length > 0 && cards().length < beforeMonth, `bar click narrows the list (${beforeMonth} -> ${cards().length})`);
+    ok(cards().every((c) => c.textContent.indexOf(mShort) >= 0 && c.textContent.indexOf(mYear) >= 0), `every visible card is in ${label}`);
+    ok(d.querySelector("#countLine").textContent.indexOf(mShort) >= 0, `count line names ${label}`);
+    ok(w.eval("chartData.length") === 12, "all 12 month bars stay on screen so the month can be un-picked");
+    ok(drawCalls.strokeRect > ringBefore, "the selected month's column is ringed");
+    ok(w.eval("chartSelected") === key, `chart keeps the selected key (${w.eval("chartSelected")})`);
+
+    // month + a tile compose
+    clickTile("fda");
+    await sleep(250);
+    const combo = d.querySelector("#chSub").textContent;
+    ok(combo.indexOf("selected " + label) >= 0 && combo.indexOf("FDA") >= 0, `month + FDA tile compose (${JSON.stringify(combo)})`);
+    ok(cards().every((c) => /FDA/.test(c.textContent) && c.textContent.indexOf(mShort) >= 0), `list is ${label} AND FDA only (${cards().length})`);
+    clickTile("fda");
+    await sleep(250);
+
+    clickCanvas(cx, cy);
+    await sleep(250);
+    ok(d.querySelector("#chSub").textContent.indexOf("selected") < 0, `clicking the same bar again clears the month (${JSON.stringify(d.querySelector("#chSub").textContent)})`);
+    ok(d.querySelector("#chClear").hidden, "clear-month control hides again");
+    ok(cards().length === beforeMonth, `list returns to the full date range (${cards().length})`);
+    ok(w.eval("chartSelected") === "", "chart selection cleared");
+
+    // the ✕ control clears it too, and so does Reset
+    clickCanvas(cx, cy);
+    await sleep(250);
+    d.querySelector("#chClear").dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
+    await sleep(250);
+    ok(w.eval("chartSelected") === "" && d.querySelector("#chClear").hidden, "the ✕ month control clears the filter");
+    clickCanvas(cx, cy);
+    await sleep(250);
+    clickCanvas(0, 0);
+    await sleep(200);
+    ok(w.eval("chartSelected") !== "", "clicking outside the plot (top-left) does not clear a month");
+    chip("reset");
+    await sleep(250);
+    ok(w.eval("chartSelected") === "" && d.querySelector("#chClear").hidden, "reset clears the month filter too");
+
     // 7. REGION filter must move the timeline chart, not just the list
     chip("reset");
     await sleep(250);
@@ -246,6 +303,21 @@ const switchTheme = (t) => d.querySelector(`[data-theme='${t}']`).dispatchEvent(
     // 10. chart drew bars + labels
     ok(drawCalls.fillRect >= 12, `timeline drew bars (fillRect=${drawCalls.fillRect})`);
     ok(drawCalls.fillText >= 15, `timeline drew axis/month/value labels (fillText=${drawCalls.fillText})`);
+
+    // 10b. calendar labels must not roll back a month west of UTC (Apr/May class of bug)
+    const labelOf = (k) => {
+      const [y, mo] = k.split("-").map(Number);
+      return new Date(Date.UTC(y, mo - 1, 1)).toLocaleDateString(undefined, { month: "short", year: "numeric", timeZone: "UTC" });
+    };
+    const keys = w.eval("chartData.map(m => m.key)");
+    ok(keys.every((k) => w.eval(`monthLabel(${JSON.stringify(k)})`) === labelOf(k)),
+      `every month label matches its own key (${keys.slice(-3).map((k) => w.eval(`monthLabel(${JSON.stringify(k)})`)).join(", ")})`);
+    const shorts = keys.map((k) => labelOf(k).split(" ")[0]);
+    ok(shorts.every((s) => drawCalls.texts.indexOf(s) >= 0), `x-axis drew every month abbreviation (${shorts.join("/")})`);
+    const firstOfMonth = w.eval('fmtDate("2026-05-01")');
+    ok(/May/.test(firstOfMonth) && !/Apr/.test(firstOfMonth), `first-of-month dates stay in their own month (${firstOfMonth})`);
+    const midMonth = w.eval('fmtDate("2026-05-26")');
+    ok(/May/.test(midMonth), `mid-month dates correct (${midMonth})`);
 
     // 11. static no-JS snapshot (inside <noscript> => raw text when scripting is on)
     ok(/<noscript>[\s\S]*Recall snapshot[\s\S]*<\/noscript>/.test(html), "static snapshot wrapped in <noscript>");

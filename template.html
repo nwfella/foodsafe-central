@@ -106,7 +106,12 @@
   .chartcard .ch-head .sub{font-size:11.5px; color:var(--muted)}
   .ch-legend{display:flex; gap:12px; font-size:11.5px; color:var(--muted)}
   .ch-legend i{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px}
-  #timeline{width:100%; height:110px; display:block; margin-top:6px}
+  #timeline{width:100%; height:110px; display:block; margin-top:6px; cursor:pointer}
+  .ch-clear{font-size:11.5px; font-family:inherit; padding:4px 10px; border-radius:999px; font-weight:600; cursor:pointer;
+            border:1px solid var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent); color:var(--accent)}
+  .ch-clear[hidden]{display:none}
+  .ch-hint{font-size:11px; color:var(--gray); margin-top:2px}
+  @media(max-width:700px){ .ch-hint{display:none} }
 
   /* controls */
   .controls{display:grid; grid-template-columns:1fr auto auto auto auto; gap:10px; margin:14px 0 8px}
@@ -234,9 +239,12 @@
       <div class="ch-head">
         <h2>Recalls per month</h2>
         <div class="ch-legend"><span><i style="background:var(--accent)"></i>FDA</span><span><i style="background:var(--amber)"></i>USDA FSIS</span></div>
+        <button class="ch-clear" id="chClear" type="button" hidden title="Clear the month filter">✕ <span id="chClearMonth"></span></button>
         <span class="sub" id="chSub">last 12 months</span>
       </div>
-      <canvas id="timeline" width="900" height="220" aria-label="Recalls per month, FDA and USDA FSIS" role="img"></canvas>
+      <canvas id="timeline" width="900" height="220" tabindex="0" title="Click a bar to filter by that month - click it again to clear"
+              aria-label="Recalls per month, FDA and USDA FSIS. Click a bar to filter by that month." role="img"></canvas>
+      <span class="ch-hint">Click a bar to filter to that month — click it again to clear</span>
     </div>
   </div>
 
@@ -310,7 +318,7 @@
 const RECALLS_DATA = null;
 /*__DATA_END__*/
 const $ = s => document.querySelector(s);
-const state = { data: null, f: { q:"", sev:"", st:"ACTIVE", agency:"", region:"", recent:"", quick:"" } };
+const state = { data: null, f: { q:"", sev:"", st:"ACTIVE", agency:"", region:"", recent:"", quick:"", month:"" } };
 
 /* ---------- helpers ---------- */
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -322,7 +330,9 @@ function fmtDate(s){
   if(!s) return "—";
   const d = new Date(s + "T00:00:00Z");
   if(isNaN(d)) return s;
-  return d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"numeric"});
+  // timeZone:"UTC" matters: these are calendar dates, so a local-time format would roll the
+  // 1st of a month back to the previous month for anyone west of UTC (MDT showed Apr 30, 2026).
+  return d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"numeric", timeZone:"UTC"});
 }
 
 /* ---------- themes ---------- */
@@ -399,19 +409,30 @@ function monthKeys(n){
   const out = [], now = new Date();
   for(let i = n - 1; i >= 0; i--){
     const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i, 1));
-    out.push({ key: d.toISOString().slice(0,7), label: d.toLocaleDateString(undefined,{month:"short"}) });
+    out.push({ key: d.toISOString().slice(0,7), label: d.toLocaleDateString(undefined,{month:"short", timeZone:"UTC"}) });
   }
   return out;
 }
-let chartData = null, chartScope = "", chartInScope = 0;
+let chartData = null, chartLayout = null, chartSelected = "", chartScope = "", chartInScope = 0;
+
+function monthLabel(key){
+  if(!key) return "";
+  const m = /^(\d{4})-(\d{2})$/.exec(key);
+  if(!m) return key;
+  return new Date(Date.UTC(+m[1], +m[2] - 1, 1)).toLocaleDateString(undefined, {month:"short", year:"numeric", timeZone:"UTC"});
+}
+
 function updateChart(){
   if(!state.data) return;
   const f = filterState(), upcQ = upcFromQuery(f.q);
+  // Bars deliberately ignore the month dimension: the 12-month context stays on screen so the
+  // selected month can be clicked again (or ✕-ed) to go back to the whole range.
+  const fBars = Object.assign({}, f, { month: "" });
   const months = monthKeys(12), idx = {};
   months.forEach((m,i) => { idx[m.key] = i; m.fda = 0; m.usda = 0; });
   let inScope = 0;
   for(const r of state.data.recalls){
-    if(!passes(r, f, upcQ)) continue;
+    if(!passes(r, fBars, upcQ)) continue;
     inScope++;
     const k = (r.published_at||"").slice(0,7);
     if(!(k in idx)) continue;
@@ -419,11 +440,40 @@ function updateChart(){
     if(r.agency === "FDA") m.fda++; else m.usda++;
   }
   chartData = months;
+  chartSelected = f.month || "";
   chartScope = buildScopeLabel(f);
   chartInScope = inScope;
   const sum = months.reduce((a,m) => a + m.fda + m.usda, 0);
-  $("#chSub").textContent = months.length + " months · " + sum + " recalls" + (chartScope ? " · " + chartScope : "");
+  $("#chSub").textContent = months.length + " months · " + sum + " recalls"
+    + (chartSelected ? " · selected " + monthLabel(chartSelected) : "")
+    + (chartScope ? " · " + chartScope : "");
+  const clr = $("#chClear");
+  if(clr){
+    clr.hidden = !chartSelected;
+    if(chartSelected) $("#chClearMonth").textContent = monthLabel(chartSelected);
+  }
   drawChart();
+}
+
+/* which month column did this event land in? (uses the LAST drawn layout) */
+function chartHit(ev){
+  if(!chartLayout || !chartData) return null;
+  const cv = $("#timeline");
+  if(!cv) return null;
+  const rect = cv.getBoundingClientRect();
+  const x = (ev.clientX || 0) - rect.left;
+  const y = (ev.clientY || 0) - rect.top;
+  const L = chartLayout;
+  if(x < L.padL || x > L.W - L.padR || y < L.padT || y > L.H) return null;
+  const i = Math.floor((x - L.padL) / L.slot);
+  return (i >= 0 && i < chartData.length) ? chartData[i] : null;
+}
+
+function toggleMonth(key){
+  const f = state.f;
+  f.month = (!key || f.month === key) ? "" : key;     // same bar again -> back to the whole range
+  syncUI();
+  render();
 }
 
 function buildScopeLabel(f){
@@ -456,6 +506,7 @@ function drawChart(){
   const cFda = cssv("--accent"), cUsda = cssv("--amber"), cGrid = cssv("--border"), cTxt = cssv("--muted"), cText = cssv("--text");
   const barTotal = chartData.reduce((a,m) => a + m.fda + m.usda, 0);
   if(barTotal === 0){
+    chartLayout = null;
     ctx.fillStyle = cTxt; ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.font = "12px -apple-system,Segoe UI,Roboto,sans-serif";
     ctx.fillText("No recalls match the current filter" + (chartScope ? " (" + chartScope + ")" : ""), W / 2, H / 2);
@@ -478,8 +529,11 @@ function drawChart(){
 
   const slot = plotW / chartData.length;
   const bw = Math.max(4, slot * 0.62);
+  chartLayout = { W:W, H:H, padL:padL, padR:padR, padT:padT, padB:padB, slot:slot, bw:bw };
   chartData.forEach((m, i) => {
     const x = padL + slot * i + (slot - bw) / 2;
+    const isSel = chartSelected === m.key;
+    ctx.globalAlpha = (chartSelected && !isSel) ? 0.3 : 1;
     let yBase = padT + plotH;
     const hF = (m.fda / nice) * plotH;
     if(hF > 0){
@@ -492,11 +546,20 @@ function drawChart(){
       ctx.fillStyle = cUsda;
       ctx.fillRect(x, yBase - hU, bw, hU);
     }
-    ctx.fillStyle = cTxt; ctx.textAlign = "center"; ctx.textBaseline = "top";
+    ctx.fillStyle = isSel ? cText : cTxt;
+    ctx.font = (isSel ? "bold " : "") + "10px -apple-system,Segoe UI,Roboto,sans-serif";
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
     ctx.fillText(m.label, x + bw / 2, padT + plotH + 5);
     if(m.fda + m.usda > 0){
       ctx.fillStyle = cText; ctx.textBaseline = "bottom";
       ctx.fillText(String(m.fda + m.usda), x + bw / 2, yBase - hU - 2);
+    }
+    ctx.globalAlpha = 1;
+    if(isSel){                                  // ring the selected month's column
+      ctx.setLineDash([3, 3]);
+      ctx.strokeStyle = cText; ctx.lineWidth = 1.5;
+      ctx.strokeRect(x - (slot - bw) / 2 + 1, padT + 0.5, bw + (slot - bw) - 2, plotH);
+      ctx.setLineDash([]);
     }
   });
 }
@@ -517,7 +580,7 @@ function score(r, q, upcQ){
 function filterState(){
   const f = state.f;
   return {
-    q: f.q, sev: f.sev, st: f.st, agency: f.agency, region: f.region, quick: f.quick,
+    q: f.q, sev: f.sev, st: f.st, agency: f.agency, region: f.region, quick: f.quick, month: f.month,
     since: f.recent ? daysAgoIso(f.recent === "week" ? 7 : 30) : null,
   };
 }
@@ -529,6 +592,7 @@ function passes(r, f, upcQ){
   if(f.sev && r.severity !== f.sev) return false;
   if(f.st && r.status !== f.st) return false;
   if(f.since && (r.published_at||"") < f.since) return false;
+  if(f.month && (r.published_at||"").slice(0,7) !== f.month) return false;
   if(f.quick === "class1" && r.severity !== "CLASS_I") return false;
   if(f.quick === "allergen" && r.hazard_type !== "ALLERGEN") return false;
   if(f.quick === "pathogen" && r.hazard_type !== "BIOLOGICAL") return false;
@@ -604,6 +668,7 @@ function render(){
     bits.push(esc(opt ? opt.textContent : state.f.region));
   }
   if(state.f.agency) bits.push(esc(state.f.agency));
+  if(state.f.month) bits.push(esc(monthLabel(state.f.month)));
   $("#countLine").innerHTML = bits.filter(Boolean).join(" · ");
   updateChart();
   const list = $("#list");
@@ -662,7 +727,7 @@ ${r.consumer_action.raw_reason?`\nReason: ${esc(r.consumer_action.raw_reason)}`:
 function closeDetail(){ $("#ov").classList.remove("open"); document.body.style.overflow = ""; }
 
 /* ---------- filter surfaces stay in sync (tiles <-> selects <-> chips) ---------- */
-const DEFAULTS = { q:"", sev:"", st:"ACTIVE", agency:"", region:"", recent:"", quick:"" };
+const DEFAULTS = { q:"", sev:"", st:"ACTIVE", agency:"", region:"", recent:"", quick:"", month:"" };
 
 /* does a given stat tile describe the current filter state? */
 function statOn(k){
@@ -729,6 +794,14 @@ document.querySelector(".stats").addEventListener("click", e => {
   const b = e.target.closest("[data-stat]");
   if(b) toggleStat(b.dataset.stat);
 });
+
+const cvEl = document.getElementById("timeline");
+if(cvEl){
+  cvEl.addEventListener("click", e => { const m = chartHit(e); if(m) toggleMonth(m.key); });
+  cvEl.addEventListener("mousemove", e => { cvEl.style.cursor = chartHit(e) ? "pointer" : ""; });
+}
+const chClear = document.getElementById("chClear");
+if(chClear) chClear.addEventListener("click", () => toggleMonth(""));
 
 $("#list").addEventListener("click", e => { const c = e.target.closest(".card"); if(c) openDetail(+c.dataset.i); });
 $("#ov").addEventListener("click", e => { if(e.target.id === "ov") closeDetail(); });

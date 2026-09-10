@@ -13,6 +13,7 @@ FDA food recalls plus USDA FSIS recalls (meat, poultry, processed egg products),
 - **Quick chips** — last 7 days, last 30 days, Class I only, allergens, pathogens, reset
 - **Detail view** per recall: hazard, dates, distribution, product &amp; codes, plain-language action, the **raw official text** the parsed fields came from, and a link to the official notice
 - **12-month timeline** (canvas) of recalls per month, split FDA vs USDA FSIS, re-bucketed to whatever filter is active (its header names the scope, e.g. `12 months · 37 recalls · AK`)
+- **Click a bar to filter to that month** — the selected column is ringed and the other months dim, the header shows `selected May 2026`, and a `✕ May 2026` pill (or clicking the same bar again, or ↺ Reset) goes back to the whole date range; the 12-month context always stays on screen so a month can be un-picked
 - **4 colour themes** — Pantry (dark), **Chartreuse**, Paper (light), Berry — picked from swatches, remembered in `localStorage`
 - **Zero runtime fetch** — data is baked into `index.html` at build time, so the page works on locked-down/IT-managed machines where `fetch`/XHR is blocked
 - A **no-JavaScript snapshot** (counts + newest notices with official links) is baked in too
