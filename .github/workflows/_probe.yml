@@ -1,0 +1,24 @@
+name: _probe-fsis
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe USDA FSIS / FoodSafety.gov reachability
+        run: |
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+          for U in \
+            "https://www.fsis.usda.gov/recalls" \
+            "https://www.fsis.usda.gov/recalls-alerts/vanee-foods-recalls-chicken-flavored-base-products-due-misbranding-and-undeclared" \
+            "https://www.foodsafety.gov/recalls-and-outbreaks" \
+            "https://news.google.com/rss/search?q=site:fsis.usda.gov+recall&hl=en-US&gl=US&ceid=US:en" \
+            "https://api.fda.gov/food/enforcement.json?limit=1" ; do
+            CODE=$(curl -s -o /tmp/out.html -w '%{http_code}' --max-time 30 -A "$UA" "$U")
+            echo "$CODE  ($(wc -c </tmp/out.html) bytes)  $U"
+          done
+          echo "--- fsis alerts index parse test ---"
+          curl -s --max-time 30 -A "$UA" "https://www.fsis.usda.gov/recalls" -o /tmp/r.html
+          grep -o 'recalls-alerts/[a-z0-9-]*' /tmp/r.html | sort -u | head -10
